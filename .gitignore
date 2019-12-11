@@ -1,5 +1,4 @@
-
-画面班/Base1/.vs/Base1/v15/.suo
+*.suo
 *.db
 *.ipch
 *.log
@@ -9,4 +8,3 @@
 *.tlog
 *.obj
 *.idb
-画面班/過去のやつ/Project1/.vs/Project1/v15/.suo
