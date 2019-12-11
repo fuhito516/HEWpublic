@@ -19,14 +19,18 @@ float Playercarsolu;//P1　P2等のカーソル座標
 float sx = 1;
 float sy = 1;
 float a=0;
-int count = 0;
-int oldcount = 0;
+int i;
+float count;
+float count2;
+
 void CaracterselectInitialize() {
 	
 	//==================================
 	//ライトとカーソルの座標の決定
 	//==================================
-	count += 1 / 6000;
+	i = 192;
+
+	count = 0.0f;
 
 	////ここまでが座標
 }
@@ -34,14 +38,37 @@ void CaracterselectUpdate() {
 
 	//==========================================
 	//1Pの動き
-	//=========================================
+	//==========================================
+
+	count++;
+	count2++;
+	if (count >3.5f) {
+		if (i > 2304) {
+			i = 128 - 64;	
+		}
+
+		i+=256;
+		count = 0;
+	}	
+	//pressエンターの拡大
+	if (count2 >0.5f) {
+		if (sx <= 1.5) {
+
+			sx += PAD;
+			sy += PAD;
+			
+		}
+		if (sx >= 1.5) {
+			sx -= 0.3f;
+			sy -= 0.3f;
+		}
+		count2 = 0;
+	}
 
 	if (Keyboard_IsTrigger(DIK_RETURN)) {
-		
+		//遷移処理記入
 	}
-	
 }
-
 void CaracterselectDraw() {
 	//-----------------------------------
 	//2D
@@ -53,18 +80,10 @@ void CaracterselectDraw() {
 
 	Sprite_Draw(TEXTURE_INDEX_UNKO,
 		FIREPOS_X,FIREPOS_Y,
-		0, 0,
+		i, 0,
 		S_KIHONTEXTURE_W, S_KIHONTEXTURE_H);
 
-		if (sx <= 1.5/*&&sx<=1*/) {
 
-			sx += PAD;
-			sy += PAD;
-		}
-		if (sx >= 1.5) {
-			sx -= 0.3f;
-			sy -= 0.3f;
-		}
 
 	
 		
