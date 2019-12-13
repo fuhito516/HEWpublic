@@ -5,7 +5,7 @@
 
 #include <d3d9.h>
 #define FIREPOS_X	(800)
-#define FIREPOS_Y	(40)
+#define FIREPOS_Y	(80)
 #define KETTEIPOS_X (SCREEN_WIDTH/2)
 #define KETTEIPOS_Y	(SCREEN_HEIGHT/2+200)
 
@@ -22,6 +22,7 @@ typedef enum TextureIndex
 {
 	TEXTURE_INDEX_BG,
 	TEXTURE_INDEX_UNKO,
+	TEXTURE_INDEX_LIGHT,
 	TEXTURE_INDEX_PURESENTER,
     TEXTURE_INDEX_TITLE,
 

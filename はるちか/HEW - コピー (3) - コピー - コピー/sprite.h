@@ -84,6 +84,10 @@ void Sprite_animetion_Alpha_Draw
 	int tx, int ty, 
 	int tw, int th, 
 	float sx, float sy);
-
+void  Sprite_Alpha_Draw(TextureIndex texture_index,
+	float dx, float dy,
+	int tx, int ty,
+	int tw, int th,
+	float sx, float sy);
 
 #endif // SPRITE_H_

@@ -32,10 +32,10 @@ static	float sy = 1.0f;
 ------------------------------------------------------------------------------*/
 
 // スプライトポリゴンの頂点カラー設定
-void Sprite_SetColor(D3DCOLOR color)
-{
-	g_Color = D3DCOLOR_RGBA(255,0,0,255);
-}
+//void Sprite_SetColor(D3DCOLOR color)
+//{
+//	g_Color = D3DCOLOR_RGBA(255,0,0,255);
+//}
 
 
 // スプライト描画

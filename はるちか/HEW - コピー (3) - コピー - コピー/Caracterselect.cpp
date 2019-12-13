@@ -22,7 +22,7 @@ float a=0;
 int i;
 float count;
 float count2;
-
+int flg;
 void CaracterselectInitialize() {
 	
 	//==================================
@@ -51,18 +51,24 @@ void CaracterselectUpdate() {
 		count = 0;
 	}	
 	//pressエンターの拡大
-	//if (sx >= 20) {
-		if (sx <= 1.5) {
-			sx += PAD;
-			sy += PAD;
-		}
-		if (sx >= 1.5) {
-			sx = 0.5;
-			sy = 0.5;
-		}
-		//sx = 0;
-		//sy = 0;
-	//}
+	//伸び縮み
+	if (sx <= 1) {
+		flg = 1;
+	}
+	if (sx >= 1.5) {
+		flg = 0;
+
+	}
+	//size変更
+	if (flg == 1) {
+		sx += PAD;
+		sy += PAD;
+	}
+	if (flg == 0) {
+		sx -= PAD;
+		sy -= PAD;
+	}
+
 
 		
 
@@ -74,31 +80,31 @@ void CaracterselectDraw() {
 	//-----------------------------------
 	//2D
 	//-----------------------------------
+	//背景を黒くするための物
 	Sprite_Draw(TEXTURE_INDEX_BG,
 		0, 0, 0, 0,
 		SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	//タイトルの描画
 	Sprite_Draw(TEXTURE_INDEX_TITLE,
-		25, 10, 0, 0,
-		SCREEN_WIDTH-50, SCREEN_HEIGHT);
+		0, 0, 0, 0,
+		SCREEN_WIDTH, SCREEN_HEIGHT);
+	//全体的の明暗表現
+
+	Sprite_Alpha_Draw(TEXTURE_INDEX_LIGHT,
+		KETTEIPOS_X, SCREEN_HEIGHT/2,
+		0, 0,
+		1024, 576, 1,1);
 
 
 	Sprite_Draw(TEXTURE_INDEX_UNKO,
 		FIREPOS_X,FIREPOS_Y,
 		i, 0,
 		S_KIHONTEXTURE_W, S_KIHONTEXTURE_H);
-
+	
 	
 	Sprite_animetion_Alpha_Draw(TEXTURE_INDEX_PURESENTER,
 		KETTEIPOS_X, KETTEIPOS_Y,
 		0, 0,
 		256, 256, sx, sy);
-
-
-
-	//Sprite_animetion_Alpha_Draw(TEXTURE_INDEX_PURESENTER,
-	//	50, 50,
-	//	0, 0,
-	//	256, 256, sx, sy);
-
+	
 }
