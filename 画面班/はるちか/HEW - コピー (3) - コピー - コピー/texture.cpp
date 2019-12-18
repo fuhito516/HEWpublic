@@ -28,6 +28,7 @@ typedef struct TextureFile_tag
 // 読み込みテクスチャ情報
 static const TextureFile g_TextureFiles[] = {
 	{ "asset/texture/BG.png",SCREEN_WIDTH, SCREEN_HEIGHT },
+	{ "asset/texture/LIGHT2.png",SCREEN_WIDTH, SCREEN_HEIGHT },
 	{"asset/texture/fire.png",2304,256 },
 	{ "asset/texture/BGblack2.png",1024,576 },
 	{ "asset/texture/Press Enter.png",M_KIHONTEXTURE_W,M_KIHONTEXTURE_H },

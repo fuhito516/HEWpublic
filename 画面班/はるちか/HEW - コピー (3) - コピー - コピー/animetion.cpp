@@ -116,7 +116,6 @@ void Sprite_animetion_Alpha_Draw(TextureIndex texture_index, float dx, float dy,
 
 	v[1] = (float)(ty + th) / h;
 
-
 	float dw, dh;
 	
 	dw = tw * sx;
@@ -161,7 +160,6 @@ void Sprite_Alpha_Draw(TextureIndex texture_index, float dx, float dy, int tx, i
 	if (alphaflg1 == 1) {
 		alphaBG -= 1;
 	}
-
 	// UVç¿ïWåvéZ
 	float u[2], v[2];
 
