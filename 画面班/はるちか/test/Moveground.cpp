@@ -11,8 +11,8 @@ cMoveGround* cMoveGround::MovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // ƒIƒuƒWƒ
 
 LPDIRECT3DVERTEXBUFFER9 cMoveGround::pMoveVertexBuffer;	// ’¸“_ƒoƒbƒtƒ@
 VERTEX_3D*				cMoveGround::pMoveVertex;		// ’¸“_ƒoƒbƒtƒ@‚Ì’†g‚ğ–„‚ß‚é
-
-												//’¸“_ƒZƒbƒgŠÖ”
+float spead = 0.05f;
+//’¸“_ƒZƒbƒgŠÖ”
 void cMoveGround::MoveSetVertex()
 {
 
@@ -68,6 +68,9 @@ void cMoveGround::MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
 			// g—p
 			MovenumberOfObjects[i]->use = true;
 
+			// ƒtƒŒ[ƒ€ƒJƒEƒ“ƒ^[
+			MovenumberOfObjects[i]->frameCounter = 0;
+
 			// ˆÊ’u‚Æ‘å‚«‚³w’è
 			MovenumberOfObjects[i]->Mposition.x = _mposition.x;
 			MovenumberOfObjects[i]->Mposition.y = _mposition.y;
@@ -117,7 +120,22 @@ void cMoveGround::MoveUninit()
 //XVˆ—
 void cMoveGround::MoveUpdate()
 {
+	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
+	{
+		if (MovenumberOfObjects[i]->use)
+		{
+			MovenumberOfObjects[i]->Mposition.y += spead;
 
+			if (MovenumberOfObjects[i]->Mposition.y<0) {
+			 spead*=-1;
+				}
+			else if (MovenumberOfObjects[i]->Mposition.y>30) {
+					spead *= -1;
+				}
+			// ƒtƒŒ[ƒ€ƒJƒEƒ“ƒ^[
+			MovenumberOfObjects[i]->frameCounter++;
+		}
+	}
 }
 
 //ƒ|ƒŠƒSƒ“‚Ì•`‰æ

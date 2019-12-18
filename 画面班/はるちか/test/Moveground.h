@@ -35,6 +35,9 @@ public:
 	// 使用
 	bool use;
 
+	// フレームカウンター
+	int frameCounter;
+
 	// サイズ
 	D3DXVECTOR2 size;
 

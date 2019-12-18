@@ -204,7 +204,7 @@ bool Initialize(HINSTANCE hInstance)
 	cGround::SetGround(D3DXVECTOR2(35, -0.5f), D3DXVECTOR2(2.0f, 8.0f));
 	cGround::SetGround(D3DXVECTOR2(40, -0.5f), D3DXVECTOR2(2.0f, 5.0f));
 	cGround::SetGround(D3DXVECTOR2(40, -0.5f), D3DXVECTOR2(2.0f, 5.0f));
-	cMoveGround::MoveSetGround(D3DXVECTOR2(60, 4.0f), D3DXVECTOR2(20.0f, 2.0f));
+	cMoveGround::MoveSetGround(D3DXVECTOR2(60, 0.0f), D3DXVECTOR2(20.0f, 2.0f));
 	//cGround::SetGround(D3DXVECTOR2(85, 7.5f), D3DXVECTOR2(10.0f, 2.0f));
 	//cGround::SetGround(D3DXVECTOR2(60, +9.5f), D3DXVECTOR2(20.0f, 0.5f));
 
@@ -228,7 +228,7 @@ void Update(void)
 	cPlayer::Update();
 	cSeika::Update();
 	cGround::Update();
-
+	cMoveGround::MoveUpdate();
 }
 
 // •`‰æ
