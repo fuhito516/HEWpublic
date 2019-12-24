@@ -250,13 +250,16 @@ void cPlayer::Update()
 					// プレイヤーの左端が地面の右端にめり込む
 					(cPlayer::numberOfObjects[i]->position.x - PLAYER_VERTICAL_SIZE / 2 + 0.8f < cGround::numberOfObjects[j]->position.x + GROUND_HORIZONTAL_SIZE * cGround::numberOfObjects[j]->scale.x / 2)
 					)
+
 				{
+				
 					// 上判定
 					if (cPlayer::numberOfObjects[i]->pastPosition.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f < cGround::numberOfObjects[j]->position.y - GROUND_VERTICAL_SIZE * cGround::numberOfObjects[j]->scale.y / 2)
 					{
 						cPlayer::numberOfObjects[i]->collision = COLLISION_CEILING;
 						cPlayer::numberOfObjects[i]->hitCeilingWhileJumping = true;
 						cPlayer::numberOfObjects[i]->position.y = cPlayer::numberOfObjects[i]->pastPosition.y;
+
 					}
 					// 下判定
 					if ((cPlayer::numberOfObjects[i]->pastPosition.y - PLAYER_VERTICAL_SIZE / 2 + 0.25f > cGround::numberOfObjects[j]->position.y + GROUND_VERTICAL_SIZE * cGround::numberOfObjects[j]->scale.y / 2))
@@ -316,6 +319,24 @@ void cPlayer::Update()
 					(cPlayer::numberOfObjects[i]->position.x - PLAYER_VERTICAL_SIZE / 2 + 0.8f < cMoveGround::MovenumberOfObjects[j]->Mposition.x + GROUND_HORIZONTAL_SIZE * cMoveGround::MovenumberOfObjects[j]->Mscale.x / 2)
 					)
 				{
+					//追加分当たり判定
+					if (cPlayer::numberOfObjects[i]->pastPosition.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f > cGround::numberOfObjects[j]->position.y - GROUND_VERTICAL_SIZE * cGround::numberOfObjects[j]->scale.y / 2
+						&&
+						cPlayer::numberOfObjects[i]->pastPosition.y - PLAYER_VERTICAL_SIZE / 2 + 0.25f < cGround::numberOfObjects[j]->position.y + GROUND_VERTICAL_SIZE * cGround::numberOfObjects[j]->scale.y / 2
+						&&
+						cPlayer::numberOfObjects[i]->pastPosition.x - PLAYER_HORIZONTAL_SIZE / 2 + 0.8f < cGround::numberOfObjects[j]->position.x + GROUND_HORIZONTAL_SIZE * cGround::numberOfObjects[j]->scale.x / 2
+						&&
+						cPlayer::numberOfObjects[i]->pastPosition.x + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f > cGround::numberOfObjects[j]->position.x - GROUND_HORIZONTAL_SIZE * cGround::numberOfObjects[j]->scale.x / 2)
+					{
+						cPlayer::numberOfObjects[i]->collision = COLLISION_GROUND;
+						cPlayer::numberOfObjects[i]->gravityTimer = 0;
+						cPlayer::numberOfObjects[i]->jumping = false;
+						cPlayer::numberOfObjects[i]->jumpPossible = true;
+						cPlayer::numberOfObjects[i]->hitCeilingWhileJumping = false;
+						cPlayer::numberOfObjects[i]->position.y = cGround::numberOfObjects[j]->position.y + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 - 0.25f;
+					}
+		
+					//ここまで
 					// 上判定
 					if (cPlayer::numberOfObjects[i]->pastPosition.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f < cMoveGround::MovenumberOfObjects[j]->Mposition.y - GROUND_VERTICAL_SIZE * cMoveGround::MovenumberOfObjects[j]->Mscale.y / 2)
 					{
