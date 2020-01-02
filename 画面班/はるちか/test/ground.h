@@ -4,7 +4,7 @@
 #include"vertex.h"
 
 // ボードの数(上限)
-#define NUMBER_OF_GROUND (10)
+#define NUMBER_OF_GROUND (35)
 // ボードの頂点数
 #define NUMBER_OF_GROUND_VERTEXES (4)
 // ボードの縦横のサイズ(初期値)
