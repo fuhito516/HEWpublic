@@ -28,6 +28,7 @@ public:
 	static void MoveUninit();
 	static void MoveUpdate();
 	static void MoveDraw();
+
 	//static void GetMovegroundpos(float GetPos);
 	
 	// —v‘f•”

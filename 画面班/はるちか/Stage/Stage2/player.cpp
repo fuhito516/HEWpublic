@@ -9,7 +9,8 @@
 #include"Moveground.h"
 
 #include"debugproc.h"
-
+//追加
+#include<math.h>
 cPlayer* cPlayer::numberOfObjects[NUMBER_OF_PLAYER]; // オブジェクト格納
 
 LPDIRECT3DVERTEXBUFFER9 cPlayer::pVertexBuffer;	// 頂点バッファ
@@ -334,7 +335,6 @@ void cPlayer::Update()
 						cPlayer::numberOfObjects[i]->jumpPossible = true;
 						cPlayer::numberOfObjects[i]->hitCeilingWhileJumping = false;
 						cPlayer::numberOfObjects[i]->position.y = cMoveGround::MovenumberOfObjects[j]->Mposition.y + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 - 0.25f;
-						cPlayer::numberOfObjects[i]->position.x = cMoveGround::MovenumberOfObjects[j]->Mposition.x + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 - 0.25f;
 
 					}
 					
@@ -361,17 +361,24 @@ void cPlayer::Update()
 
 					// 横判定
 					if (
-						(cPlayer::numberOfObjects[i]->pastPosition.x + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f
+						(cPlayer::numberOfObjects[i]->pastPosition.x - PLAYER_HORIZONTAL_SIZE / 2 - 0.8f
 							<
-							cMoveGround::MovenumberOfObjects[j]->Mposition.x - GROUND_HORIZONTAL_SIZE * cMoveGround::MovenumberOfObjects[j]->Mscale.x / 2)
+							cMoveGround::MovenumberOfObjects[j]->Mposition.x -  cMoveGround::MovenumberOfObjects[j]->Mscale.x / 2
+							&& cMoveGround::MovenumberOfObjects[j]->Mposition.y+cMoveGround::MovenumberOfObjects[j]->Mscale.y/2<cPlayer::numberOfObjects[i]->pastPosition.y + PLAYER_HORIZONTAL_SIZE / 2 + 0.8f)
 						||
-						(cPlayer::numberOfObjects[i]->pastPosition.x - PLAYER_HORIZONTAL_SIZE / 2 + 0.8f
+						(cPlayer::numberOfObjects[i]->pastPosition.x+ PLAYER_HORIZONTAL_SIZE / 2 + 0.8f
 							>
-							cMoveGround::MovenumberOfObjects[j]->Mposition.x + GROUND_HORIZONTAL_SIZE * cMoveGround::MovenumberOfObjects[j]->Mscale.x / 2)
+							cMoveGround::MovenumberOfObjects[j]->Mposition.x +  cMoveGround::MovenumberOfObjects[j]->Mscale.x / 2
+							&& cMoveGround::MovenumberOfObjects[j]->Mposition.y- cMoveGround::MovenumberOfObjects[j]->Mscale.y / 2>cPlayer::numberOfObjects[i]->pastPosition.y - PLAYER_HORIZONTAL_SIZE / 2 - 0.8f)
 						)
 					{
 						cPlayer::numberOfObjects[i]->collision = COLLISION_WALL;
-						cPlayer::numberOfObjects[i]->position.x = cPlayer::numberOfObjects[i]->pastPosition.x;
+						//追加地面のポジションープレイヤーのポジションを引くことで距離を求める処理
+						D3DXVECTOR3 distance = cMoveGround::MovenumberOfObjects[j]->Mposition- cPlayer::numberOfObjects[i]->position;
+						//単位ベクトル
+						//D3DXVec3Normalizeが単位ベクトルにする関数
+						D3DXVec3Normalize(&distance, &distance);
+						cPlayer::numberOfObjects[i]->position -= distance*0.5f;
 					}
 
 					cnt++;
