@@ -296,7 +296,7 @@ void cPlayer::Update()
 			}
 		}
 		//================================================
-		//
+		//ìÆÇ≠è∞ÇÃìñÇΩÇËîªíË
 		//
 		//================================================
 		for (int j = 0; j < NUMBER_OF_GROUND_MOVE; j++)
@@ -333,10 +333,14 @@ void cPlayer::Update()
 						cPlayer::numberOfObjects[i]->jumping = false;
 						cPlayer::numberOfObjects[i]->jumpPossible = true;
 						cPlayer::numberOfObjects[i]->hitCeilingWhileJumping = false;
-						cPlayer::numberOfObjects[i]->position.y = cGround::numberOfObjects[j]->position.y + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 - 0.25f;
+						cPlayer::numberOfObjects[i]->position.y = cMoveGround::MovenumberOfObjects[j]->Mposition.y + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 - 0.25f;
+						cPlayer::numberOfObjects[i]->position.x = cMoveGround::MovenumberOfObjects[j]->Mposition.x + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 - 0.25f;
+
 					}
-		
-					//Ç±Ç±Ç‹Ç≈
+					
+					//Ç±Ç±Ç‹Ç≈Ç™ìÆÇ≠è∞ÇÃìñÇΩÇËîªíËÅI
+
+
 					// è„îªíË
 					if (cPlayer::numberOfObjects[i]->pastPosition.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f < cMoveGround::MovenumberOfObjects[j]->Mposition.y - GROUND_VERTICAL_SIZE * cMoveGround::MovenumberOfObjects[j]->Mscale.y / 2)
 					{
