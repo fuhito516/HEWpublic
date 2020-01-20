@@ -1,3 +1,0 @@
-player.cppのジャンプ中ではなく地面と当たり判定がない時の
-numberOfObjects[i]->position.y -= PLAYER_MAXIMUM_FALLSPEED / 2;
-の/2消去
