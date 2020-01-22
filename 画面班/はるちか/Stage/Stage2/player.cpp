@@ -360,12 +360,14 @@ void cPlayer::Update()
 					}
 
 					// 横判定
+					//ブロック左上
 					if (
 						(cPlayer::numberOfObjects[i]->pastPosition.x - PLAYER_HORIZONTAL_SIZE / 2 - 0.8f
 							<
 							cMoveGround::MovenumberOfObjects[j]->Mposition.x -  cMoveGround::MovenumberOfObjects[j]->Mscale.x / 2
-							&& cMoveGround::MovenumberOfObjects[j]->Mposition.y+cMoveGround::MovenumberOfObjects[j]->Mscale.y/2<cPlayer::numberOfObjects[i]->pastPosition.y + PLAYER_HORIZONTAL_SIZE / 2 + 0.8f)
+							&& cMoveGround::MovenumberOfObjects[j]->Mposition.y+cMoveGround::MovenumberOfObjects[j]->Mscale.y/2>cPlayer::numberOfObjects[i]->pastPosition.y + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f)
 						||
+						//ブロック右上
 						(cPlayer::numberOfObjects[i]->pastPosition.x+ PLAYER_HORIZONTAL_SIZE / 2 + 0.8f
 							>
 							cMoveGround::MovenumberOfObjects[j]->Mposition.x +  cMoveGround::MovenumberOfObjects[j]->Mscale.x / 2
@@ -378,7 +380,7 @@ void cPlayer::Update()
 						//単位ベクトル
 						//D3DXVec3Normalizeが単位ベクトルにする関数
 						D3DXVec3Normalize(&distance, &distance);
-						cPlayer::numberOfObjects[i]->position -= distance*0.5f;
+						cPlayer::numberOfObjects[i]->position -= distance*0.3f;
 					}
 
 					cnt++;
