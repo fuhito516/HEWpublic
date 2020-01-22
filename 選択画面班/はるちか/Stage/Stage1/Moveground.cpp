@@ -129,7 +129,7 @@ void cMoveGround::MoveUpdate()
 			if (MovenumberOfObjects[i]->Mposition.y<0) {
 			 spead*=-1;
 				}
-			else if (MovenumberOfObjects[i]->Mposition.y>25) {
+			else if (MovenumberOfObjects[i]->Mposition.y>10) {
 					spead *= -1;
 				}
 			// フレームカウンター
