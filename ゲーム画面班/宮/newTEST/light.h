@@ -8,6 +8,8 @@
 // サイズ
 #define LIGHT_HORIZONTAL_SIZE	(SCREEN_WIDTH / 5)
 #define LIGHT_VERTICAL_SIZE		(LIGHT_HORIZONTAL_SIZE / 2)
+// ライフ(GAMEOVERまでの制限時間)
+#define SECONDS_FOR_DEAD (10.0f)
 
 class cLight
 {
@@ -17,6 +19,10 @@ public:
 
 	static LPDIRECT3DVERTEXBUFFER9	pVertexBuffer;
 	static VERTEX_3D*				pVertex;
+
+	// パラメータ
+	float life;
+	static bool dead;
 
 	// 描画
 	D3DXVECTOR3	position;

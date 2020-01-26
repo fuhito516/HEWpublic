@@ -16,9 +16,15 @@ cLight* cLight::objects[NUMBER_OF_SEIKA];
 LPDIRECT3DVERTEXBUFFER9 cLight::pVertexBuffer;
 VERTEX_3D*				cLight::pVertex;
 
+bool cLight::dead = false;
+
 // コンストラクタ
 cLight::cLight()
 {
+	// パラメータ
+	life = SECONDS_FOR_DEAD;
+	dead = false;
+
 	// 描画
 	D3DXMatrixIdentity(&worldMatrix);
 	position = D3DXVECTOR3(cSeika::objects[0]->position.x, cSeika::objects[0]->position.y, 0);
@@ -84,7 +90,6 @@ void cLight::Uninit()
 			delete objects[i];
 			objects[i] = NULL;
 		}
-		
 	}
 }
 // 更新
@@ -95,6 +100,13 @@ void cLight::Update()
 		if (objects[i] != NULL)
 		{
 			objects[i]->position = D3DXVECTOR3(cSeika::objects[i]->position.x, cSeika::objects[i]->position.y, -1);
+
+			objects[i]->life -= 1 / FRAME_PER_SECOND;
+			objects[i]->scale.x = objects[i]->scale.y = objects[i]->scale.z *= 0.9995f;
+			if (objects[i]->life < 0)
+			{
+				dead = true;
+			}
 		}
 	}
 }
