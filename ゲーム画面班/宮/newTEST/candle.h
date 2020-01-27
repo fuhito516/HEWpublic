@@ -4,7 +4,7 @@
 #include"vertex.h"
 
 // ÇÎÇ§ÇªÇ≠ÇÃêî
-#define NUMBER_OF_CANDLE (1)
+#define NUMBER_OF_CANDLE (10)
 // ÇÎÇ§ÇªÇ≠ÇÃècâ°ÇÃÉTÉCÉY
 #define CANDLE_VERTICAL_SIZE	(4.0f)
 #define CANDLE_HORIZONTAL_SIZE	(4.0f)

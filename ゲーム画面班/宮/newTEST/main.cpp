@@ -155,7 +155,7 @@ bool Initialize(HINSTANCE hInstance)
 	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	// シーン
-	cScene::Init(SCENE_TITLE);
+	cScene::Init(SCENE_GAME);
 
 	switch (cScene::object->currentScene)
 	{
@@ -284,7 +284,8 @@ void Draw(void)
 	// αブレンド
 	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	pD3DDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+	/*pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);*/
+	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	switch (cScene::object->currentScene)
