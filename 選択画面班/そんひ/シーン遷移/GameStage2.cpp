@@ -38,8 +38,8 @@ void cStage2::Init()
 	// óvëf
 	cBackground::Init();
 	cGround::Init();
-	cVerticalMoveGround::MoveInit();
-	cHorizontalMoveGround::MoveInit();
+	cVerticalMoveGround::Init();
+	cHorizontalMoveGround::Init();
 	cPlayer::Init();
 	cSeika::Init();
 	cLight::Init();
@@ -70,8 +70,8 @@ void cStage2::Init()
 	cGround::SetGround(D3DXVECTOR2(50, -8.0f), D3DXVECTOR2(50.0f, 2.0f));
 
 	//â°à⁄ìÆè∞
-	cHorizontalMoveGround::MoveSetGround(D3DXVECTOR2(55, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
-	cHorizontalMoveGround::MoveSetGround(D3DXVECTOR2(75, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(55, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(75, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
 
 
 	 //LPDIRECT3DTEXTURE9	g_p;
@@ -110,8 +110,8 @@ void cStage2::Uninit()
 	cSeika::Uninit();
 	cBackground::Uninit();
 	cGround::Uninit();
-	cVerticalMoveGround::MoveUninit();
-	cHorizontalMoveGround::MoveUninit();
+	cVerticalMoveGround::Uninit();
+	cHorizontalMoveGround::Uninit();
 	cGhost::Uninit();
 	cLight::Uninit();
 
@@ -123,8 +123,8 @@ void cStage2::Update()
 {
 	// ÉVÅ[Éì
 	cGround::Update();
-	cVerticalMoveGround::MoveUpdate();
-	cHorizontalMoveGround::MoveUpdate();
+	cVerticalMoveGround::Update();
+	cHorizontalMoveGround::Update();
 	cPlayer::Update();
 	cSeika::Update();
 	cBridge::Update();
@@ -166,8 +166,8 @@ void cStage2::Draw()
 	// óvëf
 	cBackground::Draw();
 	cGround::Draw();
-	cVerticalMoveGround::MoveDraw();
-	cHorizontalMoveGround::MoveDraw();
+	cVerticalMoveGround::Draw();
+	cHorizontalMoveGround::Draw();
 	cBridge::Draw();
 	cCandle::Draw();
 	cSeika::Draw();

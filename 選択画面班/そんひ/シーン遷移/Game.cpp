@@ -38,8 +38,8 @@ void cGame::Init()
 	// óvëf
 	cBackground::Init();
 	cGround::Init();
-	cVerticalMoveGround::MoveInit();
-	cHorizontalMoveGround::MoveInit();
+	cVerticalMoveGround::Init();
+	cHorizontalMoveGround::Init();
 	cPlayer::Init();
 	cSeika::Init();
 	cLight::Init();
@@ -114,8 +114,8 @@ void cGame::Uninit()
 	cSeika::Uninit();
 	cBackground::Uninit();
 	cGround::Uninit();
-	cVerticalMoveGround::MoveUninit();
-	cHorizontalMoveGround::MoveUninit();
+	cVerticalMoveGround::Uninit();
+	cHorizontalMoveGround::Uninit();
 	cGhost::Uninit();
 	cLight::Uninit();
 
@@ -127,8 +127,8 @@ void cGame::Update()
 {
 	// ÉVÅ[Éì
 	cGround::Update();
-	cVerticalMoveGround::MoveUpdate();
-	cHorizontalMoveGround::MoveUpdate();
+	cVerticalMoveGround::Update();
+	cHorizontalMoveGround::Update();
 	cPlayer::Update();
 	cSeika::Update();
 	cBridge::Update();
@@ -176,8 +176,8 @@ void cGame::Draw()
 	// óvëf
 	cBackground::Draw();
 	cGround::Draw();
-	cVerticalMoveGround::MoveDraw();;
-	cHorizontalMoveGround::MoveDraw();
+	cVerticalMoveGround::Draw();;
+	cHorizontalMoveGround::Draw();
 	cBridge::Draw();
 	cCandle::Draw();
 	cSeika::Draw();

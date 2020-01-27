@@ -9,6 +9,7 @@
 // 対象
 #include"player.h"
 #include"ground.h"
+#include"Moveground.h"
 #include"bridge.h"
 
 cSeika* cSeika::objects[NUMBER_OF_SEIKA];
@@ -457,6 +458,183 @@ void cSeika::Update()
 						}
 					}
 				}
+
+				//==========================================================================================================
+				// 縦移動床当たり判定
+				//===========================================================================================================
+
+				for (int j = 0; j < NUMBER_OF_GROUND_MOVE; j++)
+				{
+
+					if (cVerticalMoveGround::objects[j] != NULL)
+					{
+						if (cVerticalMoveGround::objects[j]->use)
+						{
+							if (cVerticalMoveGround::objects[j]->use)
+							{
+								// プレイヤーがMovenumberOfObjects[j]の範囲にめり込んでいる時
+								if (
+									// プレイヤーの足が地面の上にめり込む
+									(cSeika::objects[i]->position.y - PLAYER_VERTICAL_SIZE / 2 + 0.25f < cVerticalMoveGround::objects[j]->Mposition.y + GROUND_VERTICAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.y / 2)
+									&&
+									// プレイヤーの頭が地面の下にめり込む
+									(cSeika::objects[i]->position.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f > cVerticalMoveGround::objects[j]->Mposition.y - GROUND_VERTICAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.y / 2)
+									&&
+									// プレイヤーの右端が地面の左端にめり込む
+									(cSeika::objects[i]->position.x + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f > cVerticalMoveGround::objects[j]->Mposition.x - GROUND_HORIZONTAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.x / 2)
+									&&
+									// プレイヤーの左端が地面の右端にめり込む
+									(cSeika::objects[i]->position.x - PLAYER_VERTICAL_SIZE / 2 + 0.8f < cVerticalMoveGround::objects[j]->Mposition.x + GROUND_HORIZONTAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.x / 2)
+									)
+								{
+
+									cSeika::objects[i]->collision = COLLISION_GROUND;
+									cSeika::objects[i]->gravityTimer = 0;
+									cSeika::objects[i]->jumping = false;
+									cSeika::objects[i]->jumped = true;
+									cSeika::objects[i]->hitCeilingWhileJumping = false;
+									cSeika::objects[i]->pastPosition.y = cVerticalMoveGround::objects[j]->Mposition.y + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 + 0.30f;
+									cSeika::objects[i]->position.y = cSeika::objects[i]->pastPosition.y;
+
+									//ここまで
+									// 上判定
+									if (cSeika::objects[i]->pastPosition.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f < cVerticalMoveGround::objects[j]->Mposition.y - GROUND_VERTICAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.y / 2 + cVerticalMoveGround::objects[j]->spead)
+
+									{
+										cSeika::objects[i]->collision = COLLISION_CEILING;
+										cSeika::objects[i]->hitCeilingWhileJumping = true;
+										cSeika::objects[i]->position.y = cSeika::objects[i]->pastPosition.y;
+									}
+									// 下判定
+									if ((cSeika::objects[i]->pastPosition.y - PLAYER_VERTICAL_SIZE / 2 + 0.25f > cVerticalMoveGround::objects[j]->Mposition.y + GROUND_VERTICAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.y / 2))
+									{
+										cSeika::objects[i]->collision = COLLISION_GROUND;
+										cSeika::objects[i]->gravityTimer = 0;
+										cSeika::objects[i]->jumping = false;
+										cSeika::objects[i]->jumped = true;
+										cSeika::objects[i]->hitCeilingWhileJumping = false;
+										cSeika::objects[i]->position.y = cSeika::objects[i]->pastPosition.y;
+									}
+
+									// 横判定
+									if (
+										(cSeika::objects[i]->pastPosition.x + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f
+											<
+											cVerticalMoveGround::objects[j]->Mposition.x - GROUND_HORIZONTAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.x / 2)
+										||
+										(cSeika::objects[i]->pastPosition.x - PLAYER_HORIZONTAL_SIZE / 2 + 0.8f
+											>
+											cVerticalMoveGround::objects[j]->Mposition.x + GROUND_HORIZONTAL_SIZE * cVerticalMoveGround::objects[j]->Mscale.x / 2)
+										)
+									{
+										cSeika::objects[i]->collision = COLLISION_WALL;
+										cSeika::objects[i]->position.x = cSeika::objects[i]->pastPosition.x;
+									}
+
+									cnt++;
+								}
+							}
+						}
+					}
+				}
+
+				//======================================================================================================================
+				// 横移動床当たり判定
+				//===================================================================================================================-==
+				for (int j = 0; j < NUMBER_OF_GROUND_MOVE; j++)
+				{
+					if (cHorizontalMoveGround::objects[j] != NULL)
+					{
+						if (cHorizontalMoveGround::objects[j]->use)
+						{
+							int cnt = 0;
+							if (cHorizontalMoveGround::objects[j]->use)
+							{
+								// プレイヤーがobjects[j]の範囲にめり込んでいる時
+								if (
+									// プレイヤーの足が地面の上にめり込む
+									(cSeika::objects[i]->position.y - PLAYER_VERTICAL_SIZE / 2 + 0.25f < cHorizontalMoveGround::objects[j]->Mposition.y + GROUND_VERTICAL_SIZE * cHorizontalMoveGround::objects[j]->Mscale.y / 2)
+									&&
+									// プレイヤーの頭が地面の下にめり込む
+									(cSeika::objects[i]->position.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f > cHorizontalMoveGround::objects[j]->Mposition.y - GROUND_VERTICAL_SIZE * cHorizontalMoveGround::objects[j]->Mscale.y / 2)
+									&&
+									// プレイヤーの右端が地面の左端にめり込む
+									(cSeika::objects[i]->position.x + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f > cHorizontalMoveGround::objects[j]->Mposition.x - GROUND_HORIZONTAL_SIZE * cHorizontalMoveGround::objects[j]->Mscale.x / 2)
+									&&
+									// プレイヤーの左端が地面の右端にめり込む
+									(cSeika::objects[i]->position.x - PLAYER_VERTICAL_SIZE / 2 + 0.8f < cHorizontalMoveGround::objects[j]->Mposition.x + GROUND_HORIZONTAL_SIZE * cHorizontalMoveGround::objects[j]->Mscale.x / 2)
+									)
+								{
+									//追加分当たり判定
+									if (cSeika::objects[i]->pastPosition.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f > cGround::objects[j]->position.y - GROUND_VERTICAL_SIZE * cGround::objects[j]->scale.y / 2
+										&&
+										cSeika::objects[i]->pastPosition.y - PLAYER_VERTICAL_SIZE / 2 + 0.25f < cGround::objects[j]->position.y + GROUND_VERTICAL_SIZE * cGround::objects[j]->scale.y / 2
+										&&
+										cSeika::objects[i]->pastPosition.x - PLAYER_HORIZONTAL_SIZE / 2 + 0.8f < cGround::objects[j]->position.x + GROUND_HORIZONTAL_SIZE * cGround::objects[j]->scale.x / 2
+										&&
+										cSeika::objects[i]->pastPosition.x + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f > cGround::objects[j]->position.x - GROUND_HORIZONTAL_SIZE * cGround::objects[j]->scale.x / 2)
+									{
+										cSeika::objects[i]->collision = COLLISION_GROUND;
+										cSeika::objects[i]->gravityTimer = 0;
+										cSeika::objects[i]->jumping = false;
+										cSeika::objects[i]->jumped = true;
+										cSeika::objects[i]->hitCeilingWhileJumping = false;
+										cSeika::objects[i]->position.y = cHorizontalMoveGround::objects[j]->Mposition.y + GROUND_VERTICAL_SIZE / 2 + PLAYER_VERTICAL_SIZE / 2 - 0.25f;
+
+									}
+
+									//ここまでが動く床の当たり判定！
+
+
+									// 上判定
+									if (cSeika::objects[i]->pastPosition.y + PLAYER_VERTICAL_SIZE / 2 - 0.25f < cHorizontalMoveGround::objects[j]->Mposition.y - GROUND_VERTICAL_SIZE * cHorizontalMoveGround::objects[j]->Mscale.y / 2)
+									{
+										cSeika::objects[i]->collision = COLLISION_CEILING;
+										cSeika::objects[i]->hitCeilingWhileJumping = true;
+										cSeika::objects[i]->position.y = cSeika::objects[i]->pastPosition.y;
+									}
+									// 下判定
+									if ((cSeika::objects[i]->pastPosition.y - PLAYER_VERTICAL_SIZE / 2 + 0.25f > cHorizontalMoveGround::objects[j]->Mposition.y + GROUND_VERTICAL_SIZE * cHorizontalMoveGround::objects[j]->Mscale.y / 2))
+									{
+										cSeika::objects[i]->collision = COLLISION_GROUND;
+										cSeika::objects[i]->gravityTimer = 0;
+										cSeika::objects[i]->jumping = false;
+										cSeika::objects[i]->jumped = true;
+										cSeika::objects[i]->hitCeilingWhileJumping = false;
+										cSeika::objects[i]->position.y = cSeika::objects[i]->pastPosition.y;
+									}
+
+									// 横判定
+									//ブロック左上
+									if (
+										(cSeika::objects[i]->pastPosition.x - PLAYER_HORIZONTAL_SIZE / 2 - 0.8f
+											<
+											cHorizontalMoveGround::objects[j]->Mposition.x - cHorizontalMoveGround::objects[j]->Mscale.x / 2
+											&& cHorizontalMoveGround::objects[j]->Mposition.y + cHorizontalMoveGround::objects[j]->Mscale.y / 2>cSeika::objects[i]->pastPosition.y + PLAYER_HORIZONTAL_SIZE / 2 - 0.8f)
+										||
+										//ブロック右上
+										(cSeika::objects[i]->pastPosition.x + PLAYER_HORIZONTAL_SIZE / 2 + 0.8f
+										>
+											cHorizontalMoveGround::objects[j]->Mposition.x + cHorizontalMoveGround::objects[j]->Mscale.x / 2
+											&& cHorizontalMoveGround::objects[j]->Mposition.y - cHorizontalMoveGround::objects[j]->Mscale.y / 2 > cSeika::objects[i]->pastPosition.y - PLAYER_HORIZONTAL_SIZE / 2 - 0.8f)
+										)
+									{
+										cSeika::objects[i]->collision = COLLISION_WALL;
+										//追加地面のポジションープレイヤーのポジションを引くことで距離を求める処理
+										D3DXVECTOR3 distance = cHorizontalMoveGround::objects[j]->Mposition - cSeika::objects[i]->position;
+										//単位ベクトル
+										//D3DXVec3Normalizeが単位ベクトルにする関数
+										D3DXVec3Normalize(&distance, &distance);
+										cSeika::objects[i]->position -= distance * 0.3f;
+									}
+
+									cnt++;
+								}
+							}
+						}
+					}
+				}
+
 				if (cnt == 0)
 				{
 					cSeika::objects[i]->collision = COLLISION_NONE;

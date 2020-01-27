@@ -38,8 +38,8 @@ void cStage1::Init()
 	// 要素
 	cBackground::Init();
 	cGround::Init();
-	cVerticalMoveGround::MoveInit();
-	cHorizontalMoveGround::MoveInit();
+	cVerticalMoveGround::Init();
+	cHorizontalMoveGround::Init();
 	cPlayer::Init();
 	cSeika::Init();
 	cLight::Init();
@@ -69,7 +69,7 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(35, -0.5f), D3DXVECTOR2(2.0f, 8.0f));
 	cGround::SetGround(D3DXVECTOR2(40, -0.5f), D3DXVECTOR2(2.0f, 5.0f));
 	cGround::SetGround(D3DXVECTOR2(40, -0.5f), D3DXVECTOR2(2.0f, 5.0f));
-	cVerticalMoveGround::MoveSetGround(D3DXVECTOR2(60, 0.0f), D3DXVECTOR2(20.0f, 2.0f));
+	cVerticalMoveGround::SetGround(D3DXVECTOR2(60, 0.0f), D3DXVECTOR2(20.0f, 2.0f));
 
 	cGround::SetGround(D3DXVECTOR2(75, -0.5f), D3DXVECTOR2(2.0f, 5.0f));//下ルート
 																		//ここの間に敵入れたい！！！
@@ -161,8 +161,8 @@ void cStage1::Uninit()
 	cSeika::Uninit();
 	cBackground::Uninit();
 	cGround::Uninit();
-	cVerticalMoveGround::MoveUninit();
-	cHorizontalMoveGround::MoveUninit();
+	cVerticalMoveGround::Uninit();
+	cHorizontalMoveGround::Uninit();
 	cGhost::Uninit();
 	cLight::Uninit();
 
@@ -174,8 +174,8 @@ void cStage1::Update()
 {
 	// シーン
 	cGround::Update();
-	cVerticalMoveGround::MoveUpdate();
-	cHorizontalMoveGround::MoveUpdate();
+	cVerticalMoveGround::Update();
+	cHorizontalMoveGround::Update();
 	cPlayer::Update();
 	cSeika::Update();
 	cBridge::Update();
@@ -222,8 +222,8 @@ void cStage1::Draw()
 	// 要素
 	cBackground::Draw();
 	cGround::Draw();
-	cVerticalMoveGround::MoveDraw();;
-	cHorizontalMoveGround::MoveDraw();
+	cVerticalMoveGround::Draw();;
+	cHorizontalMoveGround::Draw();
 	cBridge::Draw();
 	cCandle::Draw();
 	cSeika::Draw();

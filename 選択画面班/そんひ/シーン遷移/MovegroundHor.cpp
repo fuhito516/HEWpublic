@@ -8,31 +8,31 @@
 #include"input.h"
 
 //cMoveGround* cMoveGround::MovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
-cHorizontalMoveGround* cHorizontalMoveGround::HorizontalMovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
+cHorizontalMoveGround* cHorizontalMoveGround::objects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
 
 // 地面設定
-void cHorizontalMoveGround::MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
+void cHorizontalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		if (!HorizontalMovenumberOfObjects[i]->use)
+		if (!objects[i]->use)
 		{
 			// 使用
-			HorizontalMovenumberOfObjects[i]->use = true;
+			objects[i]->use = true;
 
 			// フレームカウンター
-			HorizontalMovenumberOfObjects[i]->frameCounter = 0;
+			objects[i]->frameCounter = 0;
 
 			// 位置と大きさ指定
-			HorizontalMovenumberOfObjects[i]->Mposition.x = _mposition.x;
-			HorizontalMovenumberOfObjects[i]->Mposition.y = _mposition.y;
-			HorizontalMovenumberOfObjects[i]->Mscale.x = _msize.x;
-			HorizontalMovenumberOfObjects[i]->Mscale.y = _msize.y;
+			objects[i]->Mposition.x = _mposition.x;
+			objects[i]->Mposition.y = _mposition.y;
+			objects[i]->Mscale.x = _msize.x;
+			objects[i]->Mscale.y = _msize.y;
 
 			//初期位置の格納
-			HorizontalMovenumberOfObjects[i]->fastMovePos.x = HorizontalMovenumberOfObjects[i]->Mposition.x;
-			HorizontalMovenumberOfObjects[i]->fastMovePos.y = HorizontalMovenumberOfObjects[i]->Mposition.y;
-			HorizontalMovenumberOfObjects[i]->fastMovePos.z = 0;
+			objects[i]->fastMovePos.x = objects[i]->Mposition.x;
+			objects[i]->fastMovePos.y = objects[i]->Mposition.y;
+			objects[i]->fastMovePos.z = 0;
 			return;
 		}
 	}
@@ -40,44 +40,44 @@ void cHorizontalMoveGround::MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _m
 
 
 //初期化
-void cHorizontalMoveGround::MoveInit()
+void cHorizontalMoveGround::Init()
 {
 	float t = 0;
 	t += 0.1f;
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		HorizontalMovenumberOfObjects[i] = new cHorizontalMoveGround;
+		objects[i] = new cHorizontalMoveGround;
 
 
 		// 使用
-		HorizontalMovenumberOfObjects[i]->use = false;
+		objects[i]->use = false;
 
 		// サイズ
-		HorizontalMovenumberOfObjects[i]->size = D3DXVECTOR2(1, 1);
+		objects[i]->size = D3DXVECTOR2(1, 1);
 
 		// 行列
-		HorizontalMovenumberOfObjects[i]->Mposition = D3DXVECTOR3(0, t, 0);
-		HorizontalMovenumberOfObjects[i]->Mrotation = D3DXVECTOR3(0, 0, 0);
-		HorizontalMovenumberOfObjects[i]->Mscale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
-		D3DXMatrixIdentity(&HorizontalMovenumberOfObjects[i]->MworldMatrix);
+		objects[i]->Mposition = D3DXVECTOR3(0, t, 0);
+		objects[i]->Mrotation = D3DXVECTOR3(0, 0, 0);
+		objects[i]->Mscale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+		D3DXMatrixIdentity(&objects[i]->MworldMatrix);
 	}
 
-	MoveSetVertex();
+	SetVertex();
 
 }
 
 //終了処理
-void cHorizontalMoveGround::MoveUninit()
+void cHorizontalMoveGround::Uninit()
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		delete HorizontalMovenumberOfObjects[i];
+		delete objects[i];
 	}
 }
 
 
 //ポリゴンの描画
-void cHorizontalMoveGround::MoveDraw()
+void cHorizontalMoveGround::Draw()
 {
 	// デバイス情報取得
 	LPDIRECT3DDEVICE9 pMoveDevice = MyDirect3D_GetDevice();
@@ -89,22 +89,22 @@ void cHorizontalMoveGround::MoveDraw()
 
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		if (HorizontalMovenumberOfObjects[i]->use)
+		if (objects[i]->use)
 		{
 			// 行列初期化
-			D3DXMatrixIdentity(&HorizontalMovenumberOfObjects[i]->MworldMatrix);
+			D3DXMatrixIdentity(&objects[i]->MworldMatrix);
 
-			D3DXMatrixScaling(&MovescaleMatrix, HorizontalMovenumberOfObjects[i]->Mscale.x, HorizontalMovenumberOfObjects[i]->Mscale.y, HorizontalMovenumberOfObjects[i]->Mscale.z);
-			D3DXMatrixMultiply(&HorizontalMovenumberOfObjects[i]->MworldMatrix, &HorizontalMovenumberOfObjects[i]->MworldMatrix, &MovescaleMatrix);
+			D3DXMatrixScaling(&MovescaleMatrix, objects[i]->Mscale.x, objects[i]->Mscale.y, objects[i]->Mscale.z);
+			D3DXMatrixMultiply(&objects[i]->MworldMatrix, &objects[i]->MworldMatrix, &MovescaleMatrix);
 
-			D3DXMatrixRotationYawPitchRoll(&MoverotationMatrix, HorizontalMovenumberOfObjects[i]->Mrotation.y, HorizontalMovenumberOfObjects[i]->Mrotation.x, HorizontalMovenumberOfObjects[i]->Mrotation.z);
-			D3DXMatrixMultiply(&HorizontalMovenumberOfObjects[i]->MworldMatrix, &HorizontalMovenumberOfObjects[i]->MworldMatrix, &MoverotationMatrix);
+			D3DXMatrixRotationYawPitchRoll(&MoverotationMatrix, objects[i]->Mrotation.y, objects[i]->Mrotation.x, objects[i]->Mrotation.z);
+			D3DXMatrixMultiply(&objects[i]->MworldMatrix, &objects[i]->MworldMatrix, &MoverotationMatrix);
 
-			D3DXMatrixTranslation(&MovetranslationMatrix, HorizontalMovenumberOfObjects[i]->Mposition.x, HorizontalMovenumberOfObjects[i]->Mposition.y, HorizontalMovenumberOfObjects[i]->Mposition.z);
-			D3DXMatrixMultiply(&HorizontalMovenumberOfObjects[i]->MworldMatrix, &HorizontalMovenumberOfObjects[i]->MworldMatrix, &MovetranslationMatrix);
+			D3DXMatrixTranslation(&MovetranslationMatrix, objects[i]->Mposition.x, objects[i]->Mposition.y, objects[i]->Mposition.z);
+			D3DXMatrixMultiply(&objects[i]->MworldMatrix, &objects[i]->MworldMatrix, &MovetranslationMatrix);
 
 			// ワールドマトリックスを設定
-			pMoveDevice->SetTransform(D3DTS_WORLD, &HorizontalMovenumberOfObjects[i]->MworldMatrix);
+			pMoveDevice->SetTransform(D3DTS_WORLD, &objects[i]->MworldMatrix);
 
 			// 描画したいポリゴンの頂点バッファをデータストリーム(データの通り道)セット
 			pMoveDevice->SetStreamSource(0, pMoveVertexBuffer, 0, sizeof(VERTEX_3D));
@@ -125,22 +125,22 @@ void cHorizontalMoveGround::MoveDraw()
 }
 
 //縦移動更新処理
-void cHorizontalMoveGround::MoveUpdate()
+void cHorizontalMoveGround::Update()
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		if (HorizontalMovenumberOfObjects[i]->use)
+		if (objects[i]->use)
 		{
-			HorizontalMovenumberOfObjects[i]->Mposition.x += HorizontalMovenumberOfObjects[i]->spead;
+			objects[i]->Mposition.x += objects[i]->spead;
 
-			if (HorizontalMovenumberOfObjects[i]->Mposition.x<HorizontalMovenumberOfObjects[i]->fastMovePos.x) {
-				HorizontalMovenumberOfObjects[i]->spead *= -1;
+			if (objects[i]->Mposition.x<objects[i]->fastMovePos.x) {
+				objects[i]->spead *= -1;
 			}
-			else if (HorizontalMovenumberOfObjects[i]->Mposition.x>HorizontalMovenumberOfObjects[i]->fastMovePos.x + 5) {
-				HorizontalMovenumberOfObjects[i]->spead *= -1;
+			else if (objects[i]->Mposition.x>objects[i]->fastMovePos.x + 5) {
+				objects[i]->spead *= -1;
 			}
 			// フレームカウンター
-			HorizontalMovenumberOfObjects[i]->frameCounter++;
+			objects[i]->frameCounter++;
 		}
 	}
 }
