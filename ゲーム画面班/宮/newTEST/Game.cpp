@@ -18,8 +18,11 @@
 #include"scene.h"
 #include"Title.h"
 
-//#include "fog.h"
-//Fog FG;
+// æâ
+#include"object.h"
+Obj obj;
+#include "fog.h"
+Fog FG;
 
 // ‰Šú‰»
 void cGame::Init()
@@ -67,7 +70,7 @@ void cGame::Init()
 	cGoal::Set(D3DXVECTOR3(145, -10, 0));
 	cGhost::Set(D3DXVECTOR3(110, -15, 0), 20);
 
-	/*LPDIRECT3DTEXTURE9	g_p;
+	LPDIRECT3DTEXTURE9	g_p;
 	FG.Init(pDevice, 800, 200, 1);
 	FG.Move(0, 0, -0.5);
 	D3DXCreateTextureFromFile(pDevice, "asset/texture/Fog_ex.png", &g_p);
@@ -92,7 +95,7 @@ void cGame::Init()
 	{
 		pDevice->SetSamplerState(i, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
 		pDevice->SetSamplerState(i, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
-	}*/
+	}
 }
 // I—¹
 void cGame::Uninit()
@@ -123,7 +126,8 @@ void cGame::Update()
 	cGoal::Update();
 	cGhost::Update();
 	cLight::Update();
-	//FG.Update();
+	
+	FG.Update();
 
 	// ŠÂ‹«
 	cCamera::Update();
@@ -141,9 +145,18 @@ void cGame::Update()
 // •`‰æ
 void cGame::Draw()
 {
+	LPDIRECT3DDEVICE9	pD3DDevice = MyDirect3D_GetDevice();
+
 	// ŠÂ‹«
 	cCamera::SetCamera();
 
+	// ƒ¿ƒuƒŒƒ“ƒh
+	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	pD3DDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	pD3DDevice->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	pD3DDevice->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 	// —v‘f
 	cBackground::Draw();
 	cGround::Draw();
@@ -153,22 +166,40 @@ void cGame::Draw()
 	cPlayer::Draw();
 	cGoal::Draw();
 	cGhost::Draw();
+	//cLight::Draw();
 
-	cLight::Draw();
+	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	pD3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+	pD3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+	pD3DDevice->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
 
-	/*int i = 0;
+	for (int i = 1; i <= 7; i++)
+	{
+		pD3DDevice->SetSamplerState(i, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+		pD3DDevice->SetSamplerState(i, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+		pD3DDevice->SetSamplerState(i, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+	}
+
+	for (int i = 0; i <= 7; i++)
+	{
+		pD3DDevice->SetSamplerState(i, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+		pD3DDevice->SetSamplerState(i, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
+	}
+	int i = 0;
 	FG.setL(0, cSeika::objects[0]->position.x, cSeika::objects[0]->position.y);
 	i++;
 	if (cCandle::objects[0]->collision)
 	{
-		FG.setL(i, cCandle::objects[0]->position.x, cSeika::objects[0]->position.y);
+		FG.setL(i, cCandle::objects[0]->position.x, cCandle::objects[0]->position.y);
 		i++;
 	}
 	if (cCandle::objects[1]->collision)
 	{
-		FG.setL(i, cCandle::objects[0]->position.x, cSeika::objects[0]->position.y);
+		FG.setL(i, cCandle::objects[1]->position.x, cCandle::objects[1]->position.y);
 		i++;
 	}
 	FG.setLC(i);
-	FG.Draw();*/
+	FG.Draw();
 }
