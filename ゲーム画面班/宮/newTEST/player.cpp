@@ -27,27 +27,25 @@ cPlayer::cPlayer(D3DXVECTOR3 _position)
 	directionVertical = DIRECTION_NONE;
 	pastDirectionHorizontal = directionHorizontal = DIRECTION_RIGHT;
 
-	// ジャンプ可能判定
+	// ジャンプ
 	jumpPossible = false;
-	// ジャンプ中判定
 	jumping = false;
-	// ジャンプ最中の天井への当たり判定
 	hitCeilingWhileJumping = false;
 
-	// 重力カウンター
+	// 重力タイマー
 	gravityTimer = 0;
 
-	// 当たり判定(何に当たっているのか)
+	// 衝突
 	collision = COLLISION_NONE;
 
-	// 聖火を投げるモード
+	// 聖火
 	throwMode = false;
-	// 聖火保持
 	retention = true;
-	// 聖火の投げる方向
 	throwDegree = 45;
 
 	// 描画
+	frameAnimation = 0;
+
 	D3DXMatrixIdentity(&worldMatrix);
 	position = D3DXVECTOR3(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_POSITION_Y, 0);
 	rotation = D3DXVECTOR3(0, 0, 0);
@@ -479,6 +477,8 @@ void cPlayer::Draw()
 	{
 		if (objects[i] != NULL)
 		{
+			SetVertex();
+
 			D3DXMatrixIdentity(&objects[i]->worldMatrix);
 
 			D3DXMatrixScaling(&scaleMatrix, objects[i]->scale.x, objects[i]->scale.y, objects[i]->scale.z);
@@ -502,6 +502,8 @@ void cPlayer::Draw()
 				0,
 				2
 			);
+			// アニメーション
+			objects[i]->frameAnimation++;
 
 			if (objects[i]->throwMode)
 			{

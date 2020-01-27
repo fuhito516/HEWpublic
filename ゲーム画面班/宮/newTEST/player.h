@@ -44,27 +44,25 @@ public:
 	int pastDirectionHorizontal;
 	int directionHorizontal;
 
-	// ジャンプ可能判定
+	// ジャンプ
 	bool jumpPossible;
-	// ジャンプ中判定
 	bool jumping;
-	// ジャンプ最中の天井への当たり判定
 	bool hitCeilingWhileJumping;
 
-	// 重力カウンター
+	// 重力タイマー
 	float gravityTimer;
 
-	// 当たり判定(何に当たっているのか)
+	// 衝突
 	int collision;
 
-	// 聖火を投げるモード
+	// 聖火
 	bool throwMode;
-	// 聖火保持
 	bool retention;
-	// 聖火の投げる方向
-	int throwDegree;
+	int  throwDegree;
 
 	// 描画
+	int frameAnimation;
+
 	D3DXMATRIX	worldMatrix;
 	D3DXVECTOR3	position;
 	D3DXVECTOR3	rotation;
