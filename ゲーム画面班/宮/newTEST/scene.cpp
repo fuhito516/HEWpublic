@@ -64,8 +64,23 @@ void cScene::Update()
 				cTitle::Uninit();
 				cGame::Init();
 				break;
+			case SCENE_SELECT_NUMBER_OF_PLAYER:
+				break;
+			case SCENE_SELECT_CHARACTER:
+				break;
+			case SCENE_SELECT_DIFFICULTY:
+				break;
+			case SCENE_SELECT_STAGE:
+				break;
+			// ÉQÅ[ÉÄ
 			case SCENE_GAME:
 				cGame::Uninit();
+				break;
+			case SCENE_GAMEOVER:
+				break;
+			case SCENE_STAGECLEAR:
+				break;
+			case SCENE_RETURN:
 				break;
 
 			default: break;
