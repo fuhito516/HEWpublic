@@ -11,26 +11,17 @@
 
 class cBridge
 {
-// 共通部
 public:
 
 	static cBridge* objects[NUMBER_OF_BRIDGE];
 
-	// 関数
-	static void SetBridge(D3DXVECTOR2 _gimmickPosition, D3DXVECTOR2 _bridgePosition, D3DXVECTOR2 _bridgeSize);
-	static void Init();
-	static void Uninit();
-	static void Update();
-	static void Draw();
-
-// 要素部
-public:
-
 	// 使用
 	bool use;
-	// 灯る
+
+	// 衝突
 	bool collision;
 
+	// 描画
 	D3DXMATRIX	gimmickWorldMatrix;
 	D3DXVECTOR3	gimmickPosition;
 	D3DXVECTOR3	gimmickRotation;
@@ -40,4 +31,16 @@ public:
 	D3DXVECTOR3	bridgePosition;
 	D3DXVECTOR3	bridgeRotation;
 	D3DXVECTOR3	bridgeScale;
+
+	// コンストラクタ
+	cBridge(D3DXVECTOR2 _gimmickPosition, D3DXVECTOR2 _bridgePosition, D3DXVECTOR2 _bridgeSize);
+
+	// 基本関数
+	static void Init();
+	static void Uninit();
+	static void Update();
+	static void Draw();
+
+	// 配置
+	static void SetBridge(D3DXVECTOR2 _gimmickPosition, D3DXVECTOR2 _bridgePosition, D3DXVECTOR2 _bridgeSize);
 };

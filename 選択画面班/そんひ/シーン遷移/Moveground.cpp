@@ -164,7 +164,7 @@ void cVerticalMoveGround::MoveDraw()
 			pMoveDevice->SetFVF(FVF_VERTEX_3D);
 
 			// ƒ|ƒŠƒSƒ“‚Ì•`‰æ
-			pMoveDevice->SetTexture(0, NULL);
+			pMoveDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_GROUND));
 			pMoveDevice->DrawPrimitive
 			(
 				D3DPT_TRIANGLESTRIP,
