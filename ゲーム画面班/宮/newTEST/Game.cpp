@@ -195,9 +195,9 @@ void cGame::Draw()
 		FG.setL(i, cCandle::objects[0]->position.x, cCandle::objects[0]->position.y);
 		i++;
 	}
-	if (cCandle::objects[1]->collision)
+	if (cBridge::objects[0]->collision)
 	{
-		FG.setL(i, cCandle::objects[1]->position.x, cCandle::objects[1]->position.y);
+		FG.setL(i, cBridge::objects[0]->gimmickPosition.x, cBridge::objects[0]->gimmickPosition.y);
 		i++;
 	}
 	FG.setLC(i);

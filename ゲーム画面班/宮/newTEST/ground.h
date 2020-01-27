@@ -11,7 +11,6 @@
 
 class cGround
 {
-// 共通部
 public:
 
 	static cGround*				objects[NUMBER_OF_GROUND];
@@ -19,26 +18,27 @@ public:
 	static LPDIRECT3DVERTEXBUFFER9	pVertexBuffer;
 	static VERTEX_3D*				pVertex;
 
-	// 関数
+	// 使用
+	bool use;
+
+	// 描画
+	D3DXVECTOR3	position;
+	D3DXVECTOR3	rotation;
+	D3DXVECTOR3	scale;
+	D3DXMATRIX	worldMatrix;
+
+	// コンストラクタ
+	cGround(D3DXVECTOR2 _position, D3DXVECTOR2 _size);
+
+	// 頂点
 	static void SetVertex();
-	static void SetGround(D3DXVECTOR2 _position, D3DXVECTOR2 _size);
+
+	// 基本関数
 	static void Init();
 	static void Uninit();
 	static void Update();
 	static void Draw();
 
-	// 要素部
-public:
-
-	// 使用
-	bool use;
-
-	// サイズ
-	D3DXVECTOR2 size;
-
-	// 行列
-	D3DXVECTOR3	position;
-	D3DXVECTOR3	rotation;
-	D3DXVECTOR3	scale;
-	D3DXMATRIX	worldMatrix;
+	// 配置
+	static void SetGround(D3DXVECTOR2 _position, D3DXVECTOR2 _size);
 };
