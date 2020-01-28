@@ -8,29 +8,12 @@
 #include"texture.h"
 #include"input.h"
 
-cGround* cGround::objects[NUMBER_OF_GROUND];
+cGround* cGround::objects[NUMBER_OF_GROUND]; // オブジェクト格納
 
-LPDIRECT3DVERTEXBUFFER9 cGround::pVertexBuffer;
-VERTEX_3D*				cGround::pVertex;
+LPDIRECT3DVERTEXBUFFER9 cGround::pVertexBuffer;	// 頂点バッファ
+VERTEX_3D*				cGround::pVertex;		// 頂点バッファの中身を埋める
 
-// コンストラクタ
-cGround::cGround(D3DXVECTOR2 _position, D3DXVECTOR2 _size)
-{
-	// 使用
-	use = true;
-
-	// 描画
-	D3DXMatrixIdentity(&worldMatrix);
-	position.x = _position.x;
-	position.y = _position.y;
-	position.z = 0;
-	rotation = D3DXVECTOR3(0, 0, 0);
-	scale.x = _size.x;
-	scale.y = _size.y;
-	scale.z = 1;
-}
-
-// 頂点
+//頂点セット関数
 void cGround::SetVertex()
 {
 	LPDIRECT3DDEVICE9 pDevice = MyDirect3D_GetDevice();
@@ -66,49 +49,72 @@ void cGround::SetVertex()
 	pVertexBuffer->Unlock();
 }
 
-// 配置
+// 地面設定
 void cGround::SetGround(D3DXVECTOR2 _position, D3DXVECTOR2 _size)
 {
 	for (int i = 0; i < NUMBER_OF_GROUND; i++)
 	{
-		if (objects[i] == NULL)
+		if ( !objects[i]->use )
 		{
-			objects[i] = new cGround(_position, _size);
-			break;
+			// 使用
+			objects[i]->use = true;
+
+			// 位置と大きさ指定
+			objects[i]->position.x = _position.x;
+			objects[i]->position.y = _position.y;
+			objects[i]->scale.x = _size.x;
+			objects[i]->scale.y = _size.y;
+
+			return;
 		}
 	}
 }
 
-// 初期化
+//初期化
 void cGround::Init()
 {
+
 	for (int i = 0; i < NUMBER_OF_GROUND; i++)
 	{
-		objects[i] = NULL;
+		objects[i] = new cGround;
+
+		// 使用
+		objects[i]->use = false;
+
+		// サイズ
+		objects[i]->size = D3DXVECTOR2(1, 1);
+
+		// 行列
+		objects[i]->position = D3DXVECTOR3(0, 0.0f, 0);
+		objects[i]->rotation = D3DXVECTOR3(0, 0, 0);
+		objects[i]->scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+		D3DXMatrixIdentity(&objects[i]->worldMatrix);
 	}
 
 	SetVertex();
+
 }
-// 終了
+
+//終了処理
 void cGround::Uninit()
 {
 	for (int i = 0; i < NUMBER_OF_GROUND; i++)
 	{
-		if (objects[i] != NULL)
-		{
-			delete objects[i];
-			objects[i] = NULL;
-		}
+		delete objects[i];
 	}
 }
-// 更新
+
+//更新処理
 void cGround::Update()
 {
 	
 }
-// 描画
+
+//ポリゴンの描画
 void cGround::Draw()
 {
+
+	// デバイス情報取得
 	LPDIRECT3DDEVICE9 pDevice = MyDirect3D_GetDevice();
 
 	D3DXMATRIX scaleMatrix;
@@ -118,40 +124,37 @@ void cGround::Draw()
 	int i = 0;
 	for (int i = 0; i < NUMBER_OF_GROUND; i++)
 	{
-		if (objects[i] != NULL)
+		if ( objects[i]->use )
 		{
-			if (objects[i]->use)
-			{
-				// 行列初期化
-				D3DXMatrixIdentity(&objects[i]->worldMatrix);
+			// 行列初期化
+			D3DXMatrixIdentity(&objects[i]->worldMatrix);
 
-				D3DXMatrixScaling(&scaleMatrix, objects[i]->scale.x, objects[i]->scale.y, objects[i]->scale.z);
-				D3DXMatrixMultiply(&objects[i]->worldMatrix, &objects[i]->worldMatrix, &scaleMatrix);
+			D3DXMatrixScaling(&scaleMatrix, objects[i]->scale.x, objects[i]->scale.y, objects[i]->scale.z);
+			D3DXMatrixMultiply(&objects[i]->worldMatrix, &objects[i]->worldMatrix, &scaleMatrix);
 
-				D3DXMatrixRotationYawPitchRoll(&rotationMatrix, objects[i]->rotation.y, objects[i]->rotation.x, objects[i]->rotation.z);
-				D3DXMatrixMultiply(&objects[i]->worldMatrix, &objects[i]->worldMatrix, &rotationMatrix);
+			D3DXMatrixRotationYawPitchRoll(&rotationMatrix, objects[i]->rotation.y, objects[i]->rotation.x, objects[i]->rotation.z);
+			D3DXMatrixMultiply(&objects[i]->worldMatrix, &objects[i]->worldMatrix, &rotationMatrix);
 
-				D3DXMatrixTranslation(&translationMatrix, objects[i]->position.x, objects[i]->position.y, objects[i]->position.z);
-				D3DXMatrixMultiply(&objects[i]->worldMatrix, &objects[i]->worldMatrix, &translationMatrix);
+			D3DXMatrixTranslation(&translationMatrix, objects[i]->position.x, objects[i]->position.y, objects[i]->position.z);
+			D3DXMatrixMultiply(&objects[i]->worldMatrix, &objects[i]->worldMatrix, &translationMatrix);
 
-				// ワールドマトリックスを設定
-				pDevice->SetTransform(D3DTS_WORLD, &objects[i]->worldMatrix);
+			// ワールドマトリックスを設定
+			pDevice->SetTransform(D3DTS_WORLD, &objects[i]->worldMatrix);
 
-				// 描画したいポリゴンの頂点バッファをデータストリーム(データの通り道)セット
-				pDevice->SetStreamSource(0, pVertexBuffer, 0, sizeof(VERTEX_3D));
+			// 描画したいポリゴンの頂点バッファをデータストリーム(データの通り道)セット
+			pDevice->SetStreamSource(0, pVertexBuffer, 0, sizeof(VERTEX_3D));
 
-				// 描画したいポリゴンの頂点フォーマットの設定
-				pDevice->SetFVF(FVF_VERTEX_3D);
+			// 描画したいポリゴンの頂点フォーマットの設定
+			pDevice->SetFVF(FVF_VERTEX_3D);
 
-				// ポリゴンの描画
-				pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_GROUND));
-				pDevice->DrawPrimitive
-				(
-					D3DPT_TRIANGLESTRIP,
-					0,
-					2
-				);
-			}
+			// ポリゴンの描画
+			pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_GROUND));
+			pDevice->DrawPrimitive
+			(
+				D3DPT_TRIANGLESTRIP,
+				0,
+				2
+			);
 		}
 	}
 }

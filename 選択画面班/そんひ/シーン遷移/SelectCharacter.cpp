@@ -43,7 +43,18 @@ void cSelectCharacter::Init()
 	{
 		pTextures[i] = NULL;
 	}
-	
+	//共通
+	/*D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/black.png", &pTextures[0]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/back.png", &pTextures[1]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/decision back.png", &pTextures[2]);
+	//人数
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/character heading.png", &pTextures[3]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/character light.png", &pTextures[4]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/character select.png", &pTextures[5]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/character one.png", &pTextures[6]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/character two.png", &pTextures[7]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/character three.png", &pTextures[8]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/character four.png", &pTextures[9]);*/
 	// 環境
 	cCamera::Init();
 	/* デバッグ機能の追加 */

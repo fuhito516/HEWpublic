@@ -34,6 +34,15 @@ void cSelectStage::Init()
 	{
 		pTextures[i] = NULL;
 	}
+	//共通
+	/*D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/black.png", &pTextures[0]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/back.png", &pTextures[1]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/decision back.png", &pTextures[2]);
+	//人数
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/stage heading.png", &pTextures[3]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/stage rope.png", &pTextures[4]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/stage character.png", &pTextures[5]);*/
+
 	// 環境
 	cCamera::Init();
 	/* デバッグ機能の追加 */

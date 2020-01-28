@@ -18,25 +18,6 @@ VERTEX_3D*				cGhost::pVertex;
 
 bool cGhost::collision = false;
 
-// コンストラクタ
-cGhost::cGhost(D3DXVECTOR3 _position, float _width_move)
-{
-	// 使用
-	use = true;
-
-	// パラメータ
-	width_move = _width_move;
-	settingPosition = _position;
-	moveDirection = DIRECTION_RIGHT;
-	collision = false;
-
-	// 描画
-	D3DXMatrixIdentity(&worldMatrix);
-	position = settingPosition;
-	rotation = D3DXVECTOR3(0, 0, 0);
-	scale = D3DXVECTOR3(1, 1, 1);
-}
-
 // 頂点
 void cGhost::SetVertex()
 {
@@ -72,6 +53,36 @@ void cGhost::SetVertex()
 	pVertex[3].tex = D3DXVECTOR2(1.0f, 0.0f);
 
 	pVertexBuffer->Unlock();
+}
+
+// 使用
+void cGhost::Set(D3DXVECTOR3 _position, float _width_move)
+{
+	for (int i = 0; i < NUMBER_OF_GHOST; i++)
+	{
+		if (objects[i] == NULL)
+		{
+			objects[i] = new cGhost(_position, _width_move);
+			break;
+		}
+	}
+}
+cGhost::cGhost(D3DXVECTOR3 _position, float _width_move)
+{
+	// 使用
+	use = true;
+
+	// パラメータ
+	width_move = _width_move;
+	settingPosition = _position;
+	moveDirection = DIRECTION_RIGHT;
+	collision = false;
+
+	// 描画
+	D3DXMatrixIdentity(&worldMatrix);
+	position = settingPosition;
+	rotation = D3DXVECTOR3(0, 0, 0);
+	scale	 = D3DXVECTOR3(1, 1, 1);
 }
 
 // 基本関数
@@ -182,17 +193,4 @@ void cGhost::CollisionInspection()
 	}
 
 	PrintDebugProc("衝突判定　%d\n", (int)collision);
-}
-
-// 配置
-void cGhost::Set(D3DXVECTOR3 _position, float _width_move)
-{
-	for (int i = 0; i < NUMBER_OF_GHOST; i++)
-	{
-		if (objects[i] == NULL)
-		{
-			objects[i] = new cGhost(_position, _width_move);
-			break;
-		}
-	}
 }

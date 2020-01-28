@@ -1,16 +1,12 @@
 
 // ƒƒCƒ“
 #include"Game.h"
-#include"GameStage1.h"
-#include"GameStage2.h"
 // ŠÂ‹«
 #include"camera.h"
 #include"debugproc.h"
-#include"input.h"
 // —v‘f
 #include"background.h"
 #include"ground.h"
-#include"Moveground.h"
 #include"player.h"
 #include"seika.h"
 #include"bridge.h"
@@ -22,11 +18,8 @@
 #include"scene.h"
 #include"Title.h"
 
-// æâ
-#include"object.h"
-static Obj obj;
-#include "fog.h"
-static Fog FG;
+//#include "fog.h"
+//Fog FG;
 
 // ‰Šú‰»
 void cGame::Init()
@@ -38,8 +31,6 @@ void cGame::Init()
 	// —v‘f
 	cBackground::Init();
 	cGround::Init();
-	cVerticalMoveGround::Init();
-	cHorizontalMoveGround::Init();
 	cPlayer::Init();
 	cSeika::Init();
 	cLight::Init();
@@ -76,7 +67,7 @@ void cGame::Init()
 	cGoal::Set(D3DXVECTOR3(145, -10, 0));
 	cGhost::Set(D3DXVECTOR3(110, -15, 0), 20);
 
-	LPDIRECT3DTEXTURE9	g_p;
+	/*LPDIRECT3DTEXTURE9	g_p;
 	FG.Init(pDevice, 800, 200, 1);
 	FG.Move(0, 0, -0.5);
 	D3DXCreateTextureFromFile(pDevice, "asset/texture/Fog_ex.png", &g_p);
@@ -101,7 +92,7 @@ void cGame::Init()
 	{
 		pDevice->SetSamplerState(i, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
 		pDevice->SetSamplerState(i, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
-	}
+	}*/
 }
 // I—¹
 void cGame::Uninit()
@@ -114,8 +105,6 @@ void cGame::Uninit()
 	cSeika::Uninit();
 	cBackground::Uninit();
 	cGround::Uninit();
-	cVerticalMoveGround::Uninit();
-	cHorizontalMoveGround::Uninit();
 	cGhost::Uninit();
 	cLight::Uninit();
 
@@ -127,8 +116,6 @@ void cGame::Update()
 {
 	// ƒV[ƒ“
 	cGround::Update();
-	cVerticalMoveGround::Update();
-	cHorizontalMoveGround::Update();
 	cPlayer::Update();
 	cSeika::Update();
 	cBridge::Update();
@@ -136,8 +123,7 @@ void cGame::Update()
 	cGoal::Update();
 	cGhost::Update();
 	cLight::Update();
-	
-	FG.Update();
+	//FG.Update();
 
 	// ŠÂ‹«
 	cCamera::Update();
@@ -151,73 +137,38 @@ void cGame::Update()
 	{
 
 	}
-
-	//SATGE1‘JˆÚ
-	if (GetKeyboardPress(DIK_RETURN))
-	{
-		cScene::Fade(STAGE_ONE);
-	}
 }
 // •`‰æ
 void cGame::Draw()
 {
-	LPDIRECT3DDEVICE9	pD3DDevice = MyDirect3D_GetDevice();
-
 	// ŠÂ‹«
 	cCamera::SetCamera();
 
-	// ƒ¿ƒuƒŒƒ“ƒh
-	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	pD3DDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
-	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	pD3DDevice->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
-	pD3DDevice->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 	// —v‘f
 	cBackground::Draw();
 	cGround::Draw();
-	cVerticalMoveGround::Draw();;
-	cHorizontalMoveGround::Draw();
 	cBridge::Draw();
 	cCandle::Draw();
 	cSeika::Draw();
 	cPlayer::Draw();
 	cGoal::Draw();
 	cGhost::Draw();
-	//cLight::Draw();
 
-	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	pD3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
-	pD3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
-	pD3DDevice->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+	cLight::Draw();
 
-	for (int i = 1; i <= 7; i++)
-	{
-		pD3DDevice->SetSamplerState(i, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
-		pD3DDevice->SetSamplerState(i, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
-		pD3DDevice->SetSamplerState(i, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
-	}
-
-	for (int i = 0; i <= 7; i++)
-	{
-		pD3DDevice->SetSamplerState(i, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
-		pD3DDevice->SetSamplerState(i, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
-	}
-	int i = 0;
+	/*int i = 0;
 	FG.setL(0, cSeika::objects[0]->position.x, cSeika::objects[0]->position.y);
 	i++;
 	if (cCandle::objects[0]->collision)
 	{
-		FG.setL(i, cCandle::objects[0]->position.x, cCandle::objects[0]->position.y);
+		FG.setL(i, cCandle::objects[0]->position.x, cSeika::objects[0]->position.y);
 		i++;
 	}
-	if (cBridge::objects[0]->collision)
+	if (cCandle::objects[1]->collision)
 	{
-		FG.setL(i, cBridge::objects[0]->gimmickPosition.x, cBridge::objects[0]->gimmickPosition.y);
+		FG.setL(i, cCandle::objects[0]->position.x, cSeika::objects[0]->position.y);
 		i++;
 	}
 	FG.setLC(i);
-	FG.Draw();
+	FG.Draw();*/
 }

@@ -38,6 +38,16 @@ void cSelectDifficulty::Init()
 	{
 		pTextures[i] = NULL;
 	}
+	//ã§í 
+	/*D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/black.png", &pTextures[0]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/back.png", &pTextures[1]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/decision back.png", &pTextures[2]);
+	//êlêî
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/difficulty heading.png", &pTextures[3]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/difficulty light.png", &pTextures[4]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/difficulty easy.png", &pTextures[5]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/difficulty normal.png", &pTextures[6]);
+	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/difficulty hard.png", &pTextures[7]);*/
 
 	// ä¬ã´
 	cCamera::Init();

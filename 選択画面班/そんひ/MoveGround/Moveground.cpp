@@ -8,12 +8,12 @@
 #include"input.h"
 
 //cMoveGround* cMoveGround::MovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
-cVerticalMoveGround* cVerticalMoveGround::objects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
+cVerticalMoveGround* cVerticalMoveGround::VerticalMovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
 
 LPDIRECT3DVERTEXBUFFER9 cMoveGround::pMoveVertexBuffer;	// 頂点バッファ
 VERTEX_3D*				cMoveGround::pMoveVertex;		// 頂点バッファの中身を埋める
 //頂点セット関数
-void cMoveGround::SetVertex()
+void cMoveGround::MoveSetVertex()
 {
 	// デバイス取得
 	LPDIRECT3DDEVICE9 pDevice = MyDirect3D_GetDevice();
@@ -57,30 +57,30 @@ void cMoveGround::SetVertex()
 
 }
 
-void cMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize){}
-void cMoveGround::Init(){}
-void cMoveGround::Uninit(){}
-void cMoveGround::Update(){}
-void cMoveGround::Draw(){}
+void cMoveGround::MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize){}
+void cMoveGround::MoveInit(){}
+void cMoveGround::MoveUninit(){}
+void cMoveGround::MoveUpdate(){}
+void cMoveGround::MoveDraw(){}
 
 // 地面設定
-void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
+void cVerticalMoveGround::MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		if (!objects[i]->use)
+		if (!VerticalMovenumberOfObjects[i]->use)
 		{
 			// 使用
-			objects[i]->use = true;
+			VerticalMovenumberOfObjects[i]->use = true;
 
 			// フレームカウンター
-			objects[i]->frameCounter = 0;
+			VerticalMovenumberOfObjects[i]->frameCounter = 0;
 
 			// 位置と大きさ指定
-			objects[i]->Mposition.x = _mposition.x;
-			objects[i]->Mposition.y = _mposition.y;
-			objects[i]->Mscale.x = _msize.x;
-			objects[i]->Mscale.y = _msize.y;
+			VerticalMovenumberOfObjects[i]->Mposition.x = _mposition.x;
+			VerticalMovenumberOfObjects[i]->Mposition.y = _mposition.y;
+			VerticalMovenumberOfObjects[i]->Mscale.x = _msize.x;
+			VerticalMovenumberOfObjects[i]->Mscale.y = _msize.y;
 
 			//初期位置の格納
 
@@ -91,43 +91,43 @@ void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
 
 
 //初期化
-void cVerticalMoveGround::Init()
+void cVerticalMoveGround::MoveInit()
 {
 	//float t = 0;
 	//t += 0.1f;
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		objects[i] = new cVerticalMoveGround;
+		VerticalMovenumberOfObjects[i] = new cVerticalMoveGround;
 
 		// 使用
-		objects[i]->use = false;
+		VerticalMovenumberOfObjects[i]->use = false;
 
 		// サイズ
-		objects[i]->size = D3DXVECTOR2(1, 1);
+		VerticalMovenumberOfObjects[i]->size = D3DXVECTOR2(1, 1);
 
 		// 行列
-		objects[i]->Mposition = D3DXVECTOR3(0, 15, 0);
-		objects[i]->Mrotation = D3DXVECTOR3(0, 0, 0);
-		objects[i]->Mscale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
-		D3DXMatrixIdentity(&objects[i]->MworldMatrix);
+		VerticalMovenumberOfObjects[i]->Mposition = D3DXVECTOR3(0, 15, 0);
+		VerticalMovenumberOfObjects[i]->Mrotation = D3DXVECTOR3(0, 0, 0);
+		VerticalMovenumberOfObjects[i]->Mscale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+		D3DXMatrixIdentity(&VerticalMovenumberOfObjects[i]->MworldMatrix);
 	}
 
-	SetVertex();
+	MoveSetVertex();
 
 }
 
 //終了処理
-void cVerticalMoveGround::Uninit()
+void cVerticalMoveGround::MoveUninit()
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		delete objects[i];
+		delete VerticalMovenumberOfObjects[i];
 	}
 }
 
 
 //ポリゴンの描画
-void cVerticalMoveGround::Draw()
+void cVerticalMoveGround::MoveDraw()
 {
 
 	// デバイス情報取得
@@ -140,22 +140,22 @@ void cVerticalMoveGround::Draw()
 	
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
-		if (objects[i]->use)
+		if (VerticalMovenumberOfObjects[i]->use)
 		{
 			// 行列初期化
-			D3DXMatrixIdentity(&objects[i]->MworldMatrix);
+			D3DXMatrixIdentity(&VerticalMovenumberOfObjects[i]->MworldMatrix);
 
-			D3DXMatrixScaling(&MovescaleMatrix, objects[i]->Mscale.x, objects[i]->Mscale.y, objects[i]->Mscale.z);
-			D3DXMatrixMultiply(&objects[i]->MworldMatrix, &objects[i]->MworldMatrix, &MovescaleMatrix);
+			D3DXMatrixScaling(&MovescaleMatrix, VerticalMovenumberOfObjects[i]->Mscale.x, VerticalMovenumberOfObjects[i]->Mscale.y, VerticalMovenumberOfObjects[i]->Mscale.z);
+			D3DXMatrixMultiply(&VerticalMovenumberOfObjects[i]->MworldMatrix, &VerticalMovenumberOfObjects[i]->MworldMatrix, &MovescaleMatrix);
 
-			D3DXMatrixRotationYawPitchRoll(&MoverotationMatrix, objects[i]->Mrotation.y, objects[i]->Mrotation.x, objects[i]->Mrotation.z);
-			D3DXMatrixMultiply(&objects[i]->MworldMatrix, &objects[i]->MworldMatrix, &MoverotationMatrix);
+			D3DXMatrixRotationYawPitchRoll(&MoverotationMatrix, VerticalMovenumberOfObjects[i]->Mrotation.y, VerticalMovenumberOfObjects[i]->Mrotation.x, VerticalMovenumberOfObjects[i]->Mrotation.z);
+			D3DXMatrixMultiply(&VerticalMovenumberOfObjects[i]->MworldMatrix, &VerticalMovenumberOfObjects[i]->MworldMatrix, &MoverotationMatrix);
 
-			D3DXMatrixTranslation(&MovetranslationMatrix, objects[i]->Mposition.x, objects[i]->Mposition.y, objects[i]->Mposition.z);
-			D3DXMatrixMultiply(&objects[i]->MworldMatrix, &objects[i]->MworldMatrix, &MovetranslationMatrix);
+			D3DXMatrixTranslation(&MovetranslationMatrix, VerticalMovenumberOfObjects[i]->Mposition.x, VerticalMovenumberOfObjects[i]->Mposition.y, VerticalMovenumberOfObjects[i]->Mposition.z);
+			D3DXMatrixMultiply(&VerticalMovenumberOfObjects[i]->MworldMatrix, &VerticalMovenumberOfObjects[i]->MworldMatrix, &MovetranslationMatrix);
 
 			// ワールドマトリックスを設定
-			pMoveDevice->SetTransform(D3DTS_WORLD, &objects[i]->MworldMatrix);
+			pMoveDevice->SetTransform(D3DTS_WORLD, &VerticalMovenumberOfObjects[i]->MworldMatrix);
 
 			// 描画したいポリゴンの頂点バッファをデータストリーム(データの通り道)セット
 			pMoveDevice->SetStreamSource(0, pMoveVertexBuffer, 0, sizeof(VERTEX_3D));
@@ -164,7 +164,7 @@ void cVerticalMoveGround::Draw()
 			pMoveDevice->SetFVF(FVF_VERTEX_3D);
 
 			// ポリゴンの描画
-			pMoveDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_GROUND));
+			pMoveDevice->SetTexture(0, NULL);
 			pMoveDevice->DrawPrimitive
 			(
 				D3DPT_TRIANGLESTRIP,
@@ -177,23 +177,23 @@ void cVerticalMoveGround::Draw()
 }
 
 //縦移動更新処理
-void cVerticalMoveGround::Update()
+void cVerticalMoveGround::MoveUpdate()
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
 
-		if (objects[i]->use)
+		if (VerticalMovenumberOfObjects[i]->use)
 		{
-			objects[i]->Mposition.y += objects[i]->spead;
+			VerticalMovenumberOfObjects[i]->Mposition.y += VerticalMovenumberOfObjects[i]->spead;
 
-			if (objects[i]->Mposition.y<0) {
-				objects[i]->spead *= -1;
+			if (VerticalMovenumberOfObjects[i]->Mposition.y<0) {
+				VerticalMovenumberOfObjects[i]->spead *= -1;
 			}
-			else if (objects[i]->Mposition.y>10) {
-				objects[i]->spead *= -1;
+			else if (VerticalMovenumberOfObjects[i]->Mposition.y>10) {
+				VerticalMovenumberOfObjects[i]->spead *= -1;
 			}
 			// フレームカウンター
-			objects[i]->frameCounter++;
+			VerticalMovenumberOfObjects[i]->frameCounter++;
 		}
 	}
 }
