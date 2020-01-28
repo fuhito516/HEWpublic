@@ -20,9 +20,12 @@
 
 // 趙
 #include"object.h"
+
+// 導火線
 #include "fuse.h"
 Fuse fuse_all[100];
 int fuse_count=0;
+
 #include "fog.h"
 Fog FG;
 
@@ -78,15 +81,18 @@ void cGame::Init()
 	D3DXCreateTextureFromFile(pDevice, "asset/texture/Fog_ex.png", &g_p);
 	FG.setT(g_p);
 
-
-	fuse_all[fuse_count].Init(pDevice, 10, 0, 100, 0);
-	fuse_all[fuse_count].setTime(5000);
-
+	// 導火線
+	// 第２引数・・・中心x座標
+	// 第３引数・・・中心y座標
+	// 第４引数・・・幅(長さとはことなるので調整必要)
+	// 第５引数・・・流れる方向(0が左へ1が右へ2が上へ3が下へ)
+	fuse_all[fuse_count].Init(pDevice, 10, 0, 100, 0); // fuse_count 0 から
+	fuse_all[fuse_count].setTime(5000);	// ５秒かけて鎮火
 	fuse_count++;
+
 
 	fuse_all[fuse_count].Init(pDevice, 20, 10, 100, 2);
 	fuse_all[fuse_count].setTime(5000);
-
 	fuse_count++;
 
 	fuse_all[fuse_count].Init(pDevice, 30, 0, 100, 0);
@@ -95,7 +101,6 @@ void cGame::Init()
 	fuse_count++;
 	/*fuse_all[fuse_count].Init(pDevice, 20, -10, 100, 3);
 	fuse_all[fuse_count].setTime(5000);
-
 	fuse_count++;*/
 
 	
@@ -153,10 +158,12 @@ void cGame::Update()
 
 	for (int i = 0; i < fuse_count; i++)
 	{
+		// 聖火との趙突
 		if (pow(fuse_all[i].Block[0].getXY().x - cSeika::objects[0]->position.x, 2) + pow(fuse_all[i].Block[0].getXY().y - cSeika::objects[0]->position.y, 2) <= pow(BLOCK_SIZE + RADIUS_SEIKA, 2))
 		{
-			fuse_all[i].setStartTime(GetTickCount());
+			fuse_all[i].setStartTime(GetTickCount());	// 導火線着火
 		}
+
 		if (fuse_all[i].getState() == 1)
 		{
 			fuse_all[i].Update();
@@ -175,6 +182,16 @@ void cGame::Update()
 			}
 		}
 	}
+
+	/*
+	if (fuse_all[何番目].tail->getTye() == 7 && !finished_何番目)	// 該当番目の最後尾の状態が７番なら
+	{
+		Set(ギミック);
+		finished_何番目 = true;
+	}
+	*/
+
+	// 追加
 	FG.ChangeSize(FG.GetBACEKESU() - 0.001f);
 	FG.Update();
 
@@ -184,11 +201,11 @@ void cGame::Update()
 	// 終了判定
 	if (cGhost::collision)
 	{
-
+		// ゲームオーバー
 	}
 	else if (cGoal::collision)
 	{
-
+		// ゲームクリア
 	}
 }
 // 描画
@@ -208,10 +225,13 @@ void cGame::Draw()
 	pD3DDevice->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 	// 要素
 	cBackground::Draw();
+	
+	// 導火線
 	for (int i = 0; i < fuse_count; i++)
 	{
 		fuse_all[i].Draw();
 	}
+
 	cGround::Draw();
 	cBridge::Draw();
 	cCandle::Draw();
