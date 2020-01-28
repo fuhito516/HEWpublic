@@ -8,11 +8,13 @@
 #include"debugproc.h"
 // シーン
 #include"Title.h"
+#include"Game.h"
+#include"GameStage1.h"
+#include"GameStage2.h"
 #include"SelectPlayer.h"
 #include"SelectCharacter.h"
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
-#include"Game.h"
 
 cScene* cScene::object;
 
@@ -84,9 +86,17 @@ void cScene::Update()
 				cSelectStage::Uninit();
 				cGame::Init();
 				break;
-			// ゲーム
+				// ゲーム
 			case SCENE_GAME:
 				cGame::Uninit();
+				cStage1::Init();
+				break;
+			case STAGE_ONE:
+				cStage1::Uninit();
+				cStage2::Init();
+				break;
+			case STAGE_TWO:
+				cStage2::Uninit();
 				break;
 			case SCENE_GAMEOVER:
 				break;
@@ -99,7 +109,9 @@ void cScene::Update()
 			}
 
 			object->currentScene = object->nextScene;
+
 		}
+		
 		break;
 
 	case FADE_IN:
@@ -121,6 +133,12 @@ void cScene::Update()
 void cScene::Draw()
 {
 	LPDIRECT3DDEVICE9 pD3DDevice = MyDirect3D_GetDevice();
+
+	// αブレンド
+	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	pD3DDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	// ズレがある場合(-0.5f)を各成分に付ける
 	Vertex_Fade vertexes[] =

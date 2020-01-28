@@ -13,21 +13,26 @@ public:
 
 	static cBackground* objects[NUMBER_OF_BACKLAYER];
 
-	static void SetBackground(TextureIndex _textureIndex, D3DXVECTOR3 _position, D3DXVECTOR3 _scale);
+	// 使用
+	bool use;
+
+	TextureIndex textureIndex;
+
+	// 描画
+	D3DXMATRIX	worldMatrix;
+	D3DXVECTOR3	position;
+	D3DXVECTOR3	rotation;
+	D3DXVECTOR3	scale;
+
+	// コンストラクタ
+	cBackground(TextureIndex _textureIndex, D3DXVECTOR3 _position, D3DXVECTOR3 _scale);
+
+	// 基本関数
 	static void Init();
 	static void Uninit();
 	static void Update();
 	static void Draw();
 
-	// 要素部
-public:
-
-	bool use;
-
-	TextureIndex textureIndex;
-
-	D3DXMATRIX	worldMatrix;
-	D3DXVECTOR3	position;
-	D3DXVECTOR3	rotation;
-	D3DXVECTOR3	scale;
+	// 配置
+	static void SetBackground(TextureIndex _textureIndex, D3DXVECTOR3 _position, D3DXVECTOR3 _scale);
 };
