@@ -50,8 +50,8 @@ void cTitle::Init()
 	{
 		pTextures[i] = NULL;
 	}
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/title back.png", &pTextures[0]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/title name.png", &pTextures[1]);
+	//D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/title back.png", &pTextures[0]);
+	//D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/title name.png", &pTextures[1]);
 
 	// ŠÂ‹«
 	cCamera::Init();
@@ -137,7 +137,6 @@ void cTitle::Update()
 // •`‰æ
 void cTitle::Draw()
 {
-
 	//-----------------------------------
 	//2D
 	//-----------------------------------

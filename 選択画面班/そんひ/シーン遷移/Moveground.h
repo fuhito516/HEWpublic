@@ -15,18 +15,18 @@ class cMoveGround
 {
 	// 共通部
 public:
-	static cMoveGround* MovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
+	static cMoveGround* objects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
 
 	static LPDIRECT3DVERTEXBUFFER9	pMoveVertexBuffer;	// 頂点バッファ
 	static VERTEX_3D*				pMoveVertex;		// 頂点バッファの中身を埋める
 
 													// 関数
-	static void MoveSetVertex();
-	virtual void MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
-	virtual void MoveInit();
-	virtual void MoveUninit();
-	virtual void MoveUpdate();
-	virtual void MoveDraw();
+	static void SetVertex();
+	virtual void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
+	virtual void Init();
+	virtual void Uninit();
+	virtual void Update();
+	virtual void Draw();
 
 	// 要素部
 public:
@@ -61,13 +61,13 @@ class cVerticalMoveGround : public cMoveGround
 {
 
 public:
-	static cVerticalMoveGround* VerticalMovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
+	static cVerticalMoveGround* objects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
 
-	static void MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
-	static void MoveInit();
-	static void MoveUninit();
-	static void MoveUpdate();
-	static void MoveDraw();
+	static void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
+	static void Init();
+	static void Uninit();
+	static void Update();
+	static void Draw();
 };
 
 //横移動床
@@ -75,11 +75,11 @@ class cHorizontalMoveGround : public cMoveGround
 {
 
 public:
-	static cHorizontalMoveGround* HorizontalMovenumberOfObjects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
+	static cHorizontalMoveGround* objects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
 
-	static void MoveSetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
-	static void MoveInit();
-	static void MoveUninit();
-	static void MoveUpdate();
-	static void MoveDraw();
+	static void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
+	static void Init();
+	static void Uninit();
+	static void Update();
+	static void Draw();
 };

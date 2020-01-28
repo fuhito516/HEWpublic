@@ -20,6 +20,8 @@
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
 #include"Game.h"
+#include"GameStage1.h"
+#include"GameStage2.h"
 
 // システム
 static HWND g_hWnd;
@@ -182,6 +184,12 @@ bool Initialize(HINSTANCE hInstance)
 	case SCENE_GAME:
 		cGame::Init();
 		break;
+	case STAGE_ONE:
+		cStage1::Init();
+		break;
+	case STAGE_TWO:
+		cStage2::Init();
+		break;
 	case SCENE_GAMEOVER:
 		break;
 	case SCENE_STAGECLEAR:
@@ -218,6 +226,12 @@ void Finalize(void)
 		// ゲーム
 	case SCENE_GAME:
 		cGame::Uninit();
+		break;
+	case STAGE_ONE:
+		cStage1::Uninit();
+		break;
+	case STAGE_TWO:
+		cStage2::Uninit();
 		break;
 	case SCENE_GAMEOVER:
 		break;
@@ -268,6 +282,12 @@ void Update(void)
 	case SCENE_GAME:
 		cGame::Update();
 		break;
+	case STAGE_ONE:
+		cStage1::Update();
+		break;
+	case STAGE_TWO:
+		cStage2::Update();
+		break;
 	case SCENE_GAMEOVER:
 		break;
 	case SCENE_STAGECLEAR:
@@ -297,10 +317,10 @@ void Draw(void)
 	// 設定
 	// スプライト
 	Sprite_SetColor(D3DCOLOR_RGBA(255, 255, 255, 255));
-	// αブレンド
+
+	// アルファブレンドの設定
 	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	pD3DDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	switch (cScene::object->currentScene)
@@ -322,6 +342,12 @@ void Draw(void)
 		break;
 	case SCENE_GAME:
 		cGame::Draw();
+		break;
+	case STAGE_ONE:
+		cStage1::Draw();
+		break;
+	case STAGE_TWO:
+		cStage2::Draw();
 		break;
 
 	default: break;

@@ -39,17 +39,6 @@ void cSelectPlayer::Init()
 	{
 		pTextures[i] = NULL;
 	}
-	//ã§í 
-	/*D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/black.png", &pTextures[0]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/back.png", &pTextures[1]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/decision back.png", &pTextures[2]);
-	//êlêî
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/people heading.png", &pTextures[3]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/people light.png", &pTextures[4]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/people ninzu1.png", &pTextures[5]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/people ninzu2.png", &pTextures[6]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/people ninzu3.png", &pTextures[7]);
-	D3DXCreateTextureFromFile(pD3DDevice, "asset/texture/people ninzu4.png", &pTextures[8]);*/
 
 	// ä¬ã´
 	cCamera::Init();
