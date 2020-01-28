@@ -4,7 +4,7 @@
 #include"vertex.h"
 
 // ボードの数(上限)
-#define NUMBER_OF_GROUND_MOVE (10)
+#define NUMBER_OF_GROUND_MOVE (50)
 // ボードの頂点数
 #define NUMBER_OF_GROUND_VERTEXES_MOVE (4)
 // ボードの縦横のサイズ(初期値)
@@ -22,7 +22,7 @@ public:
 
 													// 関数
 	static void SetVertex();
-	virtual void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
+	virtual void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, D3DXVECTOR2 _distance);
 	virtual void Init();
 	virtual void Uninit();
 	virtual void Update();
@@ -45,6 +45,8 @@ public:
 
 	// サイズ
 	D3DXVECTOR2 size;
+	//移動距離
+	D3DXVECTOR2 distance;
 
 	//最初の位置
 	D3DXVECTOR3 fastMovePos;
@@ -54,6 +56,7 @@ public:
 	D3DXVECTOR3	Mrotation;
 	D3DXVECTOR3	Mscale;
 	D3DXMATRIX	MworldMatrix;
+	
 };
 
 //縦移動床
@@ -63,7 +66,7 @@ class cVerticalMoveGround : public cMoveGround
 public:
 	static cVerticalMoveGround* objects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
 
-	static void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
+	static void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, D3DXVECTOR2 _distance);
 	static void Init();
 	static void Uninit();
 	static void Update();
@@ -77,7 +80,7 @@ class cHorizontalMoveGround : public cMoveGround
 public:
 	static cHorizontalMoveGround* objects[NUMBER_OF_GROUND_MOVE]; // オブジェクト格納
 
-	static void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize);
+	static void SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, D3DXVECTOR2 _distance);
 	static void Init();
 	static void Uninit();
 	static void Update();

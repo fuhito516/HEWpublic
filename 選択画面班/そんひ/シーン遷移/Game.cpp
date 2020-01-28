@@ -220,5 +220,5 @@ void cGame::Draw()
 		i++;
 	}
 	FG.setLC(i);
-	FG.Draw();
+	//FG.Draw();
 }
