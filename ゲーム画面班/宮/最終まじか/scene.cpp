@@ -15,6 +15,8 @@
 #include"SelectCharacter.h"
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
+#include"Gameover.h"
+#include"Gameclear.h"
 
 cScene* cScene::object;
 
@@ -89,18 +91,62 @@ void cScene::Update()
 				// ゲーム
 			case SCENE_GAME:
 				cGame::Uninit();
-				cStage1::Init();
+				switch (cScene::object->nextScene)
+				{
+				case STAGE_ONE:
+					cStage1::Init();
+					break;
+				case SCENE_GAMEOVER:
+					cGameover::Init();
+					break;
+				case SCENE_STAGECLEAR:
+					cGameclear::Init();
+					break;
+
+				default:
+					break;
+				}
 				break;
 			case STAGE_ONE:
 				cStage1::Uninit();
-				cStage2::Init();
+				switch (cScene::object->nextScene)
+				{
+				case STAGE_TWO:
+					cStage2::Init();
+					break;
+				case SCENE_GAMEOVER:
+					cGameover::Init();
+					break;
+				case SCENE_STAGECLEAR:
+					cGameclear::Init();
+					break;
+
+				default:
+					break;
+				}
 				break;
 			case STAGE_TWO:
 				cStage2::Uninit();
+				switch (cScene::object->nextScene)
+				{
+				case SCENE_GAMEOVER:
+					cGameover::Init();
+					break;
+				case SCENE_STAGECLEAR:
+					cGameclear::Init();
+					break;
+
+				default:
+					break;
+				}
 				break;
 			case SCENE_GAMEOVER:
+				cGameover::Uninit();
+
 				break;
 			case SCENE_STAGECLEAR:
+				cGameclear::Uninit();
+
 				break;
 			case SCENE_RETURN:
 				break;
@@ -152,6 +198,14 @@ void cScene::Draw()
 	pD3DDevice->SetFVF(FVF_VERTEX_FADE);
 	pD3DDevice->SetTexture(0, NULL);
 	pD3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vertexes, sizeof(Vertex_Fade));
+
+	// αブレンド
+	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	pD3DDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	pD3DDevice->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	pD3DDevice->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 }
 
 // フェード

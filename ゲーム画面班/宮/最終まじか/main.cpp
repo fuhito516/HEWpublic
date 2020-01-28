@@ -22,6 +22,8 @@
 #include"Game.h"
 #include"GameStage1.h"
 #include"GameStage2.h"
+#include"Gameover.h"
+#include"Gameclear.h"
 
 // ƒVƒXƒeƒ€
 static HWND g_hWnd;
@@ -191,8 +193,10 @@ bool Initialize(HINSTANCE hInstance)
 		cStage2::Init();
 		break;
 	case SCENE_GAMEOVER:
+		cGameover::Init();
 		break;
 	case SCENE_STAGECLEAR:
+		cGameclear::Init();
 		break;
 	case SCENE_RETURN:
 		break;
@@ -234,8 +238,10 @@ void Finalize(void)
 		cStage2::Uninit();
 		break;
 	case SCENE_GAMEOVER:
+		cGameover::Uninit();
 		break;
 	case SCENE_STAGECLEAR:
+		cGameclear::Uninit();
 		break;
 	case SCENE_RETURN:
 		break;
@@ -289,8 +295,10 @@ void Update(void)
 		cStage2::Update();
 		break;
 	case SCENE_GAMEOVER:
+		cGameover::Update();
 		break;
 	case SCENE_STAGECLEAR:
+		cGameclear::Update();
 		break;
 	case SCENE_RETURN:
 		break;
@@ -348,6 +356,14 @@ void Draw(void)
 		break;
 	case STAGE_TWO:
 		cStage2::Draw();
+		break;
+	case SCENE_GAMEOVER:
+		cGameover::Draw();
+		break;
+	case SCENE_STAGECLEAR:
+		cGameclear::Draw();
+		break;
+	case SCENE_RETURN:
 		break;
 
 	default: break;

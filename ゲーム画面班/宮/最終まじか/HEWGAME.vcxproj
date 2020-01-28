@@ -133,6 +133,8 @@
     <ClCompile Include="direct3d.cpp" />
     <ClCompile Include="fog.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gameclear.cpp" />
+    <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="GameStage1.cpp" />
     <ClCompile Include="GameStage2.cpp" />
     <ClCompile Include="ghost.cpp" />
@@ -165,6 +167,8 @@
     <ClInclude Include="direct3d.h" />
     <ClInclude Include="fog.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gameclear.h" />
+    <ClInclude Include="Gameover.h" />
     <ClInclude Include="GameStage1.h" />
     <ClInclude Include="GameStage2.h" />
     <ClInclude Include="ghost.h" />

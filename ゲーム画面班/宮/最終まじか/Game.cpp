@@ -26,6 +26,9 @@
 #include "fog.h"
 static Fog FG;
 
+// ƒV[ƒ“‘JˆÚ
+static bool fade = false;
+
 // ‰Šú‰»
 void cGame::Init()
 {
@@ -143,13 +146,15 @@ void cGame::Update()
 	cCamera::Update();
 
 	// I—¹”»’è
-	if (cGhost::collision)
+	if (cGhost::collision && !fade)
 	{
-
+		cScene::Fade(SCENE_GAMEOVER);
+		fade = true;
 	}
-	else if (cGoal::collision)
+	else if (cGoal::collision && !fade)
 	{
-
+		cScene::Fade(SCENE_STAGECLEAR);
+		fade = true;
 	}
 
 	//SATGE1‘JˆÚ
