@@ -127,6 +127,7 @@ void cGame::Update()
 	cGhost::Update();
 	cLight::Update();
 	
+	FG.ChangeSize(FG.GetBACEKESU() - 0.001f);
 	FG.Update();
 
 	// ŠÂ‹«

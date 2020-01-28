@@ -8,10 +8,10 @@ struct Vertex
 using namespace std;
 
 static LPDIRECT3DDEVICE9       Fog_pd3dDevice = NULL;// Our rendering device
-static float kesu, k1, k2;
+static float baceKesu, kesu, k1, k2;
 static 	LPDIRECT3DTEXTURE9	g_p;
 static D3DXMATRIX matTexture;
-static float size_change = 0.25;
+static float size_change = 0.1f;
 
 void Fog::Init(LPDIRECT3DDEVICE9 pD3D, float w, float h, float d)
 {
@@ -50,7 +50,7 @@ void Fog::Init(LPDIRECT3DDEVICE9 pD3D, float w, float h, float d)
 	{
 		Fog_pd3dDevice->SetTexture(i, g_p);
 	}
-	kesu = 50;
+	baceKesu = kesu = INITIAL_SIZE_KESU;
 	D3DXMatrixIdentity(&matTexture);
 	matTexture._11 = width / kesu;
 	matTexture._22 = height / kesu;
@@ -107,7 +107,8 @@ void Fog::Draw()
 	Fog_pd3dDevice->SetTextureStageState(0, D3DTSS_TEXCOORDINDEX, 0);
 	Fog_pd3dDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 
-	for (int i = 0; i < Light_count; i++) {
+	for (int i = 0; i < Light_count; i++)
+	{
 		matTexture._31 = ((x - width / 2) - Light[i].x + kesu / 2)  * k1;
 		matTexture._32 = -((y - height / 2) - Light[i].y + height - kesu / 2) * k2;
 		Fog_pd3dDevice->SetTransform((D3DTRANSFORMSTATETYPE)(i+17), &matTexture);
@@ -154,9 +155,27 @@ void Fog::setL(int k, float l_x, float l_y)
 
 }
 
+float Fog::GetBACEKESU()
+{
+	float f = baceKesu;
+
+	return f;
+}
+void Fog::ChangeSize(float _baceKesu)
+{
+	baceKesu = _baceKesu;
+}
+
 void Fog::Update()
 {
-	if ((kesu > 50)||(kesu < 40)) size_change *= -1;
+	if ((kesu > baceKesu + 3) || (kesu < baceKesu - 3))
+	{
+		size_change *= -1;
+	}
+	/*if ((kesu > 30) || (kesu < 20))
+	{
+		size_change *= -1;
+	}*/
 	kesu += size_change;
 	matTexture._11 = width / kesu;
 	matTexture._22 = height / kesu;

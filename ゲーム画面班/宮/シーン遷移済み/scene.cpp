@@ -8,6 +8,10 @@
 #include"debugproc.h"
 // ÉVÅ[Éì
 #include"Title.h"
+#include"SelectPlayer.h"
+#include"SelectCharacter.h"
+#include"SelectDifficulty.h"
+#include"SelectStage.h"
 #include"Game.h"
 
 cScene* cScene::object;
@@ -62,17 +66,25 @@ void cScene::Update()
 			{
 			case SCENE_TITLE:
 				cTitle::Uninit();
-				cGame::Init();
+				cSelectPlayer::Init();
 				break;
 			case SCENE_SELECT_NUMBER_OF_PLAYER:
+				cSelectPlayer::Uninit();
+				cSelectCharacter::Init();
 				break;
 			case SCENE_SELECT_CHARACTER:
+				cSelectCharacter::Uninit();
+				cSelectDifficulty::Init();
 				break;
 			case SCENE_SELECT_DIFFICULTY:
+				cSelectDifficulty::Uninit();
+				cSelectStage::Init();
 				break;
 			case SCENE_SELECT_STAGE:
+				cSelectStage::Uninit();
+				cGame::Init();
 				break;
-			// ÉQÅ[ÉÄ
+				// ÉQÅ[ÉÄ
 			case SCENE_GAME:
 				cGame::Uninit();
 				break;
