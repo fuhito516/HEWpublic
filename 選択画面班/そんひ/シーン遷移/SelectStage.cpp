@@ -60,7 +60,7 @@ void cSelectStage::Uninit()
 // çXêV
 void cSelectStage::Update()
 {
-	PrintDebugProc("SELECT_STAGE\n");
+	//PrintDebugProc("SELECT_STAGE\n");
 
 	if (GetKeyboardRelease(DIK_LEFT) || GetKeyboardRelease(DIK_A)) {
 		gStage--;

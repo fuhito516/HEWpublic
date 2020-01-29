@@ -173,7 +173,7 @@ void cScene::Update()
 		break;
 	}
 
-	PrintDebugProc("フェードα値　%d\n", (int)object->fadeAlpha);
+	//PrintDebugProc("フェードα値　%d\n", (int)object->fadeAlpha);
 }
 // 描画
 void cScene::Draw()

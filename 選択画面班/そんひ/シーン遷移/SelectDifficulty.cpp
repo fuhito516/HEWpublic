@@ -65,7 +65,7 @@ void cSelectDifficulty::Uninit()
 // XV
 void cSelectDifficulty::Update()
 {
-	PrintDebugProc("SELECT_DIFFICULTY\n");
+	//PrintDebugProc("SELECT_DIFFICULTY\n");
 
 	if (nannido >= 1 && nannido < 3) {
 		if (GetKeyboardRelease(DIK_RIGHT) || GetKeyboardRelease(DIK_D)) {

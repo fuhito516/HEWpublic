@@ -6,7 +6,7 @@
 // プレイヤーの移動スピード
 #define PLAYER_MOVEMENT_SPEED (0.2f)
 // プレイヤーのジャンプの力
-#define PLAYER_JUMPPOWER (0.8f)
+#define PLAYER_JUMPPOWER (0.9f)
 // プレイヤーの最高落下速度
 #define PLAYER_MAXIMUM_FALLSPEED (1.0f)
 // プレイヤーの初期位置(x, y)
@@ -24,9 +24,6 @@
 
 // 衝突半径
 #define RADIUS_PLAYER (PLAYER_HORIZONTAL_SIZE / 2)
-
-//アニメーション時間
-#define ANIMATION_SECOND (2.2f)
 
 class cPlayer
 {

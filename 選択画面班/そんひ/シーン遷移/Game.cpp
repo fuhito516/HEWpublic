@@ -259,8 +259,8 @@ void cGame::Draw()
 	cHorizontalMoveGround::Draw();
 	cBridge::Draw();
 	cCandle::Draw();
-	cSeika::Draw();
 	cPlayer::Draw();
+	cSeika::Draw();
 	cGoal::Draw();
 	cGhost::Draw();
 	//cLight::Draw();

@@ -181,7 +181,7 @@ void cGhost::CollisionInspection()
 		collision = true;
 	}
 
-	PrintDebugProc("衝突判定　%d\n", (int)collision);
+	//PrintDebugProc("衝突判定　%d\n", (int)collision);
 }
 
 // 配置

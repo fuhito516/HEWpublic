@@ -70,7 +70,7 @@ void cSelectCharacter::Uninit()
 // XV
 void cSelectCharacter::Update()
 {
-	PrintDebugProc("SELECT_PLAYER\n");
+	//PrintDebugProc("SELECT_PLAYER\n");
 
 	//1P‚Ì“®‚«-------------------------------------------------------
 	if (Character1P >= 1 && Character1P < 5) {

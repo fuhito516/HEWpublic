@@ -66,7 +66,7 @@ void cSelectPlayer::Uninit()
 // XV
 void cSelectPlayer::Update()
 {
-	PrintDebugProc("SELECT_PLAYER\n");
+	//PrintDebugProc("SELECT_PLAYER\n");
 
 	if (people >= 1 && people < 4) {
 		if (GetKeyboardRelease(DIK_RIGHT) || GetKeyboardRelease(DIK_D)) 
