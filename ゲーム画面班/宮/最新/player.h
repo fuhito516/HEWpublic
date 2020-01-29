@@ -25,9 +25,6 @@
 // 衝突半径
 #define RADIUS_PLAYER (PLAYER_HORIZONTAL_SIZE / 2)
 
-//アニメーション時間
-#define ANIMATION_SECOND (2.2f)
-
 class cPlayer
 {
 public:

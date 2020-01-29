@@ -11,6 +11,11 @@
 
 #include"debugproc.h"
 
+
+//アニメーション時間
+#define ANIMATION_SECOND (0.8f)
+#define NUMBER_OF_SHEETS (11)
+
 cPlayer* cPlayer::objects[NUMBER_OF_PLAYER];
 
 LPDIRECT3DVERTEXBUFFER9 cPlayer::pVertexBuffer;
@@ -18,13 +23,11 @@ VERTEX_3D*				cPlayer::pVertex;
 LPDIRECT3DVERTEXBUFFER9 cPlayer::pVertexBuffer_ya;
 VERTEX_3D*				cPlayer::pVertex_ya;
 
-//グローバル変数
-int frameR;
-int frameL;
-float animation_second;
-int animationR;
-int animationL;
-int direction;
+// アニメーション
+static int frame = 0;
+static float second = 0;
+static float animation_seconds = 0;
+static const float secondPerSheet = ANIMATION_SECOND / NUMBER_OF_SHEETS;
 
 // コンストラクタ
 cPlayer::cPlayer(D3DXVECTOR3 _position)
@@ -46,9 +49,6 @@ cPlayer::cPlayer(D3DXVECTOR3 _position)
 
 	// 衝突
 	collision = COLLISION_NONE;
-
-	//向き
-	direction = 0; //右
 
 	// 聖火
 	throwMode = false;
@@ -147,6 +147,11 @@ void cPlayer::Init()
 		objects[i] = NULL;
 	}
 
+	// アニメーション
+	frame = 0;
+	second = 0;
+	animation_seconds = 0;
+
 	SetVertex();
 }
 // 終了
@@ -175,8 +180,8 @@ void cPlayer::Update()
 			// 左移動
 			if (GetKeyboardPress(DIK_A))
 			{
-				direction = 1;
-				frameL++;
+				frame++;
+
 				// 方向
 				objects[i]->pastDirectionHorizontal = objects[i]->directionHorizontal = DIRECTION_LEFT;
 				// 位置x
@@ -184,18 +189,17 @@ void cPlayer::Update()
 			}
 			if (GetKeyboardPress(DIK_D))
 			{
-				direction = 0;
-				frameR++;
+				frame++;
+
 				// 方向
 				objects[i]->pastDirectionHorizontal = objects[i]->directionHorizontal = DIRECTION_RIGHT;
 				// 位置x
 				objects[i]->position.x += PLAYER_MOVEMENT_SPEED;
 			}
-			//移動アニメーション用
-			//animation_second = frame / FRAME_PER_SECOND;
-			//animation = ((int)animation_second * 10) % ((int)ANIMATION_SECOND * 10);
-			animationR = frameR % ((int)ANIMATION_SECOND * 10);
-			animationL = frameL % ((int)ANIMATION_SECOND * 10);
+
+			// アニメーション
+			second = (float)frame / (float)FRAME_PER_SECOND;
+			animation_seconds = ((int)(second * 100) % (int)(100 * ANIMATION_SECOND)) / 100.0f;
 
 			// 移動してないとき
 			if (!GetKeyboardPress(DIK_A) && !GetKeyboardPress(DIK_D))
@@ -698,97 +702,108 @@ void cPlayer::Draw()
 			pDevice->SetStreamSource(0, pVertexBuffer, 0, sizeof(VERTEX_3D));
 			pDevice->SetFVF(FVF_VERTEX_3D);
 
+			// アニメーション
+			if (objects[i]->pastDirectionHorizontal == DIRECTION_RIGHT)
+			{
+				pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R1));
+			}
+			if (objects[i]->pastDirectionHorizontal == DIRECTION_LEFT)
+			{
+				pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L1));
+			}
+
 			//右
-			if (direction == 0) {
-				if (animationR == 0 || animationR == 11)
+			if (objects[i]->directionHorizontal == DIRECTION_RIGHT)
+			{
+				if (animation_seconds >= secondPerSheet * 0 && animation_seconds < secondPerSheet * 1)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R1));
 				}
-				if (animationR == 1 || animationR == 12)
+				if (animation_seconds >= secondPerSheet * 1 && animation_seconds < secondPerSheet * 2)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R2));
 				}
-				if (animationR == 2 || animationR == 13)
+				if (animation_seconds >= secondPerSheet * 2 && animation_seconds < secondPerSheet * 3)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R3));
 				}
-				if (animationR == 3 || animationR == 14)
+				if (animation_seconds >= secondPerSheet * 3 && animation_seconds < secondPerSheet * 4)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R4));
 				}
-				if (animationR == 4 || animationR == 15)
+				if (animation_seconds >= secondPerSheet * 4 && animation_seconds < secondPerSheet * 5)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R5));
 				}
-				if (animationR == 5 || animationR == 16)
+				if (animation_seconds >= secondPerSheet * 5 && animation_seconds < secondPerSheet * 6)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R6));
 				}
-				if (animationR == 6 || animationR == 17)
+				if (animation_seconds >= secondPerSheet * 6 && animation_seconds < secondPerSheet * 7)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R7));
 				}
-				if (animationR == 7 || animationR == 18)
+				if (animation_seconds >= secondPerSheet * 7 && animation_seconds < secondPerSheet * 8)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R8));
 				}
-				if (animationR == 8 || animationR == 19)
+				if (animation_seconds >= secondPerSheet * 8 && animation_seconds < secondPerSheet * 9)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R9));
 				}
-				if (animationR == 9 || animationR == 20)
+				if (animation_seconds >= secondPerSheet * 9 && animation_seconds < secondPerSheet * 10)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R10));
 				}
-				if (animationR == 10 || animationR == 21)
+				if (animation_seconds >= secondPerSheet * 10 && animation_seconds < secondPerSheet * 11)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R11));
 				}
 			}
-
-				//左
-			if (direction == 1) {
-				if (animationL == 0 || animationL == 11)
+			//左
+			if (objects[i]->directionHorizontal == DIRECTION_LEFT)
+			{
+				if (animation_seconds >= secondPerSheet * 0 && animation_seconds < secondPerSheet * 1)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L1));
 				}
-				if (animationL == 1 || animationL == 12)
+				if (animation_seconds >= secondPerSheet * 1 && animation_seconds < secondPerSheet * 2)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L2));
 				}
-				if (animationL == 2 || animationL == 13)
+				if (animation_seconds >= secondPerSheet * 2 && animation_seconds < secondPerSheet * 3)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L3));
 				}
-				if (animationL == 3 || animationL == 14)
+				if (animation_seconds >= secondPerSheet * 3 && animation_seconds < secondPerSheet * 4)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L4));
 				}
-				if (animationL == 4 || animationL == 15)
+				if (animation_seconds >= secondPerSheet * 4 && animation_seconds < secondPerSheet * 5)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L5));
 				}
-				if (animationL == 5 || animationL == 16)
+				if (animation_seconds >= secondPerSheet * 5 && animation_seconds < secondPerSheet * 6)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L6));
 				}
-				if (animationL == 6 || animationL == 17)
+				if (animation_seconds >= secondPerSheet * 6 && animation_seconds < secondPerSheet * 7)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L7));
 				}
-				if (animationL == 7 || animationL == 18)
+				if (animation_seconds >= secondPerSheet * 7 && animation_seconds < secondPerSheet * 8)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L8));
 				}
-				if (animationL == 8 || animationL == 19)
+				if (animation_seconds >= secondPerSheet * 8 && animation_seconds < secondPerSheet * 9)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L9));
 				}
-				if (animationL == 9 || animationL == 20)
+				if (animation_seconds >= secondPerSheet * 9 && animation_seconds < secondPerSheet * 10)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L10));
 				}
-				if (animationL == 10 || animationL == 21)
+				if (animation_seconds >= secondPerSheet * 10 && animation_seconds < secondPerSheet * 11)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L11));
 				}
