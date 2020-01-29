@@ -191,7 +191,7 @@ void cGame::Update()
 	}
 	*/
 
-	// í«â¡
+	// ÉtÉHÉOã{í«â¡
 	FG.ChangeSize(FG.GetBACEKESU() - 0.001f);
 	FG.Update();
 
