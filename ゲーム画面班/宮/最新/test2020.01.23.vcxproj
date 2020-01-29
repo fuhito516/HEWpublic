@@ -18,11 +18,81 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="animetion.cpp" />
+    <ClCompile Include="background.cpp" />
+    <ClCompile Include="bridge.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="candle.cpp" />
+    <ClCompile Include="debugproc.cpp" />
+    <ClCompile Include="direct3d.cpp" />
+    <ClCompile Include="fog.cpp" />
+    <ClCompile Include="fuse.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gameclear.cpp" />
+    <ClCompile Include="Gameover.cpp" />
+    <ClCompile Include="GameStage1.cpp" />
+    <ClCompile Include="GameStage2.cpp" />
+    <ClCompile Include="ghost.cpp" />
+    <ClCompile Include="goal.cpp" />
+    <ClCompile Include="ground.cpp" />
+    <ClCompile Include="input.cpp" />
+    <ClCompile Include="light.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Moveground.cpp" />
+    <ClCompile Include="MovegroundHor.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="seika.cpp" />
+    <ClCompile Include="SelectCharacter.cpp" />
+    <ClCompile Include="SelectDifficulty.cpp" />
+    <ClCompile Include="SelectPlayer.cpp" />
+    <ClCompile Include="SelectStage.cpp" />
+    <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="texture.cpp" />
+    <ClCompile Include="Title.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="background.h" />
+    <ClInclude Include="bridge.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="candle.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="debugproc.h" />
+    <ClInclude Include="direct3d.h" />
+    <ClInclude Include="fog.h" />
+    <ClInclude Include="fuse.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Gameclear.h" />
+    <ClInclude Include="Gameover.h" />
+    <ClInclude Include="GameStage1.h" />
+    <ClInclude Include="GameStage2.h" />
+    <ClInclude Include="ghost.h" />
+    <ClInclude Include="goal.h" />
+    <ClInclude Include="ground.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="light.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Moveground.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="scene.h" />
+    <ClInclude Include="seika.h" />
+    <ClInclude Include="SelectCharacter.h" />
+    <ClInclude Include="SelectDifficulty.h" />
+    <ClInclude Include="SelectPlayer.h" />
+    <ClInclude Include="SelectStage.h" />
+    <ClInclude Include="sprite.h" />
+    <ClInclude Include="texture.h" />
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="vertex.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{203BE278-1064-4A62-856C-39AEB6318DC7}</ProjectGuid>
-    <RootNamespace>HEWGAME</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{BBF52B77-21D0-4057-9E6C-AE79BA28D208}</ProjectGuid>
+    <RootNamespace>test20200123</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -123,76 +193,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="animetion.cpp" />
-    <ClCompile Include="background.cpp" />
-    <ClCompile Include="bridge.cpp" />
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="candle.cpp" />
-    <ClCompile Include="debugproc.cpp" />
-    <ClCompile Include="direct3d.cpp" />
-    <ClCompile Include="fog.cpp" />
-    <ClCompile Include="fuse.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gameclear.cpp" />
-    <ClCompile Include="Gameover.cpp" />
-    <ClCompile Include="GameStage1.cpp" />
-    <ClCompile Include="GameStage2.cpp" />
-    <ClCompile Include="ghost.cpp" />
-    <ClCompile Include="goal.cpp" />
-    <ClCompile Include="ground.cpp" />
-    <ClCompile Include="input.cpp" />
-    <ClCompile Include="light.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Moveground.cpp" />
-    <ClCompile Include="MovegroundHor.cpp" />
-    <ClCompile Include="object.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="scene.cpp" />
-    <ClCompile Include="seika.cpp" />
-    <ClCompile Include="SelectCharacter.cpp" />
-    <ClCompile Include="SelectDifficulty.cpp" />
-    <ClCompile Include="SelectPlayer.cpp" />
-    <ClCompile Include="SelectStage.cpp" />
-    <ClCompile Include="sprite.cpp" />
-    <ClCompile Include="texture.cpp" />
-    <ClCompile Include="Title.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="background.h" />
-    <ClInclude Include="bridge.h" />
-    <ClInclude Include="camera.h" />
-    <ClInclude Include="candle.h" />
-    <ClInclude Include="common.h" />
-    <ClInclude Include="debugproc.h" />
-    <ClInclude Include="direct3d.h" />
-    <ClInclude Include="fog.h" />
-    <ClInclude Include="fuse.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Gameclear.h" />
-    <ClInclude Include="Gameover.h" />
-    <ClInclude Include="GameStage1.h" />
-    <ClInclude Include="GameStage2.h" />
-    <ClInclude Include="ghost.h" />
-    <ClInclude Include="goal.h" />
-    <ClInclude Include="ground.h" />
-    <ClInclude Include="input.h" />
-    <ClInclude Include="light.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="Moveground.h" />
-    <ClInclude Include="object.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="seika.h" />
-    <ClInclude Include="SelectCharacter.h" />
-    <ClInclude Include="SelectDifficulty.h" />
-    <ClInclude Include="SelectPlayer.h" />
-    <ClInclude Include="SelectStage.h" />
-    <ClInclude Include="sprite.h" />
-    <ClInclude Include="texture.h" />
-    <ClInclude Include="Title.h" />
-    <ClInclude Include="vertex.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

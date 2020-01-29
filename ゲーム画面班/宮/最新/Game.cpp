@@ -63,7 +63,7 @@ void cGame::Init()
 	cLight::Set();
 	// îwåi
 	cBackground::SetBackground(TEXTURE_INDEX_BACK1, D3DXVECTOR3(70, 0, 200), D3DXVECTOR3(1200, 300, 1));
-	cBackground::SetBackground(TEXTURE_INDEX_BACK2, D3DXVECTOR3(5, 50, 180), D3DXVECTOR3(20, 20, 1));
+	cBackground::SetBackground(TEXTURE_INDEX_BACK2, D3DXVECTOR3(5, 10, 80), D3DXVECTOR3(20, 20, 1));
 	cBackground::SetBackground(TEXTURE_INDEX_BACK3, D3DXVECTOR3(70, 20, 150), D3DXVECTOR3(600, 150, 1));
 	cBackground::SetBackground(TEXTURE_INDEX_BACK4, D3DXVECTOR3(70, 40, 50), D3DXVECTOR3(600, 150, 1));
 	//cBackground::SetBackground(TEXTURE_INDEX_BACK5, D3DXVECTOR3(70, 00, 40), D3DXVECTOR3(20, 20, 1)); // ínñ Ç…ïœçX
@@ -170,7 +170,10 @@ void cGame::Update()
 	for (int i = 0; i < fuse_count; i++)
 	{
 		// êπâŒÇ∆ÇÃÊ‚ìÀ
-		if ((pow(fuse_all[i].Block[0].getXY().x - cSeika::objects[0]->position.x, 2) + pow(fuse_all[i].Block[0].getXY().y - cSeika::objects[0]->position.y, 2) <= pow(BLOCK_SIZE + 1 + RADIUS_SEIKA, 2))  && (fuse_all[i].Block[0].getType() == 5))
+		if (
+			(pow(fuse_all[i].Block[0].getXY().x - cSeika::objects[0]->position.x, 2) + pow(fuse_all[i].Block[0].getXY().y - cSeika::objects[0]->position.y, 2) <= pow(BLOCK_SIZE + 1 + RADIUS_SEIKA, 2))
+			&&(fuse_all[i].Block[0].getType() == 5)
+			)
 		{
 			fuse_all[i].setStartTime(GetTickCount());	// ì±âŒê¸íÖâŒ
 		}

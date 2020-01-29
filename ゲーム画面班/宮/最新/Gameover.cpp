@@ -20,7 +20,8 @@ static float second = 0;
 void cGameover::Init()
 {
 	// アニメーション
-	frame = second = 0;
+	frame = 0;
+	second = 0;
 
 	// 環境
 	cCamera::Init();
@@ -47,7 +48,7 @@ void cGameover::Draw()
 {
 	// アニメーション
 	frame++;
-	second = frame / FRAME_PER_SECOND;
+	second = (float)frame / FRAME_PER_SECOND;
 
 	if (second < 1.8f)
 	{
