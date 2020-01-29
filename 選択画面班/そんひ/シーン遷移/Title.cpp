@@ -79,7 +79,7 @@ void cTitle::Uninit()
 // XV
 void cTitle::Update()
 {
-	PrintDebugProc("TITLE\n");
+	//PrintDebugProc("TITLE\n");
 
 	//==========================================
 	//1P‚Ì“®‚«

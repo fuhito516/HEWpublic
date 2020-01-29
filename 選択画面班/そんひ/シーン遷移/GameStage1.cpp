@@ -23,10 +23,8 @@
 #include"Title.h"
 
 // 趙
-#include"object.h"
-//static Obj obj;--------------------
 #include "fog.h"
-//static Fog FG;--------------------------
+static Fog FG;
 
 // 初期化
 void cStage1::Init()
@@ -64,47 +62,47 @@ void cStage1::Init()
 	cBackground::SetBackground(TEXTURE_INDEX_BACK7, D3DXVECTOR3(70, 40, 20), D3DXVECTOR3(600, 150, 1));
 
 	// 地面
-	//底辺の座標 y == -40-------------------------------------------------------------------------
-	cGround::SetGround(D3DXVECTOR2(-17.5f, 0), D3DXVECTOR2(5.0f, 80.0f));
-	cGround::SetGround(D3DXVECTOR2(38.75f, -20.0f), D3DXVECTOR2(112.5f, 40.0f));  //前-4.0f,2.0f
-	cGround::SetGround(D3DXVECTOR2(20, 0.0f), D3DXVECTOR2(2.0f, 10.0f)); //-0.5,5.0
-	cGround::SetGround(D3DXVECTOR2(25, 0.0f), D3DXVECTOR2(2.0f, 20.0f));
-	cGround::SetGround(D3DXVECTOR2(30, 0.0f), D3DXVECTOR2(2.0f, 10.0f));
-	cGround::SetGround(D3DXVECTOR2(38, 9.0f), D3DXVECTOR2(6.0f, 2.0f));
-	cVerticalMoveGround::SetGround(D3DXVECTOR2(56.0, 16.0f), D3DXVECTOR2(20.0f, 2.0f), D3DXVECTOR2(0.0f, 4.0f));
+	cGround::SetGround(D3DXVECTOR2(45, -4.0f), D3DXVECTOR2(100.0f, 2.0f));
+	cGround::SetGround(D3DXVECTOR2(30, -0.5f), D3DXVECTOR2(2.0f, 5.0f));
+	cGround::SetGround(D3DXVECTOR2(35, -0.5f), D3DXVECTOR2(2.0f, 8.0f));
+	cGround::SetGround(D3DXVECTOR2(40, -0.5f), D3DXVECTOR2(2.0f, 5.0f));
+	cGround::SetGround(D3DXVECTOR2(40, -0.5f), D3DXVECTOR2(2.0f, 5.0f));
+	cVerticalMoveGround::SetGround(D3DXVECTOR2(60, 0.0f), D3DXVECTOR2(20.0f, 2.0f));
 
-	cGround::SetGround(D3DXVECTOR2(75, -0.0f), D3DXVECTOR2(2.0f, 6.0f));//下ルート
+	cGround::SetGround(D3DXVECTOR2(75, -0.5f), D3DXVECTOR2(2.0f, 5.0f));//下ルート
 																		//ここの間に敵入れたい！！！
-	cGround::SetGround(D3DXVECTOR2(94, 0.0f), D3DXVECTOR2(2.0f, 8.0f));//下ルート
+	cGround::SetGround(D3DXVECTOR2(85, -0.5f), D3DXVECTOR2(2.0f, 6.0f));//下ルート
 																		//ここの間に敵入れたい！！！
-	cGround::SetGround(D3DXVECTOR2(105, -20.0f), D3DXVECTOR2(2.0f, 40.0f));//下ルート
+	cGround::SetGround(D3DXVECTOR2(94, -1.0f), D3DXVECTOR2(2.0f, 4.0f));//下ルート
+																		//ここの間に敵入れたい！！！
+	cGround::SetGround(D3DXVECTOR2(105, -8.0f), D3DXVECTOR2(2.0f, 16.0f));//下ルート
 
-	cGround::SetGround(D3DXVECTOR2(118, -22.0f), D3DXVECTOR2(8.0f, 36.0f));//下ルート
-																		 //-12の上に敵配置
-	cGround::SetGround(D3DXVECTOR2(125, -25.0f), D3DXVECTOR2(6.0f, 30.0f));//下ルート
-	cGround::SetGround(D3DXVECTOR2(132, -23.0f), D3DXVECTOR2(8.0f, 34.0f));//下ルート
-																			//-12の上に敵配置
-	cGround::SetGround(D3DXVECTOR2(140, -22.0f), D3DXVECTOR2(8.0f, 36.0f));//下ルート
-
-	cGround::SetGround(D3DXVECTOR2(135, 6.0f), D3DXVECTOR2(10.0f, 6.0f));
-	cGround::SetGround(D3DXVECTOR2(130, 10.0f), D3DXVECTOR2(2.0f, 6.0f));
+	cGround::SetGround(D3DXVECTOR2(119, -12.0f), D3DXVECTOR2(10.0f, 16.0f));//下ルート
 
 	cGround::SetGround(D3DXVECTOR2(119, 6.0f), D3DXVECTOR2(10.0f, 6.0f));//下ルート
+
 	cGround::SetGround(D3DXVECTOR2(129, 6.0f), D3DXVECTOR2(10.0f, 6.0f));//下ルート
+																		 //-12の上に敵配置
+	cGround::SetGround(D3DXVECTOR2(129, -12.0f), D3DXVECTOR2(10.0f, 6.0f));//下ルート
+
+
+	cGround::SetGround(D3DXVECTOR2(135, -8.0f), D3DXVECTOR2(10.0f, 8.0f));//下ルート
+	cGround::SetGround(D3DXVECTOR2(135, 6.0f), D3DXVECTOR2(10.0f, 6.0f));
+	cGround::SetGround(D3DXVECTOR2(130, 10.0f), D3DXVECTOR2(2.0f, 6.0f));
 
 
 
 	//--------------------------------
 	//上ルートブロック
 	//--------------------------------
-	cGround::SetGround(D3DXVECTOR2(77, 20.0f), D3DXVECTOR2(10.0f, 2.0f));
-	cGround::SetGround(D3DXVECTOR2(86, 12.0f), D3DXVECTOR2(2.0f, 12.0f));
+	cGround::SetGround(D3DXVECTOR2(77, 20.0f), D3DXVECTOR2(6.0f, 2.0f));
 	cGround::SetGround(D3DXVECTOR2(95, 20.0f), D3DXVECTOR2(6.0f, 2.0f));
 	//ここの間に敵
 	cGround::SetGround(D3DXVECTOR2(103, 20.0f), D3DXVECTOR2(10.0f, 2.0f));
 	//ここら辺にスコアに加算されるものを配置
 	cGround::SetGround(D3DXVECTOR2(97, 22.0f), D3DXVECTOR2(2.0f, 4.0f));
 	cGround::SetGround(D3DXVECTOR2(109, 22.0f), D3DXVECTOR2(2.0f, 4.0f));//ここ飛び越えて下の上のブロックに到達
+
 
 	cGround::SetGround(D3DXVECTOR2(130, 10.0f), D3DXVECTOR2(2.0f, 6.0f));
 
@@ -113,22 +111,22 @@ void cStage1::Init()
 	//----------------------------
 	//ゴール階段
 	//----------------------------
-	cGround::SetGround(D3DXVECTOR2(148, -21.0f), D3DXVECTOR2(8.0f, 38.0f));
-	cGround::SetGround(D3DXVECTOR2(156, -20.0f), D3DXVECTOR2(8.0f, 40.0f));
-	cGround::SetGround(D3DXVECTOR2(159, -19.0f), D3DXVECTOR2(2.0f, 42.0f));
-	cGround::SetGround(D3DXVECTOR2(161, -18.0f), D3DXVECTOR2(2.0f, 44.0f));
-	cGround::SetGround(D3DXVECTOR2(163, -17.0f), D3DXVECTOR2(2.0f, 46.0f));
-	cGround::SetGround(D3DXVECTOR2(165, -16.0f), D3DXVECTOR2(2.0f, 48.0f));
-	cGround::SetGround(D3DXVECTOR2(167, -15.0f), D3DXVECTOR2(2.0f, 50.0f));
-	cGround::SetGround(D3DXVECTOR2(169, -14.0f), D3DXVECTOR2(2.0f, 52.0f));
-	cGround::SetGround(D3DXVECTOR2(172, -13.0f), D3DXVECTOR2(4.0f, 54.0f));//ゴールの灯す場所
+	cGround::SetGround(D3DXVECTOR2(145, -5.0f), D3DXVECTOR2(10.0f, 6.0f));
+	cGround::SetGround(D3DXVECTOR2(155, -3.0f), D3DXVECTOR2(10.0f, 6.0f));
+	cGround::SetGround(D3DXVECTOR2(159, 0.0f), D3DXVECTOR2(2.0f, 6.0f));
+	cGround::SetGround(D3DXVECTOR2(161, 1.0f), D3DXVECTOR2(2.0f, 8.0f));
+	cGround::SetGround(D3DXVECTOR2(163, 2.0f), D3DXVECTOR2(2.0f, 10.0f));
+	cGround::SetGround(D3DXVECTOR2(165, 3.0f), D3DXVECTOR2(2.0f, 12.0f));
+	cGround::SetGround(D3DXVECTOR2(167, 4.0f), D3DXVECTOR2(2.0f, 14.0f));
+	cGround::SetGround(D3DXVECTOR2(169, 5.0f), D3DXVECTOR2(2.0f, 16.0f));
+	cGround::SetGround(D3DXVECTOR2(172, 6.0f), D3DXVECTOR2(4.0f, 16.0f));//ゴールの灯す場所
 
-	/*LPDIRECT3DTEXTURE9	g_p;
+	// フォグ
+	LPDIRECT3DTEXTURE9	g_p;
 	FG.Init(pDevice, 800, 200, 1);
 	FG.Move(0, 0, -0.5);
 	D3DXCreateTextureFromFile(pDevice, "asset/texture/Fog_ex.png", &g_p);
 	FG.setT(g_p);
-
 
 	pDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
@@ -148,7 +146,7 @@ void cStage1::Init()
 	{
 		pDevice->SetSamplerState(i, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
 		pDevice->SetSamplerState(i, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
-	}*/
+	}
 }
 // 終了
 void cStage1::Uninit()
@@ -184,8 +182,9 @@ void cStage1::Update()
 	cGhost::Update();
 	cLight::Update();
 
-	//FG.ChangeSize(FG.GetBACEKESU() - 0.001f);-------------------------------------
-	//FG.Update();------------------------------------------------------------
+	// フォグ
+	FG.ChangeSize(FG.GetBACEKESU() - 0.001f);
+	FG.Update();
 
 	// 環境
 	cCamera::Update();
@@ -198,11 +197,6 @@ void cStage1::Update()
 	else if (cGoal::collision)
 	{
 
-	}
-	//Game.cppに戻る
-	if (GetKeyboardPress(DIK_Z))
-	{
-		cScene::Fade(SCENE_GAME);
 	}
 	//SATGE2遷移
 	if (GetKeyboardPress(DIK_RETURN))
@@ -257,19 +251,19 @@ void cStage1::Draw()
 		pD3DDevice->SetSamplerState(i, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
 		pD3DDevice->SetSamplerState(i, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 	}
-	/*int i = 0;
-	FG.setL(0, cSeika::objects[0]->position.x, cSeika::objects[0]->position.y);
+	int i = 0;
+	FG.setL(i, cSeika::objects[0]->position.x, cSeika::objects[0]->position.y);
 	i++;
-	if (cCandle::objects[0]->collision)
+	/*if (cCandle::objects[0]->collision)
 	{
 		FG.setL(i, cCandle::objects[0]->position.x, cCandle::objects[0]->position.y);
 		i++;
-	}
-	if (cBridge::objects[0]->collision)
+	}*/
+	/*if (cBridge::objects[0]->collision)
 	{
 		FG.setL(i, cBridge::objects[0]->gimmickPosition.x, cBridge::objects[0]->gimmickPosition.y);
 		i++;
-	}
+	}*/
 	FG.setLC(i);
-	FG.Draw();*/
+	FG.Draw();
 }

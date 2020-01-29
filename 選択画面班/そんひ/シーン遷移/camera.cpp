@@ -22,7 +22,7 @@ void cCamera::Init()
 	object = NULL;
 	object = new cCamera;
 
-	position = D3DXVECTOR3(0, 1.0f, -100.0f);
+	position = D3DXVECTOR3(0, 1.0f, -30.0f);
 	lookAt   = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	up		 = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 

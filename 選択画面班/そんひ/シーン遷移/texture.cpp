@@ -32,6 +32,44 @@ static const TextureFile g_TextureFiles[] =
 	{ "asset/texture/baby.png",		128, 128},
 	{ "asset/texture/seika.png",	64, 64},
 	{ "asset/texture/ya.png",	512, 256},
+
+	//プレイヤー右
+    { "asset/texture/player/player_walk_00.png",   128,128 },
+    { "asset/texture/player/player_walk_01.png",   128,128 },
+    { "asset/texture/player/player_walk_02.png",   128,128 },
+    { "asset/texture/player/player_walk_03.png",   128,128 },
+    { "asset/texture/player/player_walk_04.png",   128,128 },
+    { "asset/texture/player/player_walk_05.png",   128,128 },
+    { "asset/texture/player/player_walk_06.png",   128,128 },
+    { "asset/texture/player/player_walk_07.png",   128,128 },
+    { "asset/texture/player/player_walk_08.png",   128,128 },
+    { "asset/texture/player/player_walk_09.png",   128,128 },
+	{ "asset/texture/player/player_walk_10.png",   128,128 },
+	//プレイヤー右
+	{ "asset/texture/player/player_walk_00_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_01_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_02_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_03_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_04_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_05_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_06_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_07_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_08_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_09_left.png",   128,128 },
+	{ "asset/texture/player/player_walk_10_left.png",   128,128 },
+	//プレイヤー
+    /*{ "asset/texture/player/player01.png",   128,128 },
+    { "asset/texture/player/player02.png",   128,128 },
+    { "asset/texture/player/player03.png",   128,128 },
+    { "asset/texture/player/player04.png",   128,128 },
+    { "asset/texture/player/player05.png",   128,128 },
+    { "asset/texture/player/player06.png",   128,128 },
+    { "asset/texture/player/player07.png",   128,128 },
+    { "asset/texture/player/player08.png",   128,128 },
+    { "asset/texture/player/player09.png",   128,128 },
+	{ "asset/texture/player/player10.png",   128,128 },
+	{ "asset/texture/player/player11.png",   128,128 },*/
+
 	// ギミック
 	{ "asset/texture/candle1.png",	128, 128},
 	{ "asset/texture/candle2.png",	128, 128},
@@ -87,6 +125,16 @@ static const TextureFile g_TextureFiles[] =
 	{ "asset/texture/stage rope.png",		SIZE_64, SIZE_256 },
 	{ "asset/texture/stage character.png",	SIZE_128, SIZE_128 },
 	{ "asset/texture/blacknumber.png",	    SIZE_512, SIZE_256 },
+
+	// ゲームオーバー
+	{ "asset/texture/end1.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/end2.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/end3.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/end4.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+
+	// ゲームクリア
+	{ "asset/texture/gameclear.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+
 };
 // 読み込みテクスチャ数
 static const int TEXTURE_FILE_COUNT = sizeof(g_TextureFiles) / sizeof(g_TextureFiles[0]);

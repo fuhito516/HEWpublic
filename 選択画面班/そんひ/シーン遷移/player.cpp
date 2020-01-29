@@ -18,6 +18,14 @@ VERTEX_3D*				cPlayer::pVertex;
 LPDIRECT3DVERTEXBUFFER9 cPlayer::pVertexBuffer_ya;
 VERTEX_3D*				cPlayer::pVertex_ya;
 
+//グローバル変数
+int frameR;
+int frameL;
+float animation_second;
+int animationR;
+int animationL;
+int direction;
+
 // コンストラクタ
 cPlayer::cPlayer(D3DXVECTOR3 _position)
 {
@@ -38,6 +46,9 @@ cPlayer::cPlayer(D3DXVECTOR3 _position)
 
 	// 衝突
 	collision = COLLISION_NONE;
+
+	//向き
+	direction = 0; //右
 
 	// 聖火
 	throwMode = false;
@@ -164,6 +175,8 @@ void cPlayer::Update()
 			// 左移動
 			if (GetKeyboardPress(DIK_A))
 			{
+				direction = 1;
+				frameL++;
 				// 方向
 				objects[i]->pastDirectionHorizontal = objects[i]->directionHorizontal = DIRECTION_LEFT;
 				// 位置x
@@ -171,11 +184,19 @@ void cPlayer::Update()
 			}
 			if (GetKeyboardPress(DIK_D))
 			{
+				direction = 0;
+				frameR++;
 				// 方向
 				objects[i]->pastDirectionHorizontal = objects[i]->directionHorizontal = DIRECTION_RIGHT;
 				// 位置x
 				objects[i]->position.x += PLAYER_MOVEMENT_SPEED;
 			}
+			//移動アニメーション用
+			//animation_second = frame / FRAME_PER_SECOND;
+			//animation = ((int)animation_second * 10) % ((int)ANIMATION_SECOND * 10);
+			animationR = frameR % ((int)ANIMATION_SECOND * 10);
+			animationL = frameL % ((int)ANIMATION_SECOND * 10);
+
 			// 移動してないとき
 			if (!GetKeyboardPress(DIK_A) && !GetKeyboardPress(DIK_D))
 			{
@@ -677,7 +698,102 @@ void cPlayer::Draw()
 			pDevice->SetStreamSource(0, pVertexBuffer, 0, sizeof(VERTEX_3D));
 			pDevice->SetFVF(FVF_VERTEX_3D);
 
-			pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_BABY));
+			//右
+			if (direction == 0) {
+				if (animationR == 0 || animationR == 11)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R1));
+				}
+				if (animationR == 1 || animationR == 12)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R2));
+				}
+				if (animationR == 2 || animationR == 13)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R3));
+				}
+				if (animationR == 3 || animationR == 14)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R4));
+				}
+				if (animationR == 4 || animationR == 15)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R5));
+				}
+				if (animationR == 5 || animationR == 16)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R6));
+				}
+				if (animationR == 6 || animationR == 17)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R7));
+				}
+				if (animationR == 7 || animationR == 18)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R8));
+				}
+				if (animationR == 8 || animationR == 19)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R9));
+				}
+				if (animationR == 9 || animationR == 20)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R10));
+				}
+				if (animationR == 10 || animationR == 21)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R11));
+				}
+			}
+
+				//左
+			if (direction == 1) {
+				if (animationL == 0 || animationL == 11)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L1));
+				}
+				if (animationL == 1 || animationL == 12)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L2));
+				}
+				if (animationL == 2 || animationL == 13)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L3));
+				}
+				if (animationL == 3 || animationL == 14)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L4));
+				}
+				if (animationL == 4 || animationL == 15)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L5));
+				}
+				if (animationL == 5 || animationL == 16)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L6));
+				}
+				if (animationL == 6 || animationL == 17)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L7));
+				}
+				if (animationL == 7 || animationL == 18)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L8));
+				}
+				if (animationL == 8 || animationL == 19)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L9));
+				}
+				if (animationL == 9 || animationL == 20)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L10));
+				}
+				if (animationL == 10 || animationL == 21)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L11));
+				}
+			}
+
 			pDevice->DrawPrimitive
 			(
 				D3DPT_TRIANGLESTRIP,

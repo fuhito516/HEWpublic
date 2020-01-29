@@ -57,14 +57,14 @@ void cMoveGround::SetVertex()
 
 }
 
-void cMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, D3DXVECTOR2 _distance){}
+void cMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize){}
 void cMoveGround::Init(){}
 void cMoveGround::Uninit(){}
 void cMoveGround::Update(){}
 void cMoveGround::Draw(){}
 
 // 地面設定
-void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, D3DXVECTOR2 _distance)
+void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
@@ -81,13 +81,6 @@ void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, 
 			objects[i]->Mposition.y = _mposition.y;
 			objects[i]->Mscale.x = _msize.x;
 			objects[i]->Mscale.y = _msize.y;
-			//移動距離
-			objects[i]->distance.x = _distance.x;
-			objects[i]->distance.y = _distance.y;
-			//初期位置の格納
-			objects[i]->fastMovePos.x = objects[i]->Mposition.x;
-			objects[i]->fastMovePos.y = objects[i]->Mposition.y;
-			objects[i]->fastMovePos.z = 0;
 
 			//初期位置の格納
 
@@ -193,10 +186,10 @@ void cVerticalMoveGround::Update()
 		{
 			objects[i]->Mposition.y += objects[i]->spead;
 
-			if (objects[i]->Mposition.y<objects[i]->fastMovePos.y - objects[i]->distance.y) {
+			if (objects[i]->Mposition.y<0) {
 				objects[i]->spead *= -1;
 			}
-			else if (objects[i]->Mposition.y>objects[i]->fastMovePos.y + objects[i]->distance.y) {
+			else if (objects[i]->Mposition.y>10) {
 				objects[i]->spead *= -1;
 			}
 			// フレームカウンター

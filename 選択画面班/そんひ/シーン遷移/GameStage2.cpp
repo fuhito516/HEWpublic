@@ -70,8 +70,8 @@ void cStage2::Init()
 	cGround::SetGround(D3DXVECTOR2(50, -8.0f), D3DXVECTOR2(50.0f, 2.0f));
 
 	//â°à⁄ìÆè∞
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(55, 1.0f), D3DXVECTOR2(10.0f, 2.0f), D3DXVECTOR2(10.0f, 0.0f));
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(75, 1.0f), D3DXVECTOR2(10.0f, 2.0f), D3DXVECTOR2(10.0f, 0.0f));
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(55, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(75, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
 
 
 	 /*LPDIRECT3DTEXTURE9	g_p;
