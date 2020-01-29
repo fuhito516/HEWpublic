@@ -166,7 +166,7 @@ void cSeika::Update()
 					// 方向
 					objects[i]->directionHorizontal = DIRECTION_LEFT;
 					// 位置x
-					objects[i]->position.x = cPlayer::objects[i]->position.x - SEIKA_HORIZONTAL_SIZE / 2;
+					objects[i]->position.x = cPlayer::objects[i]->position.x + SEIKA_HORIZONTAL_SIZE / 2;
 				}
 				// プレイヤーが右へ移動中
 				if (cPlayer::objects[i]->pastDirectionHorizontal == DIRECTION_RIGHT)
@@ -174,7 +174,7 @@ void cSeika::Update()
 					// 方向
 					objects[i]->directionHorizontal = DIRECTION_RIGHT;
 					// 位置x
-					objects[i]->position.x = cPlayer::objects[i]->position.x + SEIKA_HORIZONTAL_SIZE / 2;
+					objects[i]->position.x = cPlayer::objects[i]->position.x - SEIKA_HORIZONTAL_SIZE / 2;
 				}
 
 				// 位置y
