@@ -170,7 +170,7 @@ void cGame::Update()
 	for (int i = 0; i < fuse_count; i++)
 	{
 		// ¹‰Î‚Æ‚Ìæâ“Ë
-		if (pow(fuse_all[i].Block[0].getXY().x - cSeika::objects[0]->position.x, 2) + pow(fuse_all[i].Block[0].getXY().y - cSeika::objects[0]->position.y, 2) <= pow(BLOCK_SIZE + 1 + RADIUS_SEIKA, 2))
+		if ((pow(fuse_all[i].Block[0].getXY().x - cSeika::objects[0]->position.x, 2) + pow(fuse_all[i].Block[0].getXY().y - cSeika::objects[0]->position.y, 2) <= pow(BLOCK_SIZE + 1 + RADIUS_SEIKA, 2))  && (fuse_all[i].Block[0].getType() == 5))
 		{
 			fuse_all[i].setStartTime(GetTickCount());	// “±‰Îü’…‰Î
 		}
