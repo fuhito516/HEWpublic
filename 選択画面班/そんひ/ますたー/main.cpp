@@ -163,7 +163,7 @@ bool Initialize(HINSTANCE hInstance)
 	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	// ƒV[ƒ“
-	cScene::Init(SCENE_TITLE);
+	cScene::Init(STAGE_ONE);
 
 	switch (cScene::object->currentScene)
 	{

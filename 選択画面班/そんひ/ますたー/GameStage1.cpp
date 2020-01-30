@@ -89,12 +89,10 @@ void cStage1::Init()
 
 	cGround::SetGround(D3DXVECTOR2(119, 6.0f), D3DXVECTOR2(10.0f, 6.0f));//下ルート
 	cGround::SetGround(D3DXVECTOR2(129, 6.0f), D3DXVECTOR2(10.0f, 6.0f));//下ルート
-
-
-
-																		 //--------------------------------
-																		 //上ルートブロック
-																		 //--------------------------------
+																		 
+	//--------------------------------
+	//上ルートブロック
+	//--------------------------------
 	cGround::SetGround(D3DXVECTOR2(77, 20.0f), D3DXVECTOR2(10.0f, 2.0f));
 	cGround::SetGround(D3DXVECTOR2(86, 12.0f), D3DXVECTOR2(2.0f, 12.0f));
 	cGround::SetGround(D3DXVECTOR2(95, 20.0f), D3DXVECTOR2(10.0f, 2.0f));
@@ -121,9 +119,9 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(169, -14.0f), D3DXVECTOR2(2.0f, 52.0f));
 	cGround::SetGround(D3DXVECTOR2(172, -13.0f), D3DXVECTOR2(4.0f, 54.0f));//ゴールの灯す場所
 
-																		   //-------------------
-																		   //後半のステージ床X＝172からスタート
-																		   //-------------------
+	//-------------------
+	//後半のステージ床X＝172からスタート
+	//-------------------
 	cGround::SetGround(D3DXVECTOR2(173, -12.0f), D3DXVECTOR2(2.0f, 54.0f));//ゴールの灯す場所
 
 	cGround::SetGround(D3DXVECTOR2(175, -14.0f), D3DXVECTOR2(2.0f, 52.0f));//最初の段差
@@ -132,8 +130,9 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(181, -17.0f), D3DXVECTOR2(2.0f, 46.0f));
 	cGround::SetGround(D3DXVECTOR2(182, -18.0f), D3DXVECTOR2(2.0f, 44.0f));
 
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(188, 12.0f), D3DXVECTOR2(5.0f, 2.0f), D3DXVECTOR2(4.0f, 0.0f));
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(205, 12.0f), D3DXVECTOR2(5.0f, 2.0f), D3DXVECTOR2(-4.0f, 0.0f));
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(188.0f, 13.0f), D3DXVECTOR2(6.0f, 2.0f), D3DXVECTOR2(3.0f, 0.0f));
+	cGhost::Set(D3DXVECTOR3(194.0f, 3.0f, 0.0f),6.0f );
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(200.0f, 13.0f), D3DXVECTOR2(5.0f, 2.0f), D3DXVECTOR2(-3.0f, 0.0f));
 
 	cGround::SetGround(D3DXVECTOR2(192, -19.0f), D3DXVECTOR2(35.0f, 42.0f));
 
