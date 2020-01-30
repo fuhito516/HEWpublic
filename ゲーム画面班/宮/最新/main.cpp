@@ -24,6 +24,7 @@
 #include"GameStage2.h"
 #include"Gameover.h"
 #include"Gameclear.h"
+#include"Return.h"
 
 // システム
 static HWND g_hWnd;
@@ -137,7 +138,7 @@ bool Initialize(HINSTANCE hInstance)
 
 	if (Texture_Load() > 0)
 	{
-		MessageBox(g_hWnd, "いくつか読み込めなかったテクスチャファイルがあります", "エラー", MB_OK);
+		//MessageBox(g_hWnd, "いくつか読み込めなかったテクスチャファイルがあります", "エラー", MB_OK);
 	}
 
 	LPDIRECT3DDEVICE9 pDevice = MyDirect3D_GetDevice();
@@ -163,7 +164,7 @@ bool Initialize(HINSTANCE hInstance)
 	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	// シーン
-	cScene::Init(SCENE_GAME);
+	cScene::Init(SCENE_SELECT_STAGE);
 
 	switch (cScene::object->currentScene)
 	{
@@ -183,14 +184,14 @@ bool Initialize(HINSTANCE hInstance)
 		cSelectStage::Init();
 		break;
 	// ゲーム
-	case SCENE_GAME:
-		cGame::Init();
-		break;
 	case STAGE_ONE:
 		cStage1::Init();
 		break;
 	case STAGE_TWO:
 		cStage2::Init();
+		break;
+	case SCENE_GAME:
+		cGame::Init();
 		break;
 	case SCENE_GAMEOVER:
 		cGameover::Init();
@@ -199,6 +200,7 @@ bool Initialize(HINSTANCE hInstance)
 		cGameclear::Init();
 		break;
 	case SCENE_RETURN:
+		cReturn::Init();
 		break;
 
 	default: break;
@@ -244,6 +246,7 @@ void Finalize(void)
 		cGameclear::Uninit();
 		break;
 	case SCENE_RETURN:
+		cReturn::Uninit();
 		break;
 
 	default: break;
@@ -285,14 +288,14 @@ void Update(void)
 		cSelectStage::Update();
 		break;
 	// ゲーム
-	case SCENE_GAME:
-		cGame::Update();
-		break;
 	case STAGE_ONE:
 		cStage1::Update();
 		break;
 	case STAGE_TWO:
 		cStage2::Update();
+		break;
+	case SCENE_GAME:
+		cGame::Update();
 		break;
 	case SCENE_GAMEOVER:
 		cGameover::Update();
@@ -301,6 +304,7 @@ void Update(void)
 		cGameclear::Update();
 		break;
 	case SCENE_RETURN:
+		cReturn::Update();
 		break;
 
 	default: break;
@@ -348,14 +352,15 @@ void Draw(void)
 	case SCENE_SELECT_STAGE:
 		cSelectStage::Draw();
 		break;
-	case SCENE_GAME:
-		cGame::Draw();
-		break;
+	// ゲーム
 	case STAGE_ONE:
 		cStage1::Draw();
 		break;
 	case STAGE_TWO:
 		cStage2::Draw();
+		break;
+	case SCENE_GAME:
+		cGame::Draw();
 		break;
 	case SCENE_GAMEOVER:
 		cGameover::Draw();
@@ -364,6 +369,7 @@ void Draw(void)
 		cGameclear::Draw();
 		break;
 	case SCENE_RETURN:
+		cReturn::Draw();
 		break;
 
 	default: break;

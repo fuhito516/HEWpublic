@@ -16,17 +16,24 @@
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
 
+// ƒV[ƒ“‘JˆÚ
+static bool fade = false;
+
 LPDIRECT3DTEXTURE9 cSelectDifficulty::pTextures[NUMBER_OF_SELECT_DIFFICULTY_TEXTURE];
 bool cSelectDifficulty::use = false;
 
 float dwaku_x = SCREEN_WIDTH / 4;                              //“ïˆÕ“x˜gx
 float dwaku_y = SCREEN_HEIGHT / 2;                             //“ïˆÕ“x˜gy
-int nannido;
+static int nannido;
 
 // ‰Šú‰»
 void cSelectDifficulty::Init()
 {
 	LPDIRECT3DDEVICE9 pD3DDevice = MyDirect3D_GetDevice();
+
+	fade = false;
+	dwaku_x = SCREEN_WIDTH / 4;                              //“ïˆÕ“x˜gx
+	dwaku_y = SCREEN_HEIGHT / 2;
 
 	// g—p
 	use = true;
@@ -65,7 +72,7 @@ void cSelectDifficulty::Uninit()
 // XV
 void cSelectDifficulty::Update()
 {
-	PrintDebugProc("SELECT_DIFFICULTY\n");
+	//PrintDebugProc("SELECT_DIFFICULTY\n");
 
 	if (nannido >= 1 && nannido < 3) {
 		if (GetKeyboardRelease(DIK_RIGHT) || GetKeyboardRelease(DIK_D)) {
@@ -82,9 +89,10 @@ void cSelectDifficulty::Update()
 	}
 
 	// ‘JˆÚ------------------------------------------------------
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
 		cScene::Fade(SCENE_SELECT_STAGE);
+		fade = true;
 	}
 }
 // •`‰æ

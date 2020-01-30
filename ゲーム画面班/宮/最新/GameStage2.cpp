@@ -22,6 +22,13 @@
 #include"scene.h"
 #include"Title.h"
 
+// スプライト
+#include"texture.h"
+#include"sprite.h"
+
+// シーン遷移
+static bool fade = false;
+
 // 趙
 #include"object.h"
 //static Obj obj;------------------------------------
@@ -32,6 +39,10 @@
 void cStage2::Init()
 {
 	LPDIRECT3DDEVICE9	pDevice = MyDirect3D_GetDevice();
+
+	// シーン遷移
+	fade = false;
+
 	// 環境
 	cCamera::Init();
 
@@ -70,8 +81,8 @@ void cStage2::Init()
 	cGround::SetGround(D3DXVECTOR2(50, -8.0f), D3DXVECTOR2(50.0f, 2.0f));
 
 	//横移動床
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(55, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(75, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
+	//cHorizontalMoveGround::SetGround(D3DXVECTOR2(55, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
+	//cHorizontalMoveGround::SetGround(D3DXVECTOR2(75, 1.0f), D3DXVECTOR2(10.0f, 2.0f));
 
 
 	 /*LPDIRECT3DTEXTURE9	g_p;
@@ -120,6 +131,8 @@ void cStage2::Uninit()
 // 更新
 void cStage2::Update()
 {
+	PrintDebugProc("Hキーで操作方法\n");
+
 	// シーン
 	cGround::Update();
 	cVerticalMoveGround::Update();
@@ -139,13 +152,20 @@ void cStage2::Update()
 	cCamera::Update();
 
 	// 終了判定
-	if (cGhost::collision)
+	if (cGhost::collision && !fade)
 	{
-
+		cScene::Fade(SCENE_GAMEOVER);
+		fade = true;
 	}
-	else if (cGoal::collision)
+	else if (cGoal::collision && !fade)
 	{
-
+		cScene::Fade(SCENE_STAGECLEAR);
+		fade = true;
+	}
+	else if (cPlayer::objects[0]->position.y < -40 && !fade)
+	{
+		cScene::Fade(SCENE_GAMEOVER);
+		fade = true;
 	}
 }
 // 描画
@@ -163,6 +183,20 @@ void cStage2::Draw()
 	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	pD3DDevice->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
 	pD3DDevice->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+
+	// 操作方法
+	if (GetKeyboardPress(DIK_H))
+	{
+		Sprite_Draw
+		(
+			TEXTURE_INDEX_CONTROL,
+			SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,
+			2, 2,
+			0, 0,
+			1, 1
+		);
+	}
+
 	// 要素
 	cBackground::Draw();
 	cGround::Draw();

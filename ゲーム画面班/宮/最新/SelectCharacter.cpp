@@ -16,6 +16,9 @@
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
 
+// ƒV[ƒ“‘JˆÚ
+static bool fade = false;
+
 LPDIRECT3DTEXTURE9 cSelectCharacter::pTextures[NUMBER_OF_SELECT_CHARACTER_TEXTURE];
 bool cSelectCharacter::use = false;
 
@@ -28,12 +31,23 @@ int Character1P = 1;                                                  //‚PP‚Ì‘I‘
 int Character2P = 1;                                                  //‚QP‚Ì‘I‘ğƒLƒƒƒ‰ƒNƒ^[
 int Character3P = 1;                                                  //‚RP‚Ì‘I‘ğƒLƒƒƒ‰ƒNƒ^-
 int Character4P = 1;                                                  //‚SP‚Ì‘I‘ğƒLƒƒƒ‰ƒNƒ^[
-int people;                                                       //l”
+int people = 1;                                                       //l”
 
 // ‰Šú‰»
 void cSelectCharacter::Init()
 {
+	Character1P = 1;                                                  //‚PP‚Ì‘I‘ğƒLƒƒƒ‰ƒNƒ^[
+	Character2P = 1;                                                  //‚QP‚Ì‘I‘ğƒLƒƒƒ‰ƒNƒ^[
+	Character3P = 1;                                                  //‚RP‚Ì‘I‘ğƒLƒƒƒ‰ƒNƒ^-
+	Character4P = 1;
+	Playercarsolu = (float)SCREEN_WIDTH / 32 * 4;                                      //ƒJ[ƒ\ƒ‹À•W‚ÌŒˆ’è
+	Playercarsolu2 = (float)SCREEN_WIDTH / 32 * 4;                                    //ƒJ[ƒ\ƒ‹À•W‚ÌŒˆ’è
+	Playercarsolu3 = (float)SCREEN_WIDTH / 32 * 4;                                      //ƒJ[ƒ\ƒ‹À•W‚ÌŒˆ’è
+	Playercarsolu4 = (float)SCREEN_WIDTH / 32 * 4;
+
 	LPDIRECT3DDEVICE9 pD3DDevice = MyDirect3D_GetDevice();
+
+	fade = false;
 
 	// g—p
 	use = true;
@@ -70,7 +84,7 @@ void cSelectCharacter::Uninit()
 // XV
 void cSelectCharacter::Update()
 {
-	PrintDebugProc("SELECT_PLAYER\n");
+	//PrintDebugProc("SELECT_PLAYER\n");
 
 	//1P‚Ì“®‚«-------------------------------------------------------
 	if (Character1P >= 1 && Character1P < 5) {
@@ -126,9 +140,10 @@ void cSelectCharacter::Update()
 	}
 
 	// ‘JˆÚ---------------------------------------------------------------------
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
 		cScene::Fade(SCENE_SELECT_DIFFICULTY);
+		fade = true;
 	}
 }
 // •`‰æ

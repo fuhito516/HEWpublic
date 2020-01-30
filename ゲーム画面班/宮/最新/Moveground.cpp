@@ -12,7 +12,7 @@ cVerticalMoveGround* cVerticalMoveGround::objects[NUMBER_OF_GROUND_MOVE]; // ƒIƒ
 
 LPDIRECT3DVERTEXBUFFER9 cMoveGround::pMoveVertexBuffer;	// ’¸“_ƒoƒbƒtƒ@
 VERTEX_3D*				cMoveGround::pMoveVertex;		// ’¸“_ƒoƒbƒtƒ@‚Ì’†g‚ğ–„‚ß‚é
-//’¸“_ƒZƒbƒgŠÖ”
+														//’¸“_ƒZƒbƒgŠÖ”
 void cMoveGround::SetVertex()
 {
 	// ƒfƒoƒCƒXæ“¾
@@ -38,7 +38,7 @@ void cMoveGround::SetVertex()
 	pMoveVertex[2].vtx = D3DXVECTOR3(GROUND_HORIZONTAL_SIZE_MOVE / 2, -GROUND_HORIZONTAL_SIZE_MOVE / 2, 0.0f);	// ‰E‰º
 	pMoveVertex[3].vtx = D3DXVECTOR3(GROUND_HORIZONTAL_SIZE_MOVE / 2, GROUND_HORIZONTAL_SIZE_MOVE / 2, 0.0f);	// ‰Eã
 
-	// –@üƒxƒNƒgƒ‹‚Ìİ’è
+																												// –@üƒxƒNƒgƒ‹‚Ìİ’è
 	for (int i = 0; i < 4; i++)
 		pMoveVertex[i].nor = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
@@ -46,7 +46,7 @@ void cMoveGround::SetVertex()
 	for (int i = 0; i < 4; i++)
 		pMoveVertex[i].diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);	// ”’
 
-    // ƒeƒNƒXƒ`ƒƒÀ•W‚Ìİ’è
+																	// ƒeƒNƒXƒ`ƒƒÀ•W‚Ìİ’è
 	pMoveVertex[0].tex = D3DXVECTOR2(0.0f, 1.0f);
 	pMoveVertex[1].tex = D3DXVECTOR2(0.0f, 0.0f);
 	pMoveVertex[2].tex = D3DXVECTOR2(1.0f, 1.0f);
@@ -57,14 +57,14 @@ void cMoveGround::SetVertex()
 
 }
 
-void cMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize){}
-void cMoveGround::Init(){}
-void cMoveGround::Uninit(){}
-void cMoveGround::Update(){}
-void cMoveGround::Draw(){}
+void cMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, D3DXVECTOR2 _distance) {}
+void cMoveGround::Init() {}
+void cMoveGround::Uninit() {}
+void cMoveGround::Update() {}
+void cMoveGround::Draw() {}
 
 // ’n–Êİ’è
-void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
+void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize, D3DXVECTOR2 _distance)
 {
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
@@ -81,6 +81,13 @@ void cVerticalMoveGround::SetGround(D3DXVECTOR2 _mposition, D3DXVECTOR2 _msize)
 			objects[i]->Mposition.y = _mposition.y;
 			objects[i]->Mscale.x = _msize.x;
 			objects[i]->Mscale.y = _msize.y;
+			//ˆÚ“®‹——£
+			objects[i]->distance.x = _distance.x;
+			objects[i]->distance.y = _distance.y;
+			//‰ŠúˆÊ’u‚ÌŠi”[
+			objects[i]->fastMovePos.x = objects[i]->Mposition.x;
+			objects[i]->fastMovePos.y = objects[i]->Mposition.y;
+			objects[i]->fastMovePos.z = 0;
 
 			//‰ŠúˆÊ’u‚ÌŠi”[
 
@@ -137,7 +144,7 @@ void cVerticalMoveGround::Draw()
 	D3DXMATRIX MoverotationMatrix;		// ‰ñ“]s—ñ
 	D3DXMATRIX MovetranslationMatrix;	// •½sˆÚ“®s—ñ
 
-	
+
 	for (int i = 0; i < NUMBER_OF_GROUND_MOVE; i++)
 	{
 		if (objects[i]->use)
@@ -184,14 +191,30 @@ void cVerticalMoveGround::Update()
 
 		if (objects[i]->use)
 		{
-			objects[i]->Mposition.y += objects[i]->spead;
 
-			if (objects[i]->Mposition.y<0) {
-				objects[i]->spead *= -1;
+			if (objects[i]->distance.y > 0) {
+				objects[i]->Mposition.y += objects[i]->spead;
+
+				if (objects[i]->Mposition.y<objects[i]->fastMovePos.y - objects[i]->distance.y) {
+					objects[i]->spead *= -1;
+				}
+				else if (objects[i]->Mposition.y>objects[i]->fastMovePos.y + objects[i]->distance.y) {
+					objects[i]->spead *= -1;
+				}
 			}
-			else if (objects[i]->Mposition.y>10) {
-				objects[i]->spead *= -1;
+			if (objects[i]->distance.y < 0) {
+				objects[i]->Mposition.y -= objects[i]->spead;
+
+				if (objects[i]->Mposition.y<objects[i]->fastMovePos.y - objects[i]->distance.y*-1) {
+					objects[i]->spead *= -1;
+				}
+				else if (objects[i]->Mposition.y>objects[i]->fastMovePos.y + objects[i]->distance.y*-1) {
+					objects[i]->spead *= -1;
+				}
 			}
+
+
+
 			// ƒtƒŒ[ƒ€ƒJƒEƒ“ƒ^[
 			objects[i]->frameCounter++;
 		}

@@ -4,7 +4,7 @@
 #include"vertex.h"
 
 // 橋の数
-#define NUMBER_OF_BRIDGE (1)
+#define NUMBER_OF_BRIDGE (10)
 // 橋の仕掛けの縦横のサイズ
 #define BRIDGE_VERTICAL_SIZE	(1.0f)
 #define BRIDGE_HORIZONTAL_SIZE	(1.0f)

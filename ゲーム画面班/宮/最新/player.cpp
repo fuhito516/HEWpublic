@@ -217,7 +217,7 @@ void cPlayer::Update()
 			}
 
 			// 投げるモード移行
-			PrintDebugProc("聖火を投げるモード　%d\n", objects[i]->throwMode);
+			//PrintDebugProc("聖火を投げるモード　%d\n", objects[i]->throwMode);
 			if (GetKeyboardTrigger(DIK_T) && objects[i]->retention)
 			{
 				objects[i]->throwMode = !objects[i]->throwMode;

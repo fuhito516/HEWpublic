@@ -17,6 +17,9 @@
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
 
+// ÉVÅ[ÉìëJà⁄
+static bool fade = false;
+
 LPDIRECT3DTEXTURE9 cTitle::pTextures[NUMBER_OF_TITLE_TEXTURE];
 bool cTitle::use = false;
 
@@ -34,6 +37,8 @@ int flg;
 void cTitle::Init()
 {
 	LPDIRECT3DDEVICE9 pD3DDevice = MyDirect3D_GetDevice();
+
+	fade = false;
 
 	// égóp
 	use = true;
@@ -129,9 +134,10 @@ void cTitle::Update()
 	}
 
 	// ëJà⁄
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
 		cScene::Fade(SCENE_SELECT_NUMBER_OF_PLAYER);
+		fade = true;
 	}
 }
 // ï`âÊ

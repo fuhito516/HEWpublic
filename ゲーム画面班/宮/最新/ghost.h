@@ -4,7 +4,7 @@
 #include"vertex.h"
 
 // オブジェクト数
-#define NUMBER_OF_GHOST (1)
+#define NUMBER_OF_GHOST (10)
 // サイズ
 #define HORIZONTAL_SIZE_GHOST	(4.0f)
 #define VERTICAL_SIZE_GHOST		(4.0f)

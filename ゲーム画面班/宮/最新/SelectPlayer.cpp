@@ -16,6 +16,9 @@
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
 
+// ƒV[ƒ“‘JˆÚ
+static bool fade = false;
+
 LPDIRECT3DTEXTURE9 cSelectPlayer::pTextures[NUMBER_OF_SELECT_PLAYER_TEXTURE];
 bool cSelectPlayer::use = false;
 
@@ -28,6 +31,10 @@ extern int people;                                                       //l”
 void cSelectPlayer::Init()
 {
 	LPDIRECT3DDEVICE9 pD3DDevice = MyDirect3D_GetDevice();
+
+	fade = false;
+	pwaku_x = SCREEN_WIDTH / 5;                              //l”˜gx
+	pwaku_y = SCREEN_HEIGHT / 2;
 
 	// Žg—p
 	use = true;
@@ -66,7 +73,7 @@ void cSelectPlayer::Uninit()
 // XV
 void cSelectPlayer::Update()
 {
-	PrintDebugProc("SELECT_PLAYER\n");
+	//PrintDebugProc("SELECT_PLAYER\n");
 
 	if (people >= 1 && people < 4) {
 		if (GetKeyboardRelease(DIK_RIGHT) || GetKeyboardRelease(DIK_D)) 
@@ -84,9 +91,10 @@ void cSelectPlayer::Update()
 	}
 
 	// ‘JˆÚ
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
 		cScene::Fade(SCENE_SELECT_CHARACTER);
+		fade = true;
 	}
 }
 // •`‰æ
