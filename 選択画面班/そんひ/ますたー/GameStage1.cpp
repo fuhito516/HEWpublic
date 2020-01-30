@@ -53,7 +53,7 @@ void cStage1::Init()
 	cSeika::Set();
 	cLight::Set();
 	// 背景
-	cBackground::SetBackground(TEXTURE_INDEX_BACK1, D3DXVECTOR3(70, 0, 200), D3DXVECTOR3(1200, 300, 1));
+	cBackground::SetBackground(TEXTURE_INDEX_BACK1, D3DXVECTOR3(120, 0, 200), D3DXVECTOR3(1300, 400, 1));
 	cBackground::SetBackground(TEXTURE_INDEX_BACK2, D3DXVECTOR3(5, 50, 180), D3DXVECTOR3(20, 20, 1));
 	cBackground::SetBackground(TEXTURE_INDEX_BACK3, D3DXVECTOR3(70, 20, 150), D3DXVECTOR3(600, 150, 1));
 	cBackground::SetBackground(TEXTURE_INDEX_BACK4, D3DXVECTOR3(70, 40, 50), D3DXVECTOR3(600, 150, 1));
@@ -104,7 +104,7 @@ void cStage1::Init()
 
 	cGround::SetGround(D3DXVECTOR2(130, 10.0f), D3DXVECTOR2(2.0f, 6.0f));
 
-	cGround::SetGround(D3DXVECTOR2(139, 6.0f), D3DXVECTOR2(10.0f, 6.0f));
+	//cGround::SetGround(D3DXVECTOR2(139, 6.0f), D3DXVECTOR2(10.0f, 6.0f));
 
 	//----------------------------
 	//ゴール階段
@@ -130,9 +130,9 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(181, -17.0f), D3DXVECTOR2(2.0f, 46.0f));
 	cGround::SetGround(D3DXVECTOR2(182, -18.0f), D3DXVECTOR2(2.0f, 44.0f));
 
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(188.0f, 13.0f), D3DXVECTOR2(6.0f, 2.0f), D3DXVECTOR2(3.0f, 0.0f));
-	cGhost::Set(D3DXVECTOR3(194.0f, 3.0f, 0.0f),6.0f );
-	cHorizontalMoveGround::SetGround(D3DXVECTOR2(200.0f, 13.0f), D3DXVECTOR2(5.0f, 2.0f), D3DXVECTOR2(-3.0f, 0.0f));
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(189.0f, 9.0f), D3DXVECTOR2(6.0f, 1.0f), D3DXVECTOR2(3.0f, 0.0f));
+	cGhost::Set(D3DXVECTOR3(197.0f, 3.0f, 0.0f),14.0f );
+	cHorizontalMoveGround::SetGround(D3DXVECTOR2(200.0f, 9.0f), D3DXVECTOR2(5.0f, 1.0f), D3DXVECTOR2(-3.0f, 0.0f));
 
 	cGround::SetGround(D3DXVECTOR2(192, -19.0f), D3DXVECTOR2(35.0f, 42.0f));
 
@@ -164,7 +164,6 @@ void cStage1::Init()
 
 	cGoal::Set(D3DXVECTOR3(297, -1, 0));
 
-
 	//上ルート（床あるだけｗ）
 	cGround::SetGround(D3DXVECTOR2(248, 22.0f), D3DXVECTOR2(8.0f, 2.0f));
 	//上の下（）
@@ -173,7 +172,7 @@ void cStage1::Init()
 
 	// フォグ
 	LPDIRECT3DTEXTURE9	g_p;
-	FG.Init(pDevice, 800, 200, 1);
+	FG.Init(pDevice, 2400, 600, 1);
 	FG.Move(0, 0, -0.5);
 	D3DXCreateTextureFromFile(pDevice, "asset/texture/Fog_ex.png", &g_p);
 	FG.setT(g_p);
