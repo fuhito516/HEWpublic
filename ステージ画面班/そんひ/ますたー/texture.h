@@ -15,6 +15,9 @@
 // テクスチャ管理番号
 enum TextureIndex
 {
+	// 操作方法
+	TEXTURE_INDEX_CONTROL,
+
 	// テストライト
 	TEXTURE_INDEX_TEST1,
 	// ゲーム
@@ -119,6 +122,12 @@ enum TextureIndex
 
 	// ゲームクリア
 	TEXTURE_INDEX_GAMECLEAR,
+
+	// 戻る
+	TEXTURE_INDEX_RETURN,
+	TEXTURE_INDEX_TOTITLE,
+	TEXTURE_INDEX_TOSTAGE,
+	TEXTURE_INDEX_RETURNSELECT,
 
 	TEXTURE_INDEX_MAX
 };

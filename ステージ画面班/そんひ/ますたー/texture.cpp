@@ -18,6 +18,9 @@ typedef struct TextureFile_tag
 // 読み込みテクスチャ情報
 static const TextureFile g_TextureFiles[] =
 {
+	// 操作方法
+	{ "asset/texture/control.png",	540, 288},
+
 	// テストライト
 	{ "asset/texture/test1.png",	SCREEN_WIDTH * 2, SCREEN_WIDTH},
 	// 背景
@@ -124,7 +127,7 @@ static const TextureFile g_TextureFiles[] =
 	{ "asset/texture/stage heading.png",	SIZE_256, SIZE_64 },
 	{ "asset/texture/stage rope.png",		SIZE_64, SIZE_256 },
 	{ "asset/texture/stage character.png",	SIZE_128, SIZE_128 },
-	{ "asset/texture/blacknumber.png",	    SIZE_512, SIZE_256 },
+	{ "asset/texture/blacknumber.png",	    (int)(SIZE_256 * 1.5f), (int)(SIZE_128 * 1.2f)},
 
 	// ゲームオーバー
 	{ "asset/texture/end1.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
@@ -134,6 +137,13 @@ static const TextureFile g_TextureFiles[] =
 
 	// ゲームクリア
 	{ "asset/texture/gameclear.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+
+	// 戻る
+	{ "asset/texture/return.png",	256, 64},
+	{ "asset/texture/toTitle.png",	256, 64 },
+	{ "asset/texture/toStage.png",	512, 64 },
+	{ "asset/texture/return select.png",	64, 64 },
+
 
 };
 // 読み込みテクスチャ数

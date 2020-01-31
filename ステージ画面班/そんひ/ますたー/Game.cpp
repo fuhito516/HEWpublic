@@ -1,4 +1,5 @@
 
+
 // メイン
 #include"Game.h"
 #include"GameStage1.h"
@@ -22,23 +23,31 @@
 #include"scene.h"
 #include"Title.h"
 
+// スプライト
+#include"texture.h"
+#include"sprite.h"
+
+// シーン遷移
+static bool fade = false;
+
 // 趙
 #include "fog.h"
 static Fog FG;
 // 追加
 // 導火線
 #include "fuse.h"
-Fuse fuse_all[100];
-int fuse_count = 0;
-bool finished_1 = false;
-
-// シーン遷移
-static bool fade = false;
+static Fuse fuse_all[100];
+static int fuse_count = 0;
+static bool finished_1 = false;
 
 // 初期化
 void cGame::Init()
 {
 	LPDIRECT3DDEVICE9	pDevice = MyDirect3D_GetDevice();
+
+	// シーン遷移
+	fade = false;
+
 	// 環境
 	cCamera::Init();
 
@@ -150,6 +159,8 @@ void cGame::Uninit()
 // 更新
 void cGame::Update()
 {
+	PrintDebugProc("Hキーで操作方法\n");
+
 	// シーン
 	cGround::Update();
 	cVerticalMoveGround::Update();
@@ -205,7 +216,6 @@ void cGame::Update()
 		finished_1 = true;
 	}
 	
-
 	// 環境
 	cCamera::Update();
 
@@ -220,11 +230,10 @@ void cGame::Update()
 		cScene::Fade(SCENE_STAGECLEAR);
 		fade = true;
 	}
-
-	//SATGE1遷移
-	if (GetKeyboardPress(DIK_RETURN))
+	else if (cPlayer::objects[0]->position.y < -40 && !fade)
 	{
-		cScene::Fade(STAGE_ONE);
+		cScene::Fade(SCENE_GAMEOVER);
+		fade = true;
 	}
 }
 // 描画
@@ -243,7 +252,18 @@ void cGame::Draw()
 	pD3DDevice->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
 	pD3DDevice->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 
-	
+	// 操作方法
+	if (GetKeyboardPress(DIK_H))
+	{
+		Sprite_Draw
+		(
+			TEXTURE_INDEX_CONTROL,
+			SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,
+			2, 2,
+			0, 0,
+			1, 1
+		);
+	}
 
 	// 要素
 	cBackground::Draw();

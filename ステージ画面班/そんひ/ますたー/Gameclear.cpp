@@ -12,9 +12,14 @@
 // シーン
 #include"scene.h"
 
+// シーン遷移
+static bool fade = false;
+
 // 初期化
 void cGameclear::Init()
 {
+	fade = false;
+
 	// 環境
 	cCamera::Init();
 }
@@ -30,9 +35,10 @@ void cGameclear::Update()
 	// PrintDebugProc("GAMECLEAR\n");
 
 	// 遷移
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
-		//cScene::Fade(SCENE_);
+		cScene::Fade(SCENE_RETURN);
+		fade = true;
 	}
 }
 // 描画

@@ -16,6 +16,9 @@
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
 
+// シーン遷移
+static bool fade = false;
+
 LPDIRECT3DTEXTURE9 cSelectPlayer::pTextures[NUMBER_OF_SELECT_PLAYER_TEXTURE];
 bool cSelectPlayer::use = false;
 
@@ -28,6 +31,10 @@ extern int people;                                                       //人数
 void cSelectPlayer::Init()
 {
 	LPDIRECT3DDEVICE9 pD3DDevice = MyDirect3D_GetDevice();
+
+	fade = false;
+	pwaku_x = SCREEN_WIDTH / 5;                              //人数枠x
+	pwaku_y = SCREEN_HEIGHT / 2;
 
 	// 使用
 	use = true;
@@ -84,9 +91,10 @@ void cSelectPlayer::Update()
 	}
 
 	// 遷移
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
 		cScene::Fade(SCENE_SELECT_CHARACTER);
+		fade = true;
 	}
 }
 // 描画
