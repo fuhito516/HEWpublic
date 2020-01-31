@@ -337,12 +337,12 @@ void cStage1::Update()
 	cCamera::Update();
 
 	// èIóπîªíË
-	if (cGhost::collision)
+	if (cGhost::collision && !fade)
 	{
 		cScene::Fade(SCENE_GAMEOVER);
 		fade = true;
 	}
-	else if (cGoal::collision)
+	else if (cGoal::collision && !fade)
 	{
 		cScene::Fade(SCENE_STAGECLEAR);
 		fade = true;
