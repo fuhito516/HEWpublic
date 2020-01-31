@@ -17,6 +17,7 @@
 #include"SelectStage.h"
 #include"Gameover.h"
 #include"Gameclear.h"
+#include"Return.h"
 
 cScene* cScene::object;
 
@@ -86,16 +87,27 @@ void cScene::Update()
 				break;
 			case SCENE_SELECT_STAGE:
 				cSelectStage::Uninit();
-				cGame::Init();
-				break;
-				// ƒQ[ƒ€
-			case SCENE_GAME:
-				cGame::Uninit();
 				switch (cScene::object->nextScene)
 				{
 				case STAGE_ONE:
 					cStage1::Init();
 					break;
+				case STAGE_TWO:
+					cStage2::Init();
+					break;
+				case SCENE_GAME:
+					cGame::Init();
+					break;
+
+				default:
+					break;
+				}
+				break;
+			// ƒQ[ƒ€
+			case SCENE_GAME:
+				cGame::Uninit();
+				switch (cScene::object->nextScene)
+				{
 				case SCENE_GAMEOVER:
 					cGameover::Init();
 					break;
@@ -111,9 +123,6 @@ void cScene::Update()
 				cStage1::Uninit();
 				switch (cScene::object->nextScene)
 				{
-				case STAGE_TWO:
-					cStage2::Init();
-					break;
 				case SCENE_GAMEOVER:
 					cGameover::Init();
 					break;
@@ -142,13 +151,26 @@ void cScene::Update()
 				break;
 			case SCENE_GAMEOVER:
 				cGameover::Uninit();
-
+				cReturn::Init();
 				break;
 			case SCENE_STAGECLEAR:
 				cGameclear::Uninit();
-
+				cReturn::Init();
 				break;
 			case SCENE_RETURN:
+				cReturn::Uninit();
+				switch (cScene::object->nextScene)
+				{
+				case SCENE_TITLE:
+					cTitle::Init();
+					break;
+				case SCENE_SELECT_STAGE:
+					cSelectStage::Init();
+					break;
+
+				default:
+					break;
+				}
 				break;
 
 			default: break;

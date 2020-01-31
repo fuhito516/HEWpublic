@@ -12,6 +12,9 @@
 // シーン
 #include"scene.h"
 
+// シーン遷移
+static bool fade = false;
+
 // アニメーション
 static int frame = 0;
 static float second = 0;
@@ -19,6 +22,8 @@ static float second = 0;
 // 初期化
 void cGameover::Init()
 {
+	fade = false;
+
 	// アニメーション
 	frame = 0;
 	second = 0;
@@ -38,9 +43,10 @@ void cGameover::Update()
 	// PrintDebugProc("GAMECLEAR\n");
 
 	// 遷移
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
-		//cScene::Fade(SCENE_);
+		cScene::Fade(SCENE_RETURN);
+		fade = true;
 	}
 }
 // 描画

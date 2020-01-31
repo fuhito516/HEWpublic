@@ -16,18 +16,21 @@
 #include"SelectDifficulty.h"
 #include"SelectStage.h"
 
+// シーン遷移
+static bool fade = false;
+
 LPDIRECT3DTEXTURE9 cSelectStage::pTextures[NUMBER_OF_SELECT_STAGE_TEXTURE];
 bool cSelectStage::use = false;
 
-static int gStage = 1;                                                //ステージ
+static int gStage = 1;	//ステージ
 
 // 初期化
 void cSelectStage::Init()
 {
 	LPDIRECT3DDEVICE9 pD3DDevice = MyDirect3D_GetDevice();
 
-	// 使用
-	use = true;
+	fade = false;
+	gStage = 1;
 
 	// テクスチャー
 	for (int i = 0; i < NUMBER_OF_SELECT_STAGE_TEXTURE; i++)
@@ -74,16 +77,34 @@ void cSelectStage::Update()
 	if (gStage > NUMBER_OF_STAGE)
 		gStage = NUMBER_OF_STAGE;
 
+
+	//PrintDebugProc("ステージ　%d\n", gStage);
+
 	// 遷移
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
-		cScene::Fade(SCENE_GAME);
+		switch (gStage)
+		{
+		case 1:
+			cScene::Fade(STAGE_ONE);
+			break;
+		case 2:
+			cScene::Fade(STAGE_TWO);
+			break;
+		case 3:
+			cScene::Fade(SCENE_GAME);
+			break;
+
+		default:
+			break;
+		}
+
+		fade = true;
 	}
 }
 // 描画
 void cSelectStage::Draw()
 {
-
 	//共通
 	Sprite_Draw
 	(
@@ -104,12 +125,15 @@ void cSelectStage::Draw()
 		1.0f, 1.0f, 0, 0, 1.0f, 1.0f
 	);
 
+	// シーン名
 	Sprite_Draw
 	(
 		TEXTURE_INDEX_STAGE_HEADING,
 		(float)SCREEN_WIDTH / 2, (float)SCREEN_HEIGHT / 10,
 		1.0f, 1.0f, 0, 0, 1.0f, 1.0f
 	);
+
+	// ステージ数
 	for (int i = 1; i <= NUMBER_OF_STAGE; i++)
 	{
 		Sprite_Draw
@@ -127,9 +151,11 @@ void cSelectStage::Draw()
 			1.0f / 8 * (i - 1), 0, 1.0f / 8 * i, 0.5f
 		);
 	}
+
+	// キャラクター
 	Sprite_Draw
 	(
-		TEXTURE_INDEX_STAGE_CHARACTER,
+		TEXTURE_INDEX_PLAYER_R1,
 		(float)SCREEN_WIDTH * ((float)gStage / (NUMBER_OF_STAGE + 1)) - 36, (float)SCREEN_HEIGHT * (2.0f / 3.0f),
 		1.0f, 1.0f,
 		0, 0, 1.0f, 1.0f
