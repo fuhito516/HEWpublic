@@ -85,8 +85,13 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(75, -0.0f), D3DXVECTOR2(2.0f, 6.0f));//下ルート
 																		//ここの間に敵入れたい！！！
 	cGround::SetGround(D3DXVECTOR2(94, 0.0f), D3DXVECTOR2(2.0f, 8.0f));//下ルート
+
+	cGround::SetGround(D3DXVECTOR2(100, -19.0f), D3DXVECTOR2(2.0f,42.0f));//下ルート
 																	   //ここの間に敵入れたい！！！
 	cGround::SetGround(D3DXVECTOR2(105, -20.0f), D3DXVECTOR2(2.0f, 40.0f));//下ルート
+
+	cGround::SetGround(D3DXVECTOR2(110, -21.5f), D3DXVECTOR2(2.0f, 37.0f));//下ルート
+
 
 	cGround::SetGround(D3DXVECTOR2(118, -22.0f), D3DXVECTOR2(8.0f, 36.0f));//下ルート
 																		   //-12の上に敵配置
