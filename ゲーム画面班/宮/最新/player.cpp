@@ -13,7 +13,7 @@
 
 
 //アニメーション時間
-#define ANIMATION_SECOND (0.8f)
+#define ANIMATION_SECOND (1.6f)
 #define NUMBER_OF_SHEETS (10)
 
 cPlayer* cPlayer::objects[NUMBER_OF_PLAYER];
