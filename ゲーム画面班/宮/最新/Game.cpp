@@ -36,9 +36,9 @@ static Fog FG;
 // ’Ç‰Á
 // “±‰Îü
 #include "fuse.h"
-Fuse fuse_all[100];
-int fuse_count = 0;
-bool finished_1 = false;
+static Fuse fuse_all[100];
+static int fuse_count = 0;
+static bool finished_1 = false;
 
 // ‰Šú‰»
 void cGame::Init()

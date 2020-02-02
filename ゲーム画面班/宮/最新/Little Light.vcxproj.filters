@@ -1,234 +1,225 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="2オブジェクト">
-      <UniqueIdentifier>{723964e1-2413-4065-8384-4f17880eaf2c}</UniqueIdentifier>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="1シーン">
-      <UniqueIdentifier>{fa39e932-5d76-425f-9b30-152203478b2f}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="1シーン\0その他">
-      <UniqueIdentifier>{4534b9d2-11c7-4f0c-87b4-750152efece3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1シーン\1ゲーム">
-      <UniqueIdentifier>{11473730-4d16-4878-a5ca-a23011750ded}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0システム">
-      <UniqueIdentifier>{856718d6-1561-4063-991e-657424532a45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="趙">
-      <UniqueIdentifier>{072335b3-7252-4e09-a665-4bd10a2d6683}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1シーン\1ゲーム\ステージ">
-      <UniqueIdentifier>{7dc06d60-66fb-4b3d-9242-543a5b4da0ec}</UniqueIdentifier>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animetion.cpp">
-      <Filter>1シーン\0その他</Filter>
-    </ClCompile>
-    <ClCompile Include="Gameclear.cpp">
-      <Filter>1シーン\0その他</Filter>
-    </ClCompile>
-    <ClCompile Include="Gameover.cpp">
-      <Filter>1シーン\0その他</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectCharacter.cpp">
-      <Filter>1シーン\0その他</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectDifficulty.cpp">
-      <Filter>1シーン\0その他</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectPlayer.cpp">
-      <Filter>1シーン\0その他</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectStage.cpp">
-      <Filter>1シーン\0その他</Filter>
-    </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>1シーン\0その他</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="background.cpp">
-      <Filter>2オブジェクト</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="bridge.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="candle.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="ghost.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="goal.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="ground.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="light.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="Moveground.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="MovegroundHor.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>2オブジェクト</Filter>
-    </ClCompile>
-    <ClCompile Include="seika.cpp">
-      <Filter>2オブジェクト</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
-      <Filter>0システム</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="candle.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="debugproc.cpp">
-      <Filter>0システム</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="direct3d.cpp">
-      <Filter>0システム</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>0システム</Filter>
-    </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>0システム</Filter>
-    </ClCompile>
-    <ClCompile Include="texture.cpp">
-      <Filter>0システム</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="fog.cpp">
-      <Filter>趙</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="fuse.cpp">
-      <Filter>趙</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStage2.cpp">
-      <Filter>1シーン\1ゲーム\ステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>趙</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>1シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="scene.cpp">
-      <Filter>1シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStage1.cpp">
-      <Filter>1シーン\1ゲーム\ステージ</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>1シーン\1ゲーム\ステージ</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameclear.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameover.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage1.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ghost.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="goal.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ground.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Moveground.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="MovegroundHor.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Return.cpp">
-      <Filter>1シーン\0その他</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="seika.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectCharacter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectDifficulty.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectPlayer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectStage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Gameclear.h">
-      <Filter>1シーン\0その他</Filter>
-    </ClInclude>
-    <ClInclude Include="Gameover.h">
-      <Filter>1シーン\0その他</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectCharacter.h">
-      <Filter>1シーン\0その他</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectDifficulty.h">
-      <Filter>1シーン\0その他</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectPlayer.h">
-      <Filter>1シーン\0その他</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectStage.h">
-      <Filter>1シーン\0その他</Filter>
+    <ClInclude Include="vertex.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
-      <Filter>1シーン\0その他</Filter>
-    </ClInclude>
-    <ClInclude Include="background.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="bridge.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="candle.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="ghost.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="goal.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="ground.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="light.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="Moveground.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="seika.h">
-      <Filter>2オブジェクト</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>0システム</Filter>
-    </ClInclude>
-    <ClInclude Include="common.h">
-      <Filter>0システム</Filter>
-    </ClInclude>
-    <ClInclude Include="debugproc.h">
-      <Filter>0システム</Filter>
-    </ClInclude>
-    <ClInclude Include="direct3d.h">
-      <Filter>0システム</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>0システム</Filter>
-    </ClInclude>
-    <ClInclude Include="sprite.h">
-      <Filter>0システム</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="texture.h">
-      <Filter>0システム</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="vertex.h">
-      <Filter>0システム</Filter>
+    <ClInclude Include="sprite.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="fog.h">
-      <Filter>趙</Filter>
+    <ClInclude Include="SelectStage.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="fuse.h">
-      <Filter>趙</Filter>
+    <ClInclude Include="SelectPlayer.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="object.h">
-      <Filter>趙</Filter>
+    <ClInclude Include="SelectDifficulty.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameStage1.h">
-      <Filter>1シーン\1ゲーム\ステージ</Filter>
+    <ClInclude Include="SelectCharacter.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameStage2.h">
-      <Filter>1シーン\1ゲーム\ステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>1シーン</Filter>
+    <ClInclude Include="seika.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="scene.h">
-      <Filter>1シーン</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>1シーン\1ゲーム\ステージ</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Return.h">
-      <Filter>1シーン\0その他</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Moveground.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ground.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="goal.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ghost.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStage2.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStage1.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameover.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameclear.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="fuse.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="fog.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="direct3d.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="debugproc.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="bridge.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="candle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

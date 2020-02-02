@@ -1,5 +1,5 @@
 
-// メイン
+//メイン
 #include"Game.h"
 #include"GameStage1.h"
 #include"GameStage2.h"
@@ -32,6 +32,13 @@ static bool fade = false;
 // 趙
 #include "fog.h"
 static Fog FG;
+// 追加
+// 導火線
+#include "fuse.h"
+static Fuse fuse_all[100];
+static int fuse_count = 0;
+static bool finished_1 = false;
+static bool finished_3 = false;
 
 // 初期化
 void cStage1::Init()
@@ -40,6 +47,9 @@ void cStage1::Init()
 
 	// シーン遷移
 	fade = false;
+
+	finished_1 = false;
+	finished_3 = false;
 
 	// 環境
 	cCamera::Init();
@@ -60,7 +70,7 @@ void cStage1::Init()
 	// 配置
 
 	// プレイヤー
-	cPlayer::Set(D3DXVECTOR3(0, 1, 0));
+	cPlayer::Set(D3DXVECTOR3(100, 30, 0));
 	cSeika::Set();
 	cLight::Set();
 	// 背景
@@ -85,8 +95,11 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(75, -0.0f), D3DXVECTOR2(2.0f, 6.0f));//下ルート
 																		//ここの間に敵入れたい！！！
 	cGround::SetGround(D3DXVECTOR2(94, 0.0f), D3DXVECTOR2(2.0f, 8.0f));//下ルート
+	cGround::SetGround(D3DXVECTOR2(100, -19.0f), D3DXVECTOR2(2.0f, 42.0f));//下ルート
 																	   //ここの間に敵入れたい！！！
 	cGround::SetGround(D3DXVECTOR2(105, -20.0f), D3DXVECTOR2(2.0f, 40.0f));//下ルート
+
+	cGround::SetGround(D3DXVECTOR2(110, -21.5f), D3DXVECTOR2(2.0f, 37.0f));//下ルート
 
 	cGround::SetGround(D3DXVECTOR2(118, -22.0f), D3DXVECTOR2(8.0f, 36.0f));//下ルート
 																		   //-12の上に敵配置
@@ -100,10 +113,10 @@ void cStage1::Init()
 
 	cGround::SetGround(D3DXVECTOR2(119, 6.0f), D3DXVECTOR2(10.0f, 6.0f));//下ルート
 	cGround::SetGround(D3DXVECTOR2(129, 6.0f), D3DXVECTOR2(10.0f, 6.0f));//下ルート
-																		 
-	//--------------------------------
-	//上ルートブロック
-	//--------------------------------
+
+																		 //--------------------------------
+																		 //上ルートブロック
+																		 //--------------------------------
 	cGround::SetGround(D3DXVECTOR2(77, 20.0f), D3DXVECTOR2(10.0f, 2.0f));
 	cGround::SetGround(D3DXVECTOR2(86, 12.0f), D3DXVECTOR2(2.0f, 12.0f));
 	cGround::SetGround(D3DXVECTOR2(95, 20.0f), D3DXVECTOR2(10.0f, 2.0f));
@@ -112,6 +125,7 @@ void cStage1::Init()
 	//ここら辺にスコアに加算されるものを配置
 	cGround::SetGround(D3DXVECTOR2(97, 22.0f), D3DXVECTOR2(2.0f, 4.0f));
 	cGround::SetGround(D3DXVECTOR2(109, 22.0f), D3DXVECTOR2(2.0f, 4.0f));//ここ飛び越えて下の上のブロックに到達
+
 
 	cGround::SetGround(D3DXVECTOR2(130, 10.0f), D3DXVECTOR2(2.0f, 6.0f));
 
@@ -130,9 +144,9 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(169, -14.0f), D3DXVECTOR2(2.0f, 52.0f));
 	cGround::SetGround(D3DXVECTOR2(172, -13.0f), D3DXVECTOR2(4.0f, 54.0f));//ゴールの灯す場所
 
-	//-------------------
-	//後半のステージ床X＝172からスタート
-	//-------------------
+																		   //-------------------
+																		   //後半のステージ床X＝172からスタート
+																		   //-------------------
 	cGround::SetGround(D3DXVECTOR2(173, -12.0f), D3DXVECTOR2(2.0f, 54.0f));//ゴールの灯す場所
 
 	cGround::SetGround(D3DXVECTOR2(175, -14.0f), D3DXVECTOR2(2.0f, 52.0f));//最初の段差
@@ -142,7 +156,7 @@ void cStage1::Init()
 	cGround::SetGround(D3DXVECTOR2(182, -18.0f), D3DXVECTOR2(2.0f, 44.0f));
 
 	cHorizontalMoveGround::SetGround(D3DXVECTOR2(189.0f, 9.0f), D3DXVECTOR2(6.0f, 1.0f), D3DXVECTOR2(3.0f, 0.0f));
-	cGhost::Set(D3DXVECTOR3(197.0f, 3.0f, 0.0f),14.0f );
+	cGhost::Set(D3DXVECTOR3(197.0f, 3.0f, 0.0f), 14.0f);
 	cHorizontalMoveGround::SetGround(D3DXVECTOR2(200.0f, 9.0f), D3DXVECTOR2(5.0f, 1.0f), D3DXVECTOR2(-3.0f, 0.0f));
 
 	cGround::SetGround(D3DXVECTOR2(192, -19.0f), D3DXVECTOR2(35.0f, 42.0f));
@@ -156,7 +170,7 @@ void cStage1::Init()
 	cVerticalMoveGround::SetGround(D3DXVECTOR2(238.0, -2.0f), D3DXVECTOR2(5.0f, 2.0f), D3DXVECTOR2(0.0f, 5.0f));
 	cVerticalMoveGround::SetGround(D3DXVECTOR2(238.0, 15.0f), D3DXVECTOR2(5.0f, 2.0f), D3DXVECTOR2(0.0f, -5.0f));
 
-	cCandle::SetCandle(D3DXVECTOR2(238.0, 10.0f));
+	//cCandle::SetCandle(D3DXVECTOR2(238.0, 10.0f));
 	//下ルート
 	cGround::SetGround(D3DXVECTOR2(214, -19.0f), D3DXVECTOR2(8.0f, 42.0f));
 	cBridge::SetBridge(D3DXVECTOR2(238.0, 9.0f), D3DXVECTOR2(250, -30.0f), D3DXVECTOR2(10.0f, 20.0f));
@@ -180,6 +194,32 @@ void cStage1::Init()
 	//上の下（）
 	cGround::SetGround(D3DXVECTOR2(262, 5.0f), D3DXVECTOR2(10.0f, 2.0f));
 	cGround::SetGround(D3DXVECTOR2(271, 8.0f), D3DXVECTOR2(10.0f, 5.0f));
+
+
+	// 導火線
+	// 第２引数・・・中心x座標
+	// 第３引数・・・中心y座標
+	// 第４引数・・・幅(長さとはことなるので調整必要)
+	// 第５引数・・・流れる方向(0が右へ1が左へ2が上へ3が下へ)
+	// 要素0
+	fuse_all[fuse_count].Init(pDevice, 120, 25, 50, 0); // fuse_count 0 から
+	fuse_all[fuse_count].setTime(1000);	// 秒かけて鎮火(変更可)
+	fuse_count++;
+	// 要素1
+	fuse_all[fuse_count].Init(pDevice, 135, 25, 50, 0);
+	fuse_all[fuse_count].setTime(1000);	// 時間も調整しよう※相対速度を変えると、描画がかわるから、％は同じように
+	fuse_count++;
+	// 要素2
+	fuse_all[fuse_count].Init(pDevice, 127.5f, 25.0f - 3.75f, 25, 3);
+	fuse_all[fuse_count].setTime(1000);	// 時間も調整しよう※相対速度を変えると、描画がかわるから、％は同じように
+	fuse_count++;
+	// 要素3
+	fuse_all[fuse_count].Init(pDevice, 135, 13.75f + 3.75f, 50, 0);
+	fuse_all[fuse_count].setTime(1000);	// 時間も調整しよう※相対速度を変えると、描画がかわるから、％は同じように
+	fuse_count++;
+
+	// 設定を調整するのは大変になるから、50個のブロックだと7.5fずつずらすことできれいに配置できることを意識しよう。
+	// 25個ならその半分の3.75f
 
 	// フォグ
 	LPDIRECT3DTEXTURE9	g_p;
@@ -248,16 +288,61 @@ void cStage1::Update()
 	FG.ChangeSize(FG.GetBACEKESU() - 0.001f);
 	FG.Update();
 
+	// 導火線(考えなくていい
+	for (int i = 0; i < fuse_count; i++)
+	{
+		// 聖火との趙突
+		if (
+			(pow(fuse_all[i].Block[0].getXY().x - cSeika::objects[0]->position.x, 2) + pow(fuse_all[i].Block[0].getXY().y - cSeika::objects[0]->position.y, 2) <= pow(BLOCK_SIZE + 1 + RADIUS_SEIKA, 2))
+			&& (fuse_all[i].Block[0].getType() == 5)
+			)
+		{
+			fuse_all[i].setStartTime(GetTickCount());	// 導火線着火
+		}
+
+		if (fuse_all[i].getState() == 1)
+		{
+			fuse_all[i].Update();
+			for (int j = 0; j < fuse_count; j++)
+			{
+				if ((j != i) && (fuse_all[j].getState() == 0) &&
+					(fuse_all[i].tail->getType() == 6) &&
+					(pow(fuse_all[i].Block[fuse_all[i].length - 1].getXY().x - fuse_all[j].Block[0].getXY().x, 2) +
+						pow(fuse_all[i].Block[fuse_all[i].length - 1].getXY().y - fuse_all[j].Block[0].getXY().y, 2)
+						<= pow(BLOCK_SIZE * 2, 2)
+						)
+					)
+				{
+					fuse_all[j].setStartTime(GetTickCount());
+				}
+			}
+		}
+	}
+
+	// 要素1が終わったら地面を配置、宮追加
+	if (fuse_all[1].tail->getType() == 7 && !finished_1)	// 該当番目の最後尾の状態が７番なら
+	{
+		cGround::SetGround(D3DXVECTOR2(120, 20), D3DXVECTOR2(5, 1));
+		cGround::SetGround(D3DXVECTOR2(125, 16), D3DXVECTOR2(5, 1));
+		finished_1 = true;
+	}
+	// 要素3が終わったら地面を配置、宮追加
+	if (fuse_all[3].tail->getType() == 7 && !finished_3)	// 該当番目の最後尾の状態が７番なら
+	{
+		cGhost::Set(D3DXVECTOR3(120, 12, 0), 10);
+		finished_3 = true;
+	}
+
 	// 環境
 	cCamera::Update();
 
 	// 終了判定
-	if (cGhost::collision)
+	if (cGhost::collision && !fade)
 	{
 		cScene::Fade(SCENE_GAMEOVER);
 		fade = true;
 	}
-	else if (cGoal::collision)
+	else if (cGoal::collision && !fade)
 	{
 		cScene::Fade(SCENE_STAGECLEAR);
 		fade = true;
@@ -292,15 +377,20 @@ void cStage1::Draw()
 	// αブレンド
 	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	pD3DDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	pD3DDevice->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
 	pD3DDevice->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 
-	
-
 	// 要素
 	cBackground::Draw();
+
+	// 導火線(考えなくていい
+	for (int i = 0; i < fuse_count; i++)
+	{
+		fuse_all[i].Draw();
+	}
+
 	cGround::Draw();
 	cVerticalMoveGround::Draw();;
 	cHorizontalMoveGround::Draw();
@@ -312,6 +402,7 @@ void cStage1::Draw()
 	cGhost::Draw();
 	//cLight::Draw();
 
+	// 灯
 	pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
@@ -336,14 +427,17 @@ void cStage1::Draw()
 	i++;
 	/*if (cCandle::objects[0]->collision)
 	{
-		FG.setL(i, cCandle::objects[0]->position.x, cCandle::objects[0]->position.y);
-		i++;
+	FG.setL(i, cCandle::objects[0]->position.x, cCandle::objects[0]->position.y);
+	i++;
 	}*/
-	/*if (cBridge::objects[0]->collision)
+	for (int j = 0; j < 2; j++)
 	{
-		FG.setL(i, cBridge::objects[0]->gimmickPosition.x, cBridge::objects[0]->gimmickPosition.y);
-		i++;
-	}*/
+		if (cBridge::objects[j]->collision)
+		{
+			FG.setL(i, cBridge::objects[j]->gimmickPosition.x, cBridge::objects[j]->gimmickPosition.y);
+			i++;
+		}
+	}
 	FG.setLC(i);
 	FG.Draw();
 }

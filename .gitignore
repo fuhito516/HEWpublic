@@ -2,7 +2,6 @@
 *.db
 *.ipch
 *.log
-*.exe
 *.ilk
 *.pdb
 *.tlog

@@ -14,7 +14,7 @@
 
 //アニメーション時間
 #define ANIMATION_SECOND (0.8f)
-#define NUMBER_OF_SHEETS (11)
+#define NUMBER_OF_SHEETS (10)
 
 cPlayer* cPlayer::objects[NUMBER_OF_PLAYER];
 
@@ -755,10 +755,6 @@ void cPlayer::Draw()
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R10));
 				}
-				if (animation_seconds >= secondPerSheet * 10 && animation_seconds < secondPerSheet * 11)
-				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R11));
-				}
 			}
 			//左
 			if (objects[i]->directionHorizontal == DIRECTION_LEFT)
@@ -802,10 +798,6 @@ void cPlayer::Draw()
 				if (animation_seconds >= secondPerSheet * 9 && animation_seconds < secondPerSheet * 10)
 				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L10));
-				}
-				if (animation_seconds >= secondPerSheet * 10 && animation_seconds < secondPerSheet * 11)
-				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L11));
 				}
 			}
 
