@@ -1,6 +1,6 @@
 // メイン
-#include"Game.h"
 #include"GameStage1.h"
+#include"GameStage3.h"
 #include"GameStage2.h"
 // 環境
 #include"camera.h"
@@ -16,7 +16,6 @@
 #include"candle.h"
 #include"goal.h"
 #include"ghost.h"
-#include"light.h"
 // シーン
 #include"scene.h"
 #include"Title.h"
@@ -24,6 +23,8 @@
 // スプライト
 #include"texture.h"
 #include"sprite.h"
+
+#include"sound.h"
 
 // シーン遷移
 static bool fade = false;
@@ -56,7 +57,6 @@ void cStage2::Init()
 	cHorizontalMoveGround::Init();
 	cPlayer::Init();
 	cSeika::Init();
-	cLight::Init();
 	cBridge::Init();
 	cCandle::Init();
 	cGoal::Init();
@@ -67,7 +67,6 @@ void cStage2::Init()
 	// プレイヤー
 	cPlayer::Set(D3DXVECTOR3(0, 1, 0));
 	cSeika::Set();
-	cLight::Set();
 	// 背景
 	cBackground::SetBackground(TEXTURE_INDEX_BACK1, D3DXVECTOR3(70, 0, 200), D3DXVECTOR3(1200, 300, 1));
 	cBackground::SetBackground(TEXTURE_INDEX_BACK2, D3DXVECTOR3(5, 10, 80), D3DXVECTOR3(20, 20, 1));
@@ -144,7 +143,6 @@ void cStage2::Uninit()
 	cVerticalMoveGround::Uninit();
 	cHorizontalMoveGround::Uninit();
 	cGhost::Uninit();
-	cLight::Uninit();
 
 	// 環境
 	cCamera::Uninit();
@@ -158,13 +156,15 @@ void cStage2::Update()
 	cGround::Update();
 	cVerticalMoveGround::Update();
 	cHorizontalMoveGround::Update();
-	cPlayer::Update();
+	if (!fade)
+	{
+		cPlayer::Update();
+	}
 	cSeika::Update();
 	cBridge::Update();
 	cCandle::Update();
 	cGoal::Update();
 	cGhost::Update();
-	cLight::Update();
 
 	// フォグ
 	FG.ChangeSize(FG.GetBACEKESU() - 0.001f);
@@ -217,16 +217,29 @@ void cStage2::Update()
 	{
 		cScene::Fade(SCENE_GAMEOVER);
 		fade = true;
+		// サウンド
+		StopSound(SOUND_LABEL_WALK);
 	}
 	else if (cGoal::collision && !fade)
 	{
 		cScene::Fade(SCENE_STAGECLEAR);
 		fade = true;
+		// サウンド
+		StopSound(SOUND_LABEL_WALK);
 	}
 	else if (cPlayer::objects[0]->position.y < -40 && !fade)
 	{
 		cScene::Fade(SCENE_GAMEOVER);
 		fade = true;
+		// サウンド
+		StopSound(SOUND_LABEL_WALK);
+	}
+	else if (cSeika::objects[0]->position.y < -40 && !fade)
+	{
+		cScene::Fade(SCENE_GAMEOVER);
+		fade = true;
+		// サウンド
+		StopSound(SOUND_LABEL_WALK);
 	}
 }
 // 描画

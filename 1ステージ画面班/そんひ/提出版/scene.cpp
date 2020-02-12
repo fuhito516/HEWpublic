@@ -8,12 +8,12 @@
 #include"debugproc.h"
 // ƒV[ƒ“
 #include"Title.h"
-#include"Game.h"
 #include"GameStage1.h"
+#include"GameStage3.h"
 #include"GameStage2.h"
-#include"SelectPlayer.h"
-#include"SelectCharacter.h"
-#include"SelectDifficulty.h"
+//#include"SelectPlayer.h"
+//#include"SelectCharacter.h"
+//#include"SelectDifficulty.h"
 #include"SelectStage.h"
 #include"Gameover.h"
 #include"Gameclear.h"
@@ -71,9 +71,9 @@ void cScene::Update()
 			{
 			case SCENE_TITLE:
 				cTitle::Uninit();
-				cSelectPlayer::Init();
+				cSelectStage::Init();
 				break;
-			case SCENE_SELECT_NUMBER_OF_PLAYER:
+			/*case SCENE_SELECT_NUMBER_OF_PLAYER:
 				cSelectPlayer::Uninit();
 				cSelectCharacter::Init();
 				break;
@@ -84,7 +84,7 @@ void cScene::Update()
 			case SCENE_SELECT_DIFFICULTY:
 				cSelectDifficulty::Uninit();
 				cSelectStage::Init();
-				break;
+				break;*/
 			case SCENE_SELECT_STAGE:
 				cSelectStage::Uninit();
 				switch (cScene::object->nextScene)
@@ -95,8 +95,8 @@ void cScene::Update()
 				case STAGE_TWO:
 					cStage2::Init();
 					break;
-				case SCENE_GAME:
-					cGame::Init();
+				case STAGE_THREE:
+					cStage3::Init();
 					break;
 
 				default:
@@ -104,21 +104,6 @@ void cScene::Update()
 				}
 				break;
 			// ƒQ[ƒ€
-			case SCENE_GAME:
-				cGame::Uninit();
-				switch (cScene::object->nextScene)
-				{
-				case SCENE_GAMEOVER:
-					cGameover::Init();
-					break;
-				case SCENE_STAGECLEAR:
-					cGameclear::Init();
-					break;
-
-				default:
-					break;
-				}
-				break;
 			case STAGE_ONE:
 				cStage1::Uninit();
 				switch (cScene::object->nextScene)
@@ -136,6 +121,21 @@ void cScene::Update()
 				break;
 			case STAGE_TWO:
 				cStage2::Uninit();
+				switch (cScene::object->nextScene)
+				{
+				case SCENE_GAMEOVER:
+					cGameover::Init();
+					break;
+				case SCENE_STAGECLEAR:
+					cGameclear::Init();
+					break;
+
+				default:
+					break;
+				}
+				break;
+			case STAGE_THREE:
+				cStage3::Uninit();
 				switch (cScene::object->nextScene)
 				{
 				case SCENE_GAMEOVER:

@@ -10,10 +10,7 @@
 #include"sprite.h"
 // シーン
 #include"scene.h"
-#include"Game.h"
-#include"SelectPlayer.h"
-#include"SelectCharacter.h"
-#include"SelectDifficulty.h"
+#include"GameStage1.h"
 #include"SelectStage.h"
 
 // シーン遷移
@@ -92,7 +89,7 @@ void cSelectStage::Update()
 			cScene::Fade(STAGE_TWO);
 			break;
 		case 3:
-			cScene::Fade(SCENE_GAME);
+			cScene::Fade(STAGE_THREE);
 			break;
 
 		default:
@@ -155,7 +152,7 @@ void cSelectStage::Draw()
 	// キャラクター
 	Sprite_Draw
 	(
-		TEXTURE_INDEX_PLAYER_R1,
+		TEXTURE_INDEX_PLAYER_L4,
 		(float)SCREEN_WIDTH * ((float)gStage / (NUMBER_OF_STAGE + 1)) - 36, (float)SCREEN_HEIGHT * (2.0f / 3.0f),
 		1.0f, 1.0f,
 		0, 0, 1.0f, 1.0f

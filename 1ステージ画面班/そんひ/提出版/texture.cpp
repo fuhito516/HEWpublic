@@ -18,11 +18,25 @@ typedef struct TextureFile_tag
 // 読み込みテクスチャ情報
 static const TextureFile g_TextureFiles[] =
 {
-	// 操作方法
-	{ "asset/texture/control.png",	540, 288},
+	// 共通
+	{ "asset/texture/Common/black.png",		128, 128},
+	{ "asset/texture/Common/back.png",		SIZE_256, SIZE_64},
+	{ "asset/texture/Common/decision.png",	SIZE_256, SIZE_64},
 
-	// テストライト
-	{ "asset/texture/test1.png",	SCREEN_WIDTH * 2, SCREEN_WIDTH},
+	//タイトル
+	{ "asset/texture/BG.png",             SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/LIGHT2.png",         SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/fire.png",           2304, SIZE_256},
+	{ "asset/texture/BGblack2.png",       SIZE_1024,SIZE_576},
+	{ "asset/texture/Press Enter.png",    SIZE_256,SIZE_256},
+	{ "asset/texture/Title1024.png",      SCREEN_WIDTH, SCREEN_HEIGHT},
+
+	// ステージ選択画面
+	{ "asset/texture/Stage/stage heading.png",	SIZE_256, SIZE_64 },
+	{ "asset/texture/Stage/stage rope.png",		SIZE_64, SIZE_256 },
+	{ "asset/texture/Stage/blacknumber.png",	384, 151},
+
+	// ゲーム画面
 	// 背景
 	{ "asset/texture/back/back1.png",	SCREEN_WIDTH, SCREEN_HEIGHT / 2},
 	{ "asset/texture/back/back2.png",	256, 256},
@@ -34,118 +48,72 @@ static const TextureFile g_TextureFiles[] =
 	// キャラクター
 	{ "asset/texture/baby.png",		128, 128},
 	{ "asset/texture/seika.png",	64, 64},
-	{ "asset/texture/ya.png",	512, 256},
-
+	{ "asset/texture/ya.png",		512, 256},
 	//プレイヤー右
-    { "asset/texture/player/player_walk_00.png",   128,128 },
-    { "asset/texture/player/player_walk_01.png",   128,128 },
-    { "asset/texture/player/player_walk_02.png",   128,128 },
-    { "asset/texture/player/player_walk_03.png",   128,128 },
-    { "asset/texture/player/player_walk_04.png",   128,128 },
-    { "asset/texture/player/player_walk_05.png",   128,128 },
-    { "asset/texture/player/player_walk_06.png",   128,128 },
-    { "asset/texture/player/player_walk_07.png",   128,128 },
-    { "asset/texture/player/player_walk_08.png",   128,128 },
-    { "asset/texture/player/player_walk_09.png",   128,128 },
-	{ "asset/texture/player/player_walk_10.png",   128,128 },
-	//プレイヤー右
-	{ "asset/texture/player/player_walk_00_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_01_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_02_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_03_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_04_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_05_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_06_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_07_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_08_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_09_left.png",   128,128 },
-	{ "asset/texture/player/player_walk_10_left.png",   128,128 },
-	//プレイヤー
-    /*{ "asset/texture/player/player01.png",   128,128 },
-    { "asset/texture/player/player02.png",   128,128 },
-    { "asset/texture/player/player03.png",   128,128 },
-    { "asset/texture/player/player04.png",   128,128 },
-    { "asset/texture/player/player05.png",   128,128 },
-    { "asset/texture/player/player06.png",   128,128 },
-    { "asset/texture/player/player07.png",   128,128 },
-    { "asset/texture/player/player08.png",   128,128 },
-    { "asset/texture/player/player09.png",   128,128 },
-	{ "asset/texture/player/player10.png",   128,128 },
-	{ "asset/texture/player/player11.png",   128,128 },*/
-
+	{ "asset/texture/playerR/player_walk_00.png",   128,128},
+	{ "asset/texture/playerR/player_walk_01.png",   128,128},
+	{ "asset/texture/playerR/player_walk_02.png",   128,128},
+	{ "asset/texture/playerR/player_walk_03.png",   128,128},
+	{ "asset/texture/playerR/player_walk_04.png",   128,128},
+	{ "asset/texture/playerR/player_walk_05.png",   128,128},
+	{ "asset/texture/playerR/player_walk_06.png",   128,128},
+	{ "asset/texture/playerR/player_walk_07.png",   128,128},
+	{ "asset/texture/playerR/player_walk_08.png",   128,128},
+	{ "asset/texture/playerR/player_walk_09.png",   128,128},
+	{ "asset/texture/playerR/player_walk_10.png",   128,128},
+	{ "asset/texture/playerR/player_walk_11.png",   128,128},
+	{ "asset/texture/playerR/player_walk_12.png",   128,128},
+	{ "asset/texture/playerR/player_walk_13.png",   128,128},
+	{ "asset/texture/playerR/player_walk_14.png",   128,128},
+	{ "asset/texture/playerR/player_walk_15.png",   128,128},
+	{ "asset/texture/playerR/player_walk_16.png",   128,128},
+	{ "asset/texture/playerR/player_walk_17.png",   128,128},
+	{ "asset/texture/playerR/player_walk_18.png",   128,128},
+	//プレイヤー左
+	{ "asset/texture/playerL/player_walk_00_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_01_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_02_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_03_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_04_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_05_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_06_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_07_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_08_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_09_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_10_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_11_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_12_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_13_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_14_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_15_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_16_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_17_left.png",   128,128},
+	{ "asset/texture/playerL/player_walk_18_left.png",   128,128},
 	// ギミック
 	{ "asset/texture/candle1.png",	128, 128},
 	{ "asset/texture/candle2.png",	128, 128},
-	{ "asset/texture/black.png",	128, 128},
+	{ "asset/texture/Common/black.png",	128, 128},
 	{ "asset/texture/goal1.png",	256, 128},
 	{ "asset/texture/goal2.png",	256, 128},
 	{ "asset/texture/obake.png",	128, 128},
+	// 操作方法
+	{ "asset/texture/control.png",	540, 288},
 
-	// シーン--------------------------------------------
-	// 共通
-	{ "asset/texture/black.png",	SIZE_1024, SIZE_576 },
-	{ "asset/texture/back.png",		SIZE_256, SIZE_64 },
-	{ "asset/texture/decision.png",	SIZE_256, SIZE_64 },
+	// ゲームオーバー画面
+	{ "asset/texture/Gameover/end1.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/Gameover/end2.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/Gameover/end3.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+	{ "asset/texture/Gameover/end4.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
+	// ゲームクリア画面
+	{ "asset/texture/Gameclear/gameclear.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
 
-
-	//タイトル
-	{ "asset/texture/BG.png",             SCREEN_WIDTH, SCREEN_HEIGHT },
-	{ "asset/texture/LIGHT2.png",         SCREEN_WIDTH, SCREEN_HEIGHT },
-	{ "asset/texture/fire.png",           2304,SIZE_256 },
-	{ "asset/texture/BGblack2.png",       SIZE_1024,SIZE_576 },
-	{ "asset/texture/Press Enter.png",    SIZE_256,SIZE_256 },
-	{ "asset/texture/Title1024.png",      SCREEN_WIDTH, SCREEN_HEIGHT },
-
-	//人数
-	{ "asset/texture/people heading.png",		SIZE_256, SIZE_64 },
-	{ "asset/texture/people light.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/people ninzu1.png",		SIZE_256, SIZE_256 },
-	{ "asset/texture/people ninzu2.png",		SIZE_256, SIZE_256 },
-	{ "asset/texture/people ninzu3.png",		SIZE_256, SIZE_256 },
-	{ "asset/texture/people ninzu4.png",		SIZE_256, SIZE_256 },
-
-	//キャラクター
-	{ "asset/texture/character heading.png",		SIZE_512, SIZE_64 },
-	{ "asset/texture/character light.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/character select.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/character one.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/character two.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/character three.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/character four.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/Chara_Beta.png",		        SIZE_256, SIZE_256 },
-
-	//名前
-
-	//難易度
-	{ "asset/texture/difficulty heading.png",		SIZE_256, SIZE_64 },
-	{ "asset/texture/difficulty light.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/difficulty easy.png",		    SIZE_256, SIZE_256 },
-	{ "asset/texture/difficulty normal.png",		SIZE_256, SIZE_256 },
-	{ "asset/texture/difficulty hard.png",		    SIZE_256, SIZE_256 },
-
-	// STAGE
-	{ "asset/texture/stage heading.png",	SIZE_256, SIZE_64 },
-	{ "asset/texture/stage rope.png",		SIZE_64, SIZE_256 },
-	{ "asset/texture/stage character.png",	SIZE_128, SIZE_128 },
-	{ "asset/texture/blacknumber.png",	    (int)(SIZE_256 * 1.5f), (int)(SIZE_128 * 1.2f)},
-
-	// ゲームオーバー
-	{ "asset/texture/end1.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
-	{ "asset/texture/end2.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
-	{ "asset/texture/end3.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
-	{ "asset/texture/end4.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
-
-	// ゲームクリア
-	{ "asset/texture/gameclear.png",	SCREEN_WIDTH, SCREEN_HEIGHT},
-
-	// 戻る
-	{ "asset/texture/return.png",	256, 64},
-	{ "asset/texture/toTitle.png",	256, 64 },
-	{ "asset/texture/toStage.png",	512, 64 },
-	{ "asset/texture/return select.png",	64, 64 },
-
-
+	// 戻る画面
+	{ "asset/texture/Return/return.png",	256, 64},
+	{ "asset/texture/Return/toTitle.png",	256, 64 },
+	{ "asset/texture/Return/toStage.png",	512, 64 },
+	{ "asset/texture/Return/return select.png",	64, 64 },
 };
+
 // 読み込みテクスチャ数
 static const int TEXTURE_FILE_COUNT = sizeof(g_TextureFiles) / sizeof(g_TextureFiles[0]);
 // static const int TEXTURE_FILE_COUNT = ARRAYSIZE(g_TextureFiles); // required Windows.h

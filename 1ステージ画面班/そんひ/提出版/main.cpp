@@ -15,12 +15,12 @@
 // シーン
 #include"scene.h"
 #include"Title.h"
-#include"SelectPlayer.h"
-#include"SelectCharacter.h"
-#include"SelectDifficulty.h"
+//#include"SelectPlayer.h"
+//#include"SelectCharacter.h"
+//#include"SelectDifficulty.h"
 #include"SelectStage.h"
-#include"Game.h"
 #include"GameStage1.h"
+#include"GameStage3.h"
 #include"GameStage2.h"
 #include"Gameover.h"
 #include"Gameclear.h"
@@ -29,6 +29,9 @@
 // システム
 static HWND g_hWnd;
 D3DLIGHT9 gLight;
+
+// サウンド
+#include"sound.h"
 
 // メイン関数
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -163,6 +166,9 @@ bool Initialize(HINSTANCE hInstance)
 	pDevice->LightEnable(0, TRUE);
 	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
 
+	// サウンド
+	InitSound(g_hWnd);
+
 	// シーン
 	cScene::Init(SCENE_TITLE);
 
@@ -171,7 +177,7 @@ bool Initialize(HINSTANCE hInstance)
 	case SCENE_TITLE:
 		cTitle::Init();
 		break;
-	case SCENE_SELECT_NUMBER_OF_PLAYER:
+	/*case SCENE_SELECT_NUMBER_OF_PLAYER:
 		cSelectPlayer::Init();
 		break;
 	case SCENE_SELECT_CHARACTER:
@@ -179,7 +185,7 @@ bool Initialize(HINSTANCE hInstance)
 		break;
 	case SCENE_SELECT_DIFFICULTY:
 		cSelectDifficulty::Init();
-		break;
+		break;*/
 	case SCENE_SELECT_STAGE:
 		cSelectStage::Init();
 		break;
@@ -190,8 +196,8 @@ bool Initialize(HINSTANCE hInstance)
 	case STAGE_TWO:
 		cStage2::Init();
 		break;
-	case SCENE_GAME:
-		cGame::Init();
+	case STAGE_THREE:
+		cStage3::Init();
 		break;
 	case SCENE_GAMEOVER:
 		cGameover::Init();
@@ -217,7 +223,7 @@ void Finalize(void)
 	case SCENE_TITLE:
 		cTitle::Uninit();
 		break;
-	case SCENE_SELECT_NUMBER_OF_PLAYER:
+	/*case SCENE_SELECT_NUMBER_OF_PLAYER:
 		cSelectPlayer::Uninit();
 		break;
 	case SCENE_SELECT_CHARACTER:
@@ -225,19 +231,19 @@ void Finalize(void)
 		break;
 	case SCENE_SELECT_DIFFICULTY:
 		cSelectDifficulty::Uninit();
-		break;
+		break;*/
 	case SCENE_SELECT_STAGE:
 		cSelectStage::Uninit();
 		break;
 	// ゲーム
-	case SCENE_GAME:
-		cGame::Uninit();
-		break;
 	case STAGE_ONE:
 		cStage1::Uninit();
 		break;
 	case STAGE_TWO:
 		cStage2::Uninit();
+		break;
+	case STAGE_THREE:
+		cStage3::Uninit();
 		break;
 	case SCENE_GAMEOVER:
 		cGameover::Uninit();
@@ -253,6 +259,9 @@ void Finalize(void)
 	}
 
 	cScene::Uninit();
+
+	// サウンド
+	UninitSound();
 
 	// デバッグ
 	UninitDebugProc();
@@ -275,7 +284,7 @@ void Update(void)
 	case SCENE_TITLE:
 		cTitle::Update();
 		break;
-	case SCENE_SELECT_NUMBER_OF_PLAYER:
+	/*case SCENE_SELECT_NUMBER_OF_PLAYER:
 		cSelectPlayer::Update();
 		break;
 	case SCENE_SELECT_CHARACTER:
@@ -283,7 +292,7 @@ void Update(void)
 		break;
 	case SCENE_SELECT_DIFFICULTY:
 		cSelectDifficulty::Update();
-		break;
+		break;*/
 	case SCENE_SELECT_STAGE:
 		cSelectStage::Update();
 		break;
@@ -294,8 +303,8 @@ void Update(void)
 	case STAGE_TWO:
 		cStage2::Update();
 		break;
-	case SCENE_GAME:
-		cGame::Update();
+	case STAGE_THREE:
+		cStage3::Update();
 		break;
 	case SCENE_GAMEOVER:
 		cGameover::Update();
@@ -309,6 +318,9 @@ void Update(void)
 
 	default: break;
 	}
+
+	// サウンド
+	PlaySound(SOUND_LABEL_BGM0);
 
 	// シーン
 	cScene::Update();
@@ -340,7 +352,7 @@ void Draw(void)
 	case SCENE_TITLE:
 		cTitle::Draw();
 		break;
-	case SCENE_SELECT_NUMBER_OF_PLAYER:
+	/*case SCENE_SELECT_NUMBER_OF_PLAYER:
 		cSelectPlayer::Draw();
 		break;
 	case SCENE_SELECT_CHARACTER:
@@ -348,7 +360,7 @@ void Draw(void)
 		break;
 	case SCENE_SELECT_DIFFICULTY:
 		cSelectDifficulty::Draw();
-		break;
+		break;*/
 	case SCENE_SELECT_STAGE:
 		cSelectStage::Draw();
 		break;
@@ -359,8 +371,8 @@ void Draw(void)
 	case STAGE_TWO:
 		cStage2::Draw();
 		break;
-	case SCENE_GAME:
-		cGame::Draw();
+	case STAGE_THREE:
+		cStage3::Draw();
 		break;
 	case SCENE_GAMEOVER:
 		cGameover::Draw();

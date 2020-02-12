@@ -64,7 +64,7 @@ void cReturn::Update()
 		returnScene = 1;
 	}
 
-	PrintDebugProc("シーン遷移　%d\n", returnScene);
+	//PrintDebugProc("シーン遷移　%d\n", returnScene);
 	// 遷移
 	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{

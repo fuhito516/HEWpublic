@@ -11,10 +11,12 @@
 
 #include"debugproc.h"
 
+#include"sound.h"
+
 
 //アニメーション時間
-#define ANIMATION_SECOND (0.8f)
-#define NUMBER_OF_SHEETS (11)
+#define ANIMATION_SECOND (1.6f)
+#define NUMBER_OF_SHEETS (19)
 
 cPlayer* cPlayer::objects[NUMBER_OF_PLAYER];
 
@@ -186,6 +188,9 @@ void cPlayer::Update()
 				objects[i]->pastDirectionHorizontal = objects[i]->directionHorizontal = DIRECTION_LEFT;
 				// 位置x
 				objects[i]->position.x -= PLAYER_MOVEMENT_SPEED;
+
+				// サウンド
+				PlaySound(SOUND_LABEL_WALK);
 			}
 			if (GetKeyboardPress(DIK_D))
 			{
@@ -195,6 +200,9 @@ void cPlayer::Update()
 				objects[i]->pastDirectionHorizontal = objects[i]->directionHorizontal = DIRECTION_RIGHT;
 				// 位置x
 				objects[i]->position.x += PLAYER_MOVEMENT_SPEED;
+
+				// サウンド
+				PlaySound(SOUND_LABEL_WALK);
 			}
 
 			// アニメーション
@@ -206,6 +214,9 @@ void cPlayer::Update()
 			{
 				// 方向
 				objects[i]->directionHorizontal = DIRECTION_NONE;
+
+				// サウンド
+				StopSound(SOUND_LABEL_WALK);
 			}
 			if (GetKeyboardPress(DIK_SPACE) && objects[i]->jumpPossible)
 			{
@@ -705,11 +716,11 @@ void cPlayer::Draw()
 			// アニメーション
 			if (objects[i]->pastDirectionHorizontal == DIRECTION_RIGHT)
 			{
-				pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R1));
+				pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R4));
 			}
 			if (objects[i]->pastDirectionHorizontal == DIRECTION_LEFT)
 			{
-				pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L1));
+				pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L4));
 			}
 
 			//右
@@ -717,95 +728,159 @@ void cPlayer::Draw()
 			{
 				if (animation_seconds >= secondPerSheet * 0 && animation_seconds < secondPerSheet * 1)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R1));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R0));
 				}
 				if (animation_seconds >= secondPerSheet * 1 && animation_seconds < secondPerSheet * 2)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R2));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R1));
 				}
 				if (animation_seconds >= secondPerSheet * 2 && animation_seconds < secondPerSheet * 3)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R3));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R2));
 				}
 				if (animation_seconds >= secondPerSheet * 3 && animation_seconds < secondPerSheet * 4)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R4));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R3));
 				}
 				if (animation_seconds >= secondPerSheet * 4 && animation_seconds < secondPerSheet * 5)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R5));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R4));
 				}
 				if (animation_seconds >= secondPerSheet * 5 && animation_seconds < secondPerSheet * 6)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R6));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R5));
 				}
 				if (animation_seconds >= secondPerSheet * 6 && animation_seconds < secondPerSheet * 7)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R7));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R6));
 				}
 				if (animation_seconds >= secondPerSheet * 7 && animation_seconds < secondPerSheet * 8)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R8));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R7));
 				}
 				if (animation_seconds >= secondPerSheet * 8 && animation_seconds < secondPerSheet * 9)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R9));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R8));
 				}
 				if (animation_seconds >= secondPerSheet * 9 && animation_seconds < secondPerSheet * 10)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R10));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R9));
 				}
 				if (animation_seconds >= secondPerSheet * 10 && animation_seconds < secondPerSheet * 11)
 				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R10));
+				}
+				if (animation_seconds >= secondPerSheet * 11 && animation_seconds < secondPerSheet * 12)
+				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R11));
 				}
+				if (animation_seconds >= secondPerSheet * 12 && animation_seconds < secondPerSheet * 13)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R12));
+				}
+				if (animation_seconds >= secondPerSheet * 13 && animation_seconds < secondPerSheet * 14)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R13));
+				}
+				if (animation_seconds >= secondPerSheet * 14 && animation_seconds < secondPerSheet * 15)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R14));
+				}
+				if (animation_seconds >= secondPerSheet * 15 && animation_seconds < secondPerSheet * 16)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R15));
+				}
+				if (animation_seconds >= secondPerSheet * 16 && animation_seconds < secondPerSheet * 17)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R16));
+				}
+				if (animation_seconds >= secondPerSheet * 17 && animation_seconds < secondPerSheet * 18)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R17));
+				}
+				if (animation_seconds >= secondPerSheet * 18 && animation_seconds < secondPerSheet * 19)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_R18));
+				}
 			}
-			//左
+			// 左
 			if (objects[i]->directionHorizontal == DIRECTION_LEFT)
 			{
 				if (animation_seconds >= secondPerSheet * 0 && animation_seconds < secondPerSheet * 1)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L1));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L0));
 				}
 				if (animation_seconds >= secondPerSheet * 1 && animation_seconds < secondPerSheet * 2)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L2));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L1));
 				}
 				if (animation_seconds >= secondPerSheet * 2 && animation_seconds < secondPerSheet * 3)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L3));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L2));
 				}
 				if (animation_seconds >= secondPerSheet * 3 && animation_seconds < secondPerSheet * 4)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L4));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L3));
 				}
 				if (animation_seconds >= secondPerSheet * 4 && animation_seconds < secondPerSheet * 5)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L5));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L4));
 				}
 				if (animation_seconds >= secondPerSheet * 5 && animation_seconds < secondPerSheet * 6)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L6));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L5));
 				}
 				if (animation_seconds >= secondPerSheet * 6 && animation_seconds < secondPerSheet * 7)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L7));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L6));
 				}
 				if (animation_seconds >= secondPerSheet * 7 && animation_seconds < secondPerSheet * 8)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L8));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L7));
 				}
 				if (animation_seconds >= secondPerSheet * 8 && animation_seconds < secondPerSheet * 9)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L9));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L8));
 				}
 				if (animation_seconds >= secondPerSheet * 9 && animation_seconds < secondPerSheet * 10)
 				{
-					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L10));
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L9));
 				}
 				if (animation_seconds >= secondPerSheet * 10 && animation_seconds < secondPerSheet * 11)
 				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L10));
+				}
+				if (animation_seconds >= secondPerSheet * 11 && animation_seconds < secondPerSheet * 12)
+				{
 					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L11));
+				}
+				if (animation_seconds >= secondPerSheet * 12 && animation_seconds < secondPerSheet * 13)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L12));
+				}
+				if (animation_seconds >= secondPerSheet * 13 && animation_seconds < secondPerSheet * 14)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L13));
+				}
+				if (animation_seconds >= secondPerSheet * 14 && animation_seconds < secondPerSheet * 15)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L14));
+				}
+				if (animation_seconds >= secondPerSheet * 15 && animation_seconds < secondPerSheet * 16)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L15));
+				}
+				if (animation_seconds >= secondPerSheet * 16 && animation_seconds < secondPerSheet * 17)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L16));
+				}
+				if (animation_seconds >= secondPerSheet * 17 && animation_seconds < secondPerSheet * 18)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L17));
+				}
+				if (animation_seconds >= secondPerSheet * 18 && animation_seconds < secondPerSheet * 19)
+				{
+					pDevice->SetTexture(0, Texture_GetTexture(TEXTURE_INDEX_PLAYER_L18));
 				}
 			}
 

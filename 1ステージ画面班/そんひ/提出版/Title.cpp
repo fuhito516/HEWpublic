@@ -11,10 +11,10 @@
 #include"sprite.h"
 // シーン
 #include"scene.h"
-#include"Game.h"
-#include"SelectPlayer.h"
-#include"SelectCharacter.h"
-#include"SelectDifficulty.h"
+#include"GameStage1.h"
+//#include"SelectPlayer.h"
+//#include"SelectCharacter.h"
+//#include"SelectDifficulty.h"
 #include"SelectStage.h"
 
 // シーン遷移
@@ -136,7 +136,7 @@ void cTitle::Update()
 	// 遷移
 	if (GetKeyboardTrigger(DIK_RETURN) && !fade)
 	{
-		cScene::Fade(SCENE_SELECT_NUMBER_OF_PLAYER);
+		cScene::Fade(SCENE_SELECT_STAGE);
 		fade = true;
 	}
 }

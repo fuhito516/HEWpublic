@@ -9,6 +9,8 @@
 
 #include"debugproc.h"
 
+#include"sound.h"
+
 cCandle* cCandle::objects[NUMBER_OF_CANDLE];
 
 LPDIRECT3DVERTEXBUFFER9 cCandle::pVertexBuffer;
@@ -116,7 +118,10 @@ void cCandle::Update()
 						(cSeika::objects[j]->position.x - SEIKA_VERTICAL_SIZE / 2 < cCandle::objects[i]->position.x + CANDLE_HORIZONTAL_SIZE / 2)
 						)
 					{
-						cCandle::objects[i]->collision = true;
+						if (!objects[i]->collision)
+						{
+							cCandle::objects[i]->collision = true;
+						}
 					}
 				}
 
