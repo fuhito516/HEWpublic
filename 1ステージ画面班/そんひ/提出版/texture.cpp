@@ -47,7 +47,8 @@ static const TextureFile g_TextureFiles[] =
 	{ "asset/texture/back/back7.png",	SCREEN_WIDTH, SCREEN_HEIGHT / 2},
 	// キャラクター
 	{ "asset/texture/baby.png",		128, 128},
-	{ "asset/texture/seika.png",	64, 64},
+	{ "asset/texture/seika/seika.png",	64, 64},
+    { "asset/texture/seika/hinoko.png",	256, 256 },
 	{ "asset/texture/ya.png",		512, 256},
 	//プレイヤー右
 	{ "asset/texture/playerR/player_walk_00.png",   128,128},

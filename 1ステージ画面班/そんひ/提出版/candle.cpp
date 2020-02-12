@@ -75,6 +75,7 @@ void cCandle::Init()
 {
 	for (int i = 0; i < NUMBER_OF_CANDLE; i++)
 	{
+
 		objects[i] = NULL;
 	}
 
@@ -87,6 +88,9 @@ void cCandle::Uninit()
 	{
 		if (objects[i] != NULL)
 		{
+			objects[i]->use = true;
+			objects[i]->collision = false;
+
 			delete objects[i];
 			objects[i] = NULL;
 		}

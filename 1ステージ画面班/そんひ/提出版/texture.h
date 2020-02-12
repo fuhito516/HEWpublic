@@ -45,6 +45,7 @@ enum TextureIndex
 	// キャラクター
 	TEXTURE_INDEX_BABY,
 	TEXTURE_INDEX_SEIKA,
+	TEXTURE_INDEX_HINOKO,
 	TEXTURE_INDEX_YA,
 
 	//プレイヤー右

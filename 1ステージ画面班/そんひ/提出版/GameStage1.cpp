@@ -318,18 +318,23 @@ void cStage1::Draw()
 		pD3DDevice->SetSamplerState(i, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 	}
 	int i = 0;
+	FG.setLC(0); // STAGE2 3 plus
 	FG.setL(0, cSeika::objects[0]->position.x, cSeika::objects[0]->position.y);
 	i++;
-	if (cCandle::objects[0]->collision)
-	{
-		FG.setL(i, cCandle::objects[0]->position.x, cCandle::objects[0]->position.y);
-		i++;
-	}
-	if (cBridge::objects[0]->collision)
-	{
-		FG.setL(i, cBridge::objects[0]->gimmickPosition.x, cBridge::objects[0]->gimmickPosition.y);
-		i++;
-	}
+	for (int j = 0; j < NUMBER_OF_CANDLE; j++) {// STAGE2 3 plus  
+		if ((cCandle::objects[j]!=NULL)&&(cCandle::objects[j]->collision))// STAGE2 3  !=NULL & 0->j
+		{
+			FG.setL(i, cCandle::objects[j]->position.x, cCandle::objects[j]->position.y);// STAGE2 3  0->j
+			i++;
+		}
+	}// STAGE2 3 plus
+	for (int j = 0; j < NUMBER_OF_BRIDGE; j++) {// STAGE2 3 plus
+		if ((cBridge::objects[j] != NULL) && (cBridge::objects[j]->collision))// STAGE2 3  !=NULL & 0->j
+		{
+			FG.setL(i, cBridge::objects[j]->gimmickPosition.x, cBridge::objects[j]->gimmickPosition.y);// STAGE2 3  0->j
+			i++;
+		}
+	}// STAGE2 3 plus
 	FG.setLC(i);
 	FG.Draw();
 }

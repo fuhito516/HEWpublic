@@ -46,6 +46,7 @@ void cBridge::Init()
 {
 	for (int i = 0; i < NUMBER_OF_BRIDGE; i++)
 	{
+
 		objects[i] = NULL;
 	}
 }
@@ -56,6 +57,9 @@ void cBridge::Uninit()
 	{
 		if (objects[i] != NULL)
 		{
+			objects[i]->use = true;
+			objects[i]->collision = false;
+
 			delete objects[i];
 			objects[i] = NULL;
 		}

@@ -90,12 +90,15 @@ void cScene::Update()
 				switch (cScene::object->nextScene)
 				{
 				case STAGE_ONE:
+					//cStage1::Uninit();
 					cStage1::Init();
 					break;
 				case STAGE_TWO:
+					//cStage2::Uninit();
 					cStage2::Init();
 					break;
 				case STAGE_THREE:
+					//cStage3::Uninit();
 					cStage3::Init();
 					break;
 

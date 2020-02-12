@@ -120,6 +120,9 @@ void Fog::Draw()
 		Fog_pd3dDevice->SetTextureStageState(i + 1, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
 	}
 
+	Fog_pd3dDevice->SetTextureStageState(Light_count+1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	Fog_pd3dDevice->SetTextureStageState(Light_count+1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+
 	D3DXMatrixIdentity(&mtxWorld);
 	D3DXMatrixMultiply(&mtxWorld, &mtxWorld, &mtxScl);
 	D3DXMatrixMultiply(&mtxWorld, &mtxWorld, &mtxRot);

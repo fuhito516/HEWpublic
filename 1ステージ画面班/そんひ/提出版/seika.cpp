@@ -6,6 +6,7 @@
 #include"texture.h"
 #include"input.h"
 #include"debugproc.h"
+#include"sprite.h"
 // ‘ÎÛ
 #include"player.h"
 #include"ground.h"
@@ -698,6 +699,9 @@ void cSeika::Draw()
 			);
 		}
 	}
+
+
+
 }
 
 void cSeika::Set()
